@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font-family:system-ui,sans-serif;font-size:14px}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Ôn thi giữa kì lớp 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one-column study app on notebook graph paper — chọn môn → chọn phần → lượt làm → kết quả. Mỗi môn một màu nhấn (KHTN xanh, Lịch sử đồng thau). */
+:root{
+  --bg:#F2F5FB; --grid:rgba(47,91,211,.06);
+  --surface:#FFFFFF; --surface-2:#E7ECF6; --ink:#14213D; --muted:#56638A; --line:#D2DAEA;
+  --accent:#2F5BD3; --accent-deep:#1F43A8; --accent-soft:#E2E9FC; --on-solid:#FFFFFF;
+  --blue:#2F5BD3; --warm:#D97F12; --warm-soft:#FCEFD9;
+  --ok:#14915C; --ok-deep:#0D6E45; --ok-soft:#DCF3E8;
+  --bad:#D0413D; --bad-deep:#A42C29; --bad-soft:#FBE3E2;
+  --f-display:"Baloo 2","Be Vietnam Pro",system-ui,sans-serif;
+  --f-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1424; --grid:rgba(126,162,255,.06);
+  --surface:#161F35; --surface-2:#1F2A45; --ink:#E6ECF8; --muted:#9AA7C4; --line:#2B375A;
+  --accent:#7EA2FF; --accent-deep:#4E74D9; --accent-soft:#223159; --on-solid:#0E1424;
+  --blue:#7EA2FF; --warm:#F2AE4E; --warm-soft:#3A2A14;
+  --ok:#47C98F; --ok-deep:#2A9C69; --ok-soft:#14352A;
+  --bad:#F07A76; --bad-deep:#C2504C; --bad-soft:#3F1E25;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0E1424; --grid:rgba(126,162,255,.06);
+  --surface:#161F35; --surface-2:#1F2A45; --ink:#E6ECF8; --muted:#9AA7C4; --line:#2B375A;
+  --accent:#7EA2FF; --accent-deep:#4E74D9; --accent-soft:#223159; --on-solid:#0E1424;
+  --blue:#7EA2FF; --warm:#F2AE4E; --warm-soft:#3A2A14;
+  --ok:#47C98F; --ok-deep:#2A9C69; --ok-soft:#14352A;
+  --bad:#F07A76; --bad-deep:#C2504C; --bad-soft:#3F1E25;
+  color-scheme:dark;
+}
+/* Màu nhấn môn Lịch sử: đồng thau (trống đồng) */
+body[data-subj="ls"]{--accent:#99590D;--accent-deep:#6E3F08;--accent-soft:#F5E7D3;--grid:rgba(153,89,13,.07)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) body[data-subj="ls"]{--accent:#E3A55A;--accent-deep:#A8732F;--accent-soft:#3A2C18;--grid:rgba(227,165,90,.06)}}
+:root[data-theme="dark"] body[data-subj="ls"]{--accent:#E3A55A;--accent-deep:#A8732F;--accent-soft:#3A2C18;--grid:rgba(227,165,90,.06)}
+/* Màu nhấn môn Địa lí: xanh nước biển trên bản đồ */
+body[data-subj="dl"]{--accent:#0B7285;--accent-deep:#07505D;--accent-soft:#DDF1F4;--grid:rgba(11,114,133,.07)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) body[data-subj="dl"]{--accent:#5CC8D6;--accent-deep:#2B95A3;--accent-soft:#133A40;--grid:rgba(92,200,214,.06)}}
+:root[data-theme="dark"] body[data-subj="dl"]{--accent:#5CC8D6;--accent-deep:#2B95A3;--accent-soft:#133A40;--grid:rgba(92,200,214,.06)}
+
+*{box-sizing:border-box}
+body{background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:22px 22px;color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+h1,h2,h3{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balance}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,label:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:680px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+
+/* ---------- Home ---------- */
+.hero{display:grid;gap:12px;padding-block:6px 4px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:36px;height:36px;border-radius:10px;background:var(--accent);color:var(--on-solid);display:grid;place-items:center;flex:none}
+.logo svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.subj{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;background:var(--surface-2);border-radius:14px;padding:4px}
+.subj button{border:0;background:transparent;border-radius:11px;padding:10px 8px;font-weight:700;font-size:15.5px;color:var(--muted);line-height:1.25}
+.subj button[aria-pressed="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 3px rgba(10,20,50,.15)}
+h1{font-size:clamp(34px,8.5vw,46px);font-weight:800;letter-spacing:-.01em}
+.lede{margin:0;color:var(--muted);max-width:54ch}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:4px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:3px}
+.stat b{font-family:var(--f-display);font-size:28px;line-height:1;font-weight:700;font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--muted);line-height:1.3}
+.stat.warn b{color:var(--bad)}
+.sec-title{font-family:var(--f-body);font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:12px}
+.set-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.set-label{font-size:13.5px;font-weight:600;color:var(--muted);min-width:118px}
+.seg{display:inline-flex;flex-wrap:wrap;background:var(--surface-2);border-radius:11px;padding:3px;gap:3px}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:8px;font-size:14px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 3px rgba(10,20,50,.15)}
+.sw{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:500;cursor:pointer;border-radius:8px}
+.sw input{width:19px;height:19px;accent-color:var(--accent);margin:0}
+.set-hint{margin:0;font-size:13px;color:var(--muted);line-height:1.45}
+
+.modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:540px){.modes{grid-template-columns:1fr}}
+.mode{display:grid;grid-template-columns:46px minmax(0,1fr);gap:3px 12px;align-items:start;text-align:left;background:var(--surface);border:1px solid var(--line);border-bottom-width:3px;border-radius:var(--r);padding:14px;transition:transform .12s ease,border-color .12s ease}
+.mode:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+.mode:disabled{opacity:.55;cursor:default}
+.mode.wide{grid-column:1/-1}
+.mi{grid-row:span 3;width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.mi svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.mode h3{font-size:20px;font-weight:700}
+.mode .meta{font-size:13.5px;color:var(--muted);line-height:1.4}
+.chip{justify-self:start;margin-top:4px;font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted);font-variant-numeric:tabular-nums}
+.mode.review .mi{background:var(--bad-soft);color:var(--bad)}
+.mode.review .chip{background:var(--bad-soft);color:var(--bad)}
+.mode.review:hover:not(:disabled){border-color:var(--bad)}
+
+.note{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:14px}
+.note h3{font-size:21px}
+.note p{margin:0}
+.diagram{width:100%;max-width:470px;height:auto;display:block;margin-inline:auto}
+.st rect{fill:var(--surface-2);stroke:var(--line);stroke-width:1.5}
+.st-n{font-family:var(--f-display);font-weight:700;font-size:20px;fill:var(--ink);text-anchor:middle}
+.st-s{font-family:var(--f-body);font-size:11.5px;fill:var(--muted);text-anchor:middle}
+.ar{fill:none;stroke-width:2.2}
+.ar.w{stroke:var(--warm)} .ar.c{stroke:var(--blue)}
+.al{font-family:var(--f-body);font-size:12.5px;font-weight:700;text-anchor:middle}
+.al.w{fill:var(--warm)} .al.c{fill:var(--blue)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:center;font-size:13.5px;font-weight:600}
+.legend .w{color:var(--warm)} .legend .c{color:var(--blue)} .legend .a{color:var(--accent)}
+.tl-axis{stroke:var(--muted);stroke-width:2}
+.tl-tick{stroke:var(--ink);stroke-width:2.2}
+.tl-dot{fill:var(--ink)} .tl-dot.a{fill:var(--accent)} .tl-dot.c{fill:var(--blue)}
+.tl-y{font-family:var(--f-body);font-size:12.5px;font-weight:700;fill:var(--ink);text-anchor:middle}
+.tl-rg{font-family:var(--f-body);font-size:11.5px;fill:var(--muted);text-anchor:middle}
+.tl-br{fill:none;stroke-width:2}
+.tl-br.a{stroke:var(--accent)} .tl-br.c{stroke:var(--blue)}
+.tl-bl{font-family:var(--f-body);font-size:12.5px;font-weight:700;text-anchor:middle}
+.tl-bl.a{fill:var(--accent)} .tl-bl.c{fill:var(--blue)}
+.cp-d{stroke:var(--muted);stroke-width:2;stroke-linecap:round}
+.cp-star{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.5;stroke-linejoin:round}
+.cp-n{fill:var(--accent)}
+.cp-c{fill:var(--ink)}
+.cp-m{font-family:var(--f-display);font-weight:700;font-size:17px;fill:var(--ink)}
+.cp-s{font-family:var(--f-body);font-weight:600;font-size:12.5px;fill:var(--muted)}
+.a-m{text-anchor:middle} .a-s{text-anchor:start} .a-e{text-anchor:end}
+.units{width:100%;border-collapse:collapse;font-size:14.5px}
+.units th{text-align:left;font-weight:600;color:var(--muted);padding:8px 10px 8px 0;width:96px;vertical-align:top;font-size:13px}
+.units td{padding:8px 0}
+.units tr+tr th,.units tr+tr td{border-top:1px solid var(--line)}
+.foot{display:flex;justify-content:center;margin-top:24px}
+.linkbtn{border:0;background:none;color:var(--muted);font-size:13.5px;text-decoration:underline;text-underline-offset:3px;padding:6px}
+.linkbtn.arm{color:var(--bad);font-weight:600}
+
+/* ---------- Quiz ---------- */
+.qbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--line)}
+.qbar-in{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;color:var(--muted)}
+.icon-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.icon-btn.snd[aria-pressed="true"]{color:var(--accent)}
+.pbar{flex:1;height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:var(--accent);border-radius:inherit;transition:width .35s ease}
+.streak{display:inline-flex;align-items:center;gap:3px;font-family:var(--f-display);font-weight:700;font-size:19px;color:var(--muted);min-width:46px;justify-content:flex-end;font-variant-numeric:tabular-nums}
+.streak svg{width:20px;height:20px;fill:currentColor}
+.streak.hot{color:var(--warm)}
+.streak.bump{animation:bump .4s ease}
+@keyframes bump{40%{transform:scale(1.25)}}
+.qwrap{padding-bottom:calc(var(--sheet-h,130px) + 28px)}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.qcount{font-weight:600;color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
+.tag{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.grp{margin:0 0 4px;font-weight:600;color:var(--muted);font-size:15px}
+.qtext{font-family:var(--f-body);font-size:clamp(19px,4.8vw,22px);font-weight:600;line-height:1.45;margin-bottom:18px}
+.qtext.big{font-family:var(--f-display);font-size:36px;font-weight:700;line-height:1.2}
+.qtext b{color:var(--accent)}
+.blank{display:inline-block;min-width:64px;border-bottom:3px solid var(--accent);margin:0 4px;vertical-align:-2px}
+.opts{display:grid;gap:10px}
+.opts.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.opts.duo{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.opt{display:flex;align-items:center;gap:12px;text-align:left;width:100%;background:var(--surface);border:2px solid var(--line);border-bottom-width:4px;border-radius:14px;padding:12px 14px;font-size:16.5px;line-height:1.4;transition:transform .08s ease,border-color .15s ease,background-color .15s ease}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:active:not(:disabled){transform:translateY(2px)}
+.lt{flex:none;width:30px;height:30px;border-radius:9px;border:2px solid var(--line);display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:16px;color:var(--muted);line-height:1}
+.ot{min-width:0}
+.opt:disabled{cursor:default}
+.opt.is-ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.is-ok .lt{background:var(--ok);border-color:var(--ok);color:var(--on-solid)}
+.opt.is-bad{border-color:var(--bad);background:var(--bad-soft);animation:shake .35s ease}
+.opt.is-bad .lt{background:var(--bad);border-color:var(--bad);color:var(--on-solid)}
+.opt.is-dim{opacity:.5}
+@keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+
+.tf-list{display:grid;gap:10px}
+.tf-row{background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:10px;transition:border-color .15s ease,background-color .15s ease}
+.tf-t{margin:0;font-size:16.5px;line-height:1.45}
+.tf-l{font-weight:700;color:var(--accent);margin-right:2px}
+.tf-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tfb{border:2px solid var(--line);border-bottom-width:4px;background:var(--surface);border-radius:12px;padding:8px;font-weight:700;font-size:15.5px;transition:transform .08s ease}
+.tfb:active:not(:disabled){transform:translateY(2px)}
+.tfb.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.tfb:disabled{cursor:default}
+.tf-row.is-ok{border-color:var(--ok)}
+.tf-row.is-ok .tfb.on{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.tf-row.is-bad{border-color:var(--bad);background:var(--bad-soft)}
+.tf-row.is-bad .tfb.on{border-color:var(--bad);color:var(--bad);background:var(--surface)}
+.tf-why{margin:0;font-size:14.5px;line-height:1.45}
+.tf-why .k{font-weight:700}
+.tf-row.is-ok .tf-why .k{color:var(--ok)} .tf-row.is-bad .tf-why .k{color:var(--bad)}
+
+.fill{display:flex;align-items:center;gap:10px}
+.fill input{flex:1;min-width:0;font-family:var(--f-display);font-size:30px;font-weight:700;padding:8px 14px;border:2px solid var(--line);border-bottom-width:4px;border-radius:14px;background:var(--surface);color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.3}
+.fill input::placeholder{color:var(--muted);opacity:.6;font-weight:600;font-size:20px}
+.fill input.is-ok{border-color:var(--ok);background:var(--ok-soft)}
+.fill input.is-bad{border-color:var(--bad);background:var(--bad-soft)}
+.unit{font-family:var(--f-display);font-size:24px;font-weight:700;color:var(--muted);flex:none}
+.fill-tip{font-size:13.5px;color:var(--muted);margin:10px 0 0}
+
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:8;background:var(--surface);border-top:2px solid var(--line);padding-top:14px;padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));transition:background-color .2s ease,border-color .2s ease}
+.sheet[data-state="ok"]{background:var(--ok-soft);border-top-color:var(--ok)}
+.sheet[data-state="bad"]{background:var(--bad-soft);border-top-color:var(--bad)}
+.sheet-in{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:12px 14px;flex-wrap:wrap}
+.fb{flex:1 1 260px;min-width:0}
+.fb-title{margin:0;font-family:var(--f-display);font-size:22px;font-weight:700;line-height:1.2}
+.sheet[data-state="idle"] .fb-title{font-family:var(--f-body);font-size:15px;font-weight:500;color:var(--muted)}
+.sheet[data-state="ok"] .fb-title{color:var(--ok)}
+.sheet[data-state="bad"] .fb-title{color:var(--bad)}
+.fb-why{margin-top:4px;font-size:15px;line-height:1.5}
+.btns{display:flex;gap:10px;flex:0 0 auto}
+.btn{border:0;border-radius:14px;padding:12px 22px;font-weight:700;font-size:16px;line-height:1.2;transition:transform .08s ease}
+.btn:active:not(:disabled){transform:translateY(2px)}
+.btn.primary{background:var(--accent);color:var(--on-solid);box-shadow:0 4px 0 var(--accent-deep)}
+.sheet[data-state="ok"] .btn.primary{background:var(--ok);box-shadow:0 4px 0 var(--ok-deep)}
+.sheet[data-state="bad"] .btn.primary{background:var(--bad);box-shadow:0 4px 0 var(--bad-deep)}
+.btn.ghost{background:var(--surface);color:var(--ink);border:2px solid var(--line);box-shadow:0 3px 0 var(--line)}
+.btn:disabled{opacity:.45;cursor:default;box-shadow:none}
+@media (max-width:540px){.btns{flex:1 1 100%}.btns .btn{flex:1}}
+
+/* ---------- Result ---------- */
+.res{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px 18px;display:grid;justify-items:center;text-align:center;gap:8px}
+.res .eyebrow{margin-bottom:2px}
+.ring{width:156px;height:156px}
+.ring circle{fill:none;stroke-width:12}
+.ring .track{stroke:var(--surface-2)}
+.ring .val{stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset .9s ease}
+.ring .pct{font-family:var(--f-display);font-size:34px;font-weight:800;fill:var(--ink);text-anchor:middle}
+.ring .sub{font-family:var(--f-body);font-size:12px;fill:var(--muted);text-anchor:middle}
+.res h2{font-size:28px}
+.res p{margin:0;color:var(--muted);max-width:44ch}
+.res-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:10px}
+.rlist{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.rlist li{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--bad);border-radius:10px;padding:10px 14px;display:grid;gap:3px}
+.rlist .rq{font-size:15px}
+.rlist .ra{font-size:14px;color:var(--ok);font-weight:600}
+
+/* ---------- Thẻ tự luận ---------- */
+.fcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:14px}
+.fq{font-size:18px;font-weight:600;margin:0;line-height:1.5}
+.fhint{margin:0;color:var(--muted);font-size:14px}
+.fans{border-top:2px dashed var(--line);padding-top:14px;font-size:16px;line-height:1.55}
+.fans p{margin:0 0 8px}
+.fans ul,.fans ol{margin:0 0 8px;padding-left:20px;display:grid;gap:4px}
+.fans b{color:var(--accent)}
+.tw{overflow-x:auto}
+.tw table{width:100%;border-collapse:collapse;font-size:14.5px}
+.tw th,.tw td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.tw th{background:var(--surface-2);font-weight:600}
+.done{display:grid;gap:12px;justify-items:center;text-align:center;padding-block:8px}
+.done h2{font-size:28px}
+.done p{margin:0;color:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<section id="home">
+  <div class="wrap">
+    <header class="hero">
+      <div class="brand">
+        <span class="logo" id="logo" aria-hidden="true"></span>
+        <span class="eyebrow" id="eyebrow">Lịch sử 6 · Ôn tập giữa kì I · 2026–2027</span>
+      </div>
+      <div class="subj" id="subj" role="group" aria-label="Chọn môn">
+        <button type="button" data-s="khtn" aria-pressed="false">KHTN</button>
+        <button type="button" data-s="ls" aria-pressed="true">Lịch sử</button>
+        <button type="button" data-s="dl" aria-pressed="false">Địa lí</button>
+      </div>
+      <h1 id="h1">Ôn thi Lịch sử 6</h1>
+      <p class="lede">Chọn một phần để luyện. Chạm vào đáp án là biết ngay đúng hay sai. Câu làm sai được giữ lại để ôn lần nữa.</p>
+      <div class="stats">
+        <div class="stat"><b id="stA">0</b><span>câu đã làm</span></div>
+        <div class="stat"><b id="stP">–</b><span>tỉ lệ đúng</span></div>
+        <div class="stat warn"><b id="stW">0</b><span>câu cần ôn lại</span></div>
+      </div>
+    </header>
+
+    <h2 class="sec-title">Chọn phần luyện</h2>
+    <div class="modes" id="modes"></div>
+
+    <h2 class="sec-title">Cài đặt lượt làm</h2>
+    <div class="panel">
+      <div class="set-row"><span class="set-label">Nguồn câu hỏi</span>
+        <div class="seg" data-key="src"><button type="button" data-v="all">Tất cả</button><button type="button" data-v="g">Đề ôn của lớp</button><button type="button" data-v="l">Bộ luyện thêm</button></div>
+      </div>
+      <div class="set-row"><span class="set-label">Số câu mỗi lượt</span>
+        <div class="seg" data-key="n"><button type="button" data-v="10">10</button><button type="button" data-v="20">20</button><button type="button" data-v="0">Hết bộ</button></div>
+      </div>
+      <div class="set-row"><span class="set-label">Trộn</span>
+        <label class="sw"><input type="checkbox" id="shufQ"> thứ tự câu</label>
+        <label class="sw"><input type="checkbox" id="shufO"> vị trí đáp án</label>
+      </div>
+      <p class="set-hint">Bỏ chọn cả hai ô thì thứ tự câu, thứ tự các ý và đáp án A, B, C, D giống hệt đề giấy.</p>
+      <div class="set-row"><span class="set-label">Âm thanh</span>
+        <label class="sw"><input type="checkbox" id="sndOpt" checked> Phát âm thanh khi trả lời</label>
+      </div>
+    </div>
+
+    <h2 class="sec-title">Sổ tay nhanh</h2>
+    <div class="note" data-for="khtn" hidden>
+      <h3>Sự chuyển thể của nước</h3>
+      <svg class="diagram" viewBox="0 22 400 134" role="img" aria-label="Sơ đồ: Rắn sang Lỏng là nóng chảy, Lỏng sang Khí là bay hơi, Khí sang Lỏng là ngưng tụ, Lỏng sang Rắn là đông đặc">
+        <defs>
+          <marker id="mw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--warm)"/></marker>
+          <marker id="mc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--blue)"/></marker>
+        </defs>
+        <g class="st"><rect x="8" y="56" width="76" height="64" rx="12"/><text x="46" y="87" class="st-n">Rắn</text><text x="46" y="106" class="st-s">nước đá</text></g>
+        <g class="st"><rect x="162" y="56" width="76" height="64" rx="12"/><text x="200" y="87" class="st-n">Lỏng</text><text x="200" y="106" class="st-s">nước</text></g>
+        <g class="st"><rect x="316" y="56" width="76" height="64" rx="12"/><text x="354" y="87" class="st-n">Khí</text><text x="354" y="106" class="st-s">hơi nước</text></g>
+        <path class="ar w" d="M86 70 Q124 32 160 70" marker-end="url(#mw)"/>
+        <text class="al w" x="123" y="44">nóng chảy</text>
+        <path class="ar w" d="M240 70 Q278 32 314 70" marker-end="url(#mw)"/>
+        <text class="al w" x="277" y="44">bay hơi</text>
+        <path class="ar c" d="M160 106 Q122 144 86 106" marker-end="url(#mc)"/>
+        <text class="al c" x="123" y="146">đông đặc</text>
+        <path class="ar c" d="M314 106 Q276 144 240 106" marker-end="url(#mc)"/>
+        <text class="al c" x="277" y="146">ngưng tụ</text>
+      </svg>
+      <div class="legend"><span class="w">Mũi tên trên: nhận nhiệt (nóng lên)</span><span class="c">Mũi tên dưới: tỏa nhiệt (lạnh đi)</span></div>
+      <h3>Đổi đơn vị</h3>
+      <table class="units">
+        <tr><th>Độ dài</th><td>1 m = 100 cm = 1 000 mm</td></tr>
+        <tr><th>Khối lượng</th><td>1 kg = 1 000 g · 1 lạng = 100 g · 1 tấn = 1 000 kg</td></tr>
+        <tr><th>Thể tích</th><td>1 lít = 1 000 ml · 1 ml = 1 cm³ · 1 m³ = 1 000 lít</td></tr>
+        <tr><th>Thời gian</th><td>1 giờ = 60 phút · 1 phút = 60 giây</td></tr>
+        <tr><th>Nhiệt độ</th><td>Nước đá tan 0 °C · Nước sôi 100 °C · Thân nhiệt khoảng 37 °C</td></tr>
+        <tr><th>Vật rắn</th><td>Thể tích vật = mực nước sau − mực nước trước</td></tr>
+      </table>
+    </div>
+
+    <div class="note" data-for="ls">
+      <h3>Tính thời gian trong lịch sử</h3>
+      <svg class="diagram" viewBox="0 26 400 116" role="img" aria-label="Trục thời gian: năm 208 trước Công nguyên cách năm 2026 là 208 cộng 2026 bằng 2234 năm; năm 938 cách năm 2026 là 2026 trừ 938 bằng 1088 năm">
+        <defs><marker id="mt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker></defs>
+        <text class="tl-bl a" x="210" y="40">208 + 2026 = 2 234 năm</text>
+        <path class="tl-br a" d="M60 56 V48 H360 V56"/>
+        <text class="tl-rg" x="105" y="70">Trước Công nguyên</text>
+        <text class="tl-rg" x="205" y="70">Công nguyên</text>
+        <line class="tl-axis" x1="14" y1="80" x2="388" y2="80" marker-end="url(#mt)"/>
+        <line class="tl-tick" x1="150" y1="72" x2="150" y2="88"/>
+        <circle class="tl-dot a" cx="60" cy="80" r="5"/>
+        <circle class="tl-dot c" cx="260" cy="80" r="5"/>
+        <circle class="tl-dot" cx="360" cy="80" r="5"/>
+        <text class="tl-y" x="60" y="102">208 TCN</text>
+        <text class="tl-y" x="150" y="102">Năm 1</text>
+        <text class="tl-y" x="260" y="102">938</text>
+        <text class="tl-y" x="360" y="102">2026</text>
+        <path class="tl-br c" d="M260 110 V118 H360 V110"/>
+        <text class="tl-bl c" x="310" y="136">2026 − 938 = 1 088 năm</text>
+      </svg>
+      <div class="legend"><span class="a">Năm TCN: cộng với năm nay</span><span class="c">Năm Công nguyên: lấy năm nay trừ đi</span></div>
+      <table class="units">
+        <tr><th>Đơn vị</th><td>1 thập kỉ = 10 năm · 1 thế kỉ = 100 năm · 1 thiên niên kỉ = 1 000 năm</td></tr>
+        <tr><th>Tìm thế kỉ</th><td>Bỏ hai chữ số cuối rồi cộng 1: năm 938 → 9 + 1 → thế kỉ X; năm 208 TCN → thế kỉ III TCN. Năm tròn trăm thì không cộng: năm 1000 thuộc thế kỉ X.</td></tr>
+        <tr><th>Hai loại lịch</th><td>Âm lịch: Mặt Trăng quay quanh Trái Đất · Dương lịch: Trái Đất quay quanh Mặt Trời · Thế giới dùng chung Công lịch</td></tr>
+        <tr><th>Tư liệu</th><td>Truyền miệng (truyền thuyết, ca dao) · Chữ viết (sách, văn bản) · Hiện vật (di tích, đồ vật) · Tư liệu gốc: thông tin đầu tiên, trực tiếp</td></tr>
+      </table>
+      <h3>Xã hội nguyên thủy</h3>
+      <table class="units">
+        <tr><th>Người tối cổ</th><td>Sống thành bầy (bầy người nguyên thủy) · ghè đẽo đá thô sơ · săn bắt, hái lượm · hộp sọ 650 – 1 200 cm³ · răng hóa thạch ở Thẩm Khuyên, Thẩm Hai (Lạng Sơn); công cụ đá ở Núi Đọ (Thanh Hóa)</td></tr>
+        <tr><th>Người tinh khôn</th><td>Sống theo công xã thị tộc, nhiều thị tộc hợp thành bộ lạc · mài đá, trồng trọt, chăn nuôi, làm gốm · chôn cất người chết, làm đồ trang sức</td></tr>
+        <tr><th>Kim loại</th><td>Đồng đỏ → đồng thau → sắt · năng suất tăng, có của dư thừa · xã hội phân hóa giàu – nghèo</td></tr>
+      </table>
+      <h3>Các quốc gia cổ đại</h3>
+      <div class="tw"><table>
+        <tr><th>Quốc gia</th><th>Dòng sông</th><th>Chữ viết</th><th>Nổi bật</th></tr>
+        <tr><td>Ai Cập</td><td>Sông Nin</td><td>Chữ tượng hình, giấy pa-py-rút</td><td>Kim tự tháp, ướp xác, hệ đếm thập phân</td></tr>
+        <tr><td>Lưỡng Hà</td><td>Ti-grơ, Ơ-phrát</td><td>Chữ hình nêm trên đất sét</td><td>Vườn treo Ba-bi-lon, luật Ha-mu-ra-bi, hệ đếm 60</td></tr>
+        <tr><td>Ấn Độ</td><td>Sông Ấn, sông Hằng</td><td>Chữ Phạn</td><td>Chữ số 0</td></tr>
+      </table></div>
+    </div>
+
+    <div class="note" data-for="dl" hidden>
+      <h3>Phương hướng trên bản đồ</h3>
+      <svg class="diagram" viewBox="0 0 400 200" role="img" aria-label="Tám hướng trên bản đồ khi mũi tên chỉ Bắc hướng lên trên: Bắc ở trên, Nam ở dưới, Đông bên phải, Tây bên trái; Đông Bắc góc trên bên phải, Đông Nam góc dưới bên phải, Tây Nam góc dưới bên trái, Tây Bắc góc trên bên trái">
+        <line class="cp-d" x1="200" y1="100" x2="242" y2="58"/>
+        <line class="cp-d" x1="200" y1="100" x2="242" y2="142"/>
+        <line class="cp-d" x1="200" y1="100" x2="158" y2="142"/>
+        <line class="cp-d" x1="200" y1="100" x2="158" y2="58"/>
+        <path class="cp-star" d="M200 28 L212 88 L272 100 L212 112 L200 172 L188 112 L128 100 L188 88 Z"/>
+        <path class="cp-n" d="M200 28 L212 88 L200 100 L188 88 Z"/>
+        <circle class="cp-c" cx="200" cy="100" r="4.5"/>
+        <text class="cp-m a-m" x="200" y="20">Bắc</text>
+        <text class="cp-m a-m" x="200" y="194">Nam</text>
+        <text class="cp-m a-s" x="282" y="106">Đông</text>
+        <text class="cp-m a-e" x="118" y="106">Tây</text>
+        <text class="cp-s a-s" x="248" y="56">Đông Bắc</text>
+        <text class="cp-s a-e" x="152" y="56">Tây Bắc</text>
+        <text class="cp-s a-s" x="248" y="154">Đông Nam</text>
+        <text class="cp-s a-e" x="152" y="154">Tây Nam</text>
+      </svg>
+      <p class="set-hint" style="text-align:center">Chỉ đúng khi mũi tên chỉ Bắc hướng lên trên. Hướng đối diện: Bắc – Nam, Đông – Tây, Đông Bắc – Tây Nam, Tây Bắc – Đông Nam.</p>
+      <h3>Tỉ lệ bản đồ</h3>
+      <table class="units">
+        <tr><th>Ý nghĩa</th><td>Cho biết mức độ thu nhỏ của bản đồ so với thực tế · Có tỉ lệ số và tỉ lệ thước</td></tr>
+        <tr><th>Tính thực tế</th><td>Khoảng cách thực tế = khoảng cách bản đồ × mẫu số tỉ lệ (cùng đơn vị)</td></tr>
+        <tr><th>Tính bản đồ</th><td>Khoảng cách bản đồ = khoảng cách thực tế : mẫu số tỉ lệ (đổi ra cm trước)</td></tr>
+        <tr><th>Đổi đơn vị</th><td>100 cm = 1 m · 100 000 cm = 1 km (bỏ 5 chữ số 0) · 1 000 000 cm = 10 km</td></tr>
+        <tr><th>Ví dụ</th><td>3 cm, tỉ lệ 1 : 2 000 000 → 3 × 2 000 000 = 6 000 000 cm = 60 km</td></tr>
+      </table>
+      <h3>Kinh tuyến, vĩ tuyến, tọa độ</h3>
+      <table class="units">
+        <tr><th>Kinh tuyến</th><td>Nửa đường tròn nối hai cực · Kinh tuyến gốc 0° đi qua đài thiên văn Greenwich (Anh)</td></tr>
+        <tr><th>Vĩ tuyến</th><td>Vòng tròn song song với Xích đạo · Xích đạo là vĩ tuyến gốc 0°, chia Trái Đất thành bán cầu Bắc và bán cầu Nam</td></tr>
+        <tr><th>Tọa độ</th><td>Kinh độ và vĩ độ, kèm hướng: 105°Đ, 21°B → bán cầu Đông, bán cầu Bắc</td></tr>
+      </table>
+      <h3>Kí hiệu và lược đồ trí nhớ</h3>
+      <table class="units">
+        <tr><th>Kí hiệu điểm</th><td>Thành phố, sân bay</td></tr>
+        <tr><th>Kí hiệu đường</th><td>Sông, đường giao thông, đường sắt</td></tr>
+        <tr><th>Kí hiệu diện tích</th><td>Rừng, vùng trồng lúa</td></tr>
+        <tr><th>Bảng chú giải</th><td>Giải thích ý nghĩa các kí hiệu trên bản đồ</td></tr>
+        <tr><th>Tìm đường</th><td>Đọc chú giải → xác định điểm đầu, điểm đến → nhận biết tuyến đường, điểm mốc → chọn tuyến phù hợp</td></tr>
+        <tr><th>Lược đồ trí nhớ</th><td>Vẽ theo trí nhớ: điểm đầu, điểm cuối, đường đi, địa điểm nổi bật, có chú giải; không cần đúng tỉ lệ</td></tr>
+      </table>
+    </div>
+    <div class="foot"><button type="button" class="linkbtn" id="reset">Đặt lại tiến độ môn này</button></div>
+  </div>
+</section>
+
+<section id="quiz" hidden>
+  <div class="qbar"><div class="qbar-in">
+    <button type="button" class="icon-btn" id="quit" aria-label="Về trang chủ"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="pbar" role="progressbar" aria-label="Tiến độ lượt làm"><i id="pfill"></i></div>
+    <span class="streak" id="streak" title="Chuỗi trả lời đúng liên tiếp"><svg viewBox="0 0 24 24"><path d="M12.6 2.5c.6 3.4 4.9 5.6 4.9 10.6a5.5 5.5 0 0 1-11 0c0-2.7 1.6-4.4 2.7-5.4.2 1.9 1.1 3 2.4 3.2-1-2.6-.4-5.6 1-8.4z"/></svg><b id="stk">0</b></span>
+    <button type="button" class="icon-btn snd" aria-pressed="true" aria-label="Tắt âm thanh"></button>
+  </div></div>
+  <div class="wrap qwrap">
+    <div class="qhead"><span class="qcount" id="qcount"></span><span class="tag" id="qtag"></span></div>
+    <div id="qbody"></div>
+  </div>
+  <div class="sheet" id="sheet" data-state="idle">
+    <div class="sheet-in">
+      <div class="fb" aria-live="polite"><p class="fb-title" id="fbTitle"></p><div class="fb-why" id="fbWhy" hidden></div></div>
+      <div class="btns"><button type="button" class="btn primary" id="act">Kiểm tra</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="result" hidden>
+  <div class="wrap">
+    <div class="res">
+      <span class="eyebrow" id="rMode"></span>
+      <svg class="ring" viewBox="0 0 156 156" aria-hidden="true">
+        <circle class="track" cx="78" cy="78" r="60"/>
+        <circle class="val" id="rArc" cx="78" cy="78" r="60" transform="rotate(-90 78 78)"/>
+        <text class="pct" x="78" y="86" id="rPct">0%</text>
+        <text class="sub" x="78" y="106">đúng</text>
+      </svg>
+      <h2 id="rScore"></h2>
+      <p id="rMsg"></p>
+      <div class="res-actions" id="rActs"></div>
+    </div>
+    <h2 class="sec-title" id="rListT">Các câu chưa đúng</h2>
+    <ol class="rlist" id="rList"></ol>
+  </div>
+</section>
+
+<section id="cards" hidden>
+  <div class="qbar"><div class="qbar-in">
+    <button type="button" class="icon-btn" id="cquit" aria-label="Về trang chủ"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="pbar" role="progressbar" aria-label="Tiến độ thẻ"><i id="cfill"></i></div>
+    <span class="qcount" id="ccount" style="min-width:46px;text-align:right"></span>
+    <button type="button" class="icon-btn snd" aria-pressed="true" aria-label="Tắt âm thanh"></button>
+  </div></div>
+  <div class="wrap qwrap"><div id="cbody"></div></div>
+  <div class="sheet" id="csheet" data-state="idle">
+    <div class="sheet-in">
+      <div class="fb"><p class="fb-title" id="cfb"></p></div>
+      <div class="btns">
+        <button type="button" class="btn ghost" id="cNo" hidden>Chưa thuộc</button>
+        <button type="button" class="btn primary" id="cAct">Xem đáp án</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+"use strict";
+/* =====================================================================
+   KHOA HỌC TỰ NHIÊN 6
+   ===================================================================== */
+const K_G=[
+["Trong các nguồn tài nguyên sau, nguồn nào cần được khai thác và sử dụng tiết kiệm vì có trữ lượng hữu hạn?",["Quặng sắt","Ánh sáng Mặt Trời","Gió","Nước mưa"],0,"Quặng sắt khai thác mãi sẽ hết. Ánh sáng, gió, nước mưa tái tạo được."],
+["Vật liệu nào phù hợp để chế tạo áo mưa nhờ đặc tính không thấm nước?",["Giấy","Thủy tinh","Gỗ","Nilon"],3,"Nilon không thấm nước nên dùng làm áo mưa."],
+["Khi hóa chất vô tình bắn lên tay trong giờ thực hành, việc nên làm đầu tiên là gì?",["Lau tay vào áo","Báo giáo viên và rửa theo hướng dẫn an toàn","Tiếp tục làm thí nghiệm","Dùng tay chạm vào mặt"],1,"Báo ngay cho giáo viên và rửa tay dưới vòi nước theo hướng dẫn."],
+["Dụng cụ nào thích hợp nhất để xác định khối lượng một túi hạt?",["Cân","Thước dây","Đồng hồ bấm giây","Nhiệt kế"],0,"Cân dùng để đo khối lượng."],
+["Trước khi đo thể tích chất lỏng, cần chọn dụng cụ dựa chủ yếu vào yếu tố nào?",["Màu của chất lỏng","Lượng chất lỏng ước tính và độ chính xác cần thiết","Hình dạng bàn đặt","Nhiệt độ phòng"],1,"Ước lượng lượng chất lỏng để chọn bình có GHĐ và ĐCNN phù hợp."],
+["Đơn vị nào sau đây là đơn vị đo khối lượng?",["cm","phút","kg","cm³"],2,"kg đo khối lượng; cm đo độ dài; phút đo thời gian; cm³ đo thể tích."],
+["Ở điều kiện thường, dầu ăn trong chai chủ yếu tồn tại ở thể nào?",["Rắn","Lỏng","Khí","Hơi"],1,"Dầu ăn chảy được, có hình dạng của chai đựng nó nên ở thể lỏng."],
+["Biển báo có hình ngọn lửa thường nhắc nhở về nguy cơ nào?",["Dễ cháy","Trơn trượt","Điện giật","Bức xạ"],0,"Hình ngọn lửa là biển báo chất dễ cháy."],
+["Đối tượng nào là vật thể tự nhiên?",["Chiếc cốc","Cây thông mọc trong rừng","Bàn học","Quyển vở"],1,"Cây thông mọc sẵn trong rừng, không do con người làm ra."],
+["Khí nào trong không khí cần thiết cho quá trình hô hấp của phần lớn sinh vật?",["Nitrogen","Oxygen","Carbon dioxide","Helium"],1,"Oxygen cần cho sự hô hấp. Carbon dioxide là khí thải ra khi thở."],
+["Nhiệt độ nước đá đang tan ở điều kiện tiêu chuẩn gần bằng bao nhiêu theo thang Celsius?",["0 °C","25 °C","50 °C","100 °C"],0,"Nước đá tan ở 0 °C. 100 °C là nhiệt độ nước sôi."],
+["Vật liệu chính thường dùng làm lõi ruột dây điện là gì?",["Cao su","Đồng","Gỗ","Thủy tinh"],1,"Đồng dẫn điện tốt nên làm lõi dây điện."],
+["Đặc điểm nào phù hợp với cao su dùng làm lốp xe?",["Dễ vỡ vụn","Có tính đàn hồi","Tan nhanh trong nước","Dẫn điện rất tốt"],1,"Cao su đàn hồi, bền nên làm lốp xe."],
+["Dãy nào gồm toàn các chất?",["Sắt, nước, oxygen","Cái bàn, nước, viên gạch","Cây bút, nhôm, muối","Cái cốc, cái thìa, đường"],0,"Sắt, nước, oxygen là chất. Cái bàn, viên gạch, cây bút, cái cốc là vật thể."],
+["Hoạt động nào thể hiện việc tìm hiểu tự nhiên bằng phương pháp quan sát?",["Quan sát sự nảy mầm của hạt và ghi chép","Trang trí lớp học","Chơi bóng đá","Sắp xếp bàn ghế"],0,"Quan sát và ghi chép sự nảy mầm là tìm hiểu tự nhiên."],
+["Dụng cụ nào dùng để đo nhiệt độ cơ thể?",["Nhiệt kế","Cân đồng hồ","Thước thẳng","Bình chia độ"],0,"Nhiệt kế y tế đo nhiệt độ cơ thể."],
+["Kết quả đổi 3,2 kg ra gam là bao nhiêu?",["32 g","320 g","3 200 g","32 000 g"],2,"1 kg = 1 000 g, nên 3,2 × 1 000 = 3 200 g."],
+["Khi đo chiều dài một chiếc bàn, mắt người đo nên đặt như thế nào để hạn chế sai số?",["Nhìn xiên từ bên cạnh","Nhìn vuông góc với vạch chia tại đầu vật","Đứng thật xa","Nhắm một mắt và ước lượng"],1,"Mắt nhìn vuông góc với thước tại vạch ngang đầu vật."],
+["Một bộ phim bắt đầu lúc 8 giờ 35 phút và kết thúc lúc 9 giờ 20 phút. Thời lượng phim là bao lâu?",["35 phút","45 phút","55 phút","1 giờ 15 phút"],1,"8 giờ 35 đến 9 giờ là 25 phút, thêm 20 phút nữa là 45 phút."],
+["Mực chất lỏng trong bình chia độ tăng từ 40 cm³ lên 58 cm³ khi thả vật vào. Thể tích vật là bao nhiêu?",["18 cm³","40 cm³","58 cm³","98 cm³"],0,"Thể tích vật = 58 − 40 = 18 cm³."],
+["Chất nào có khả năng dẫn điện tốt và thường được dùng trong dây dẫn?",["Đồng","Gỗ khô","Nhựa","Cao su"],0,"Đồng dẫn điện tốt. Nhựa, cao su, gỗ khô là chất cách điện."],
+["Hiện tượng nước lỏng chuyển thành hơi được gọi là gì?",["Đông đặc","Ngưng tụ","Hóa hơi","Nóng chảy"],2,"Lỏng → hơi là hóa hơi (bay hơi). Đông đặc là lỏng → rắn."],
+["Hiện tượng nào sau đây là sự ngưng tụ?",["Nước đá tan thành nước","Hơi nước gặp lạnh tạo thành giọt nước","Nước đóng băng","Sáp nến nóng chảy"],1,"Hơi nước gặp lạnh thành giọt nước: khí → lỏng là ngưng tụ."],
+["Đặc điểm nào là dấu hiệu của vật sống?",["Có thể lớn lên và sinh sản","Có hình dạng cố định mãi mãi","Được tạo ra trong nhà máy","Không trao đổi chất với môi trường"],0,"Vật sống trao đổi chất, lớn lên, sinh sản."],
+["Vì sao không nên dùng mũi ngửi trực tiếp hóa chất trong phòng thực hành?",["Có thể hít phải hơi gây hại","Làm hóa chất đổi màu ngay lập tức","Khiến cân đo sai","Làm nhiệt kế ngừng hoạt động"],0,"Hơi hóa chất có thể độc, gây hại khi hít vào."],
+["Phát biểu nào sau đây về kính lúp là đúng?",["Độ phóng đại của kính lúp từ 50 lần đến 500 lần","Dùng kính lúp để đo khối lượng của vật","Dùng kính lúp để đo nhiệt độ của chất lỏng","Quan sát những vật nhỏ mà mắt thường khó nhìn rõ"],3,"Kính lúp dùng để quan sát vật nhỏ. Độ phóng đại của kính lúp chỉ khoảng 3 đến 20 lần."],
+["Bộ phận nào của kính hiển vi quang học được đặt gần mắt người quan sát?",["Chân kính","Bàn kính","Thị kính","Vật kính"],2,"Thị kính ở gần mắt; vật kính ở gần mẫu vật."],
+["Dụng cụ nào phù hợp nhất để quan sát các tế bào có kích thước rất nhỏ?",["Thước thẳng","Kính hiển vi","Cân điện tử","Kính thiên văn"],1,"Tế bào rất nhỏ nên phải dùng kính hiển vi. Kính thiên văn để nhìn vật ở rất xa."],
+["Khi sử dụng kính lúp để quan sát một chiếc lá, cách làm nào phù hợp?",["Đặt kính thật xa vật và nhìn nghiêng","Điều chỉnh khoảng cách giữa kính và vật để nhìn ảnh rõ nét","Dùng kính lúp đặt sát vào mắt","Chạm mặt kính vào mẫu vật và ấn mạnh"],1,"Di chuyển kính lên xuống đến khi nhìn ảnh rõ nét."],
+["Sau khi sử dụng kính hiển vi quang học, học sinh nên làm gì?",["Lau thấu kính bằng tay áo","Để kính ở nơi ẩm ướt","Cất kính khi còn bám bụi và nước","Làm sạch thấu kính bằng giấy lau kính chuyên dụng và cất đúng nơi quy định"],3,"Lau bằng giấy lau kính chuyên dụng, cất nơi khô ráo, đúng chỗ."]
+];
+const K_L=[
+["Nguồn năng lượng nào sau đây gần như không bao giờ cạn kiệt?",["Than đá","Dầu mỏ","Khí đốt tự nhiên","Năng lượng gió"],3,"Gió là năng lượng tái tạo. Than đá, dầu mỏ, khí đốt dùng mãi sẽ cạn."],
+["Vật liệu nào thường dùng làm cửa kính vì trong suốt, cho ánh sáng đi qua?",["Gỗ","Thủy tinh","Sắt","Cao su"],1,"Thủy tinh trong suốt, cho ánh sáng đi qua."],
+["Việc làm nào sau đây ĐÚNG quy định an toàn trong phòng thực hành?",["Nếm thử hóa chất để nhận biết","Ăn uống trong phòng thực hành","Chỉ làm thí nghiệm khi có hướng dẫn của giáo viên","Tự ý mang hóa chất về nhà"],2,"Chỉ làm thí nghiệm khi có giáo viên hướng dẫn. Không nếm, không ăn uống, không mang hóa chất về."],
+["Để đo thời gian một bạn chạy 60 m, dụng cụ phù hợp nhất là:",["Đồng hồ bấm giây","Đồng hồ treo tường","Cân đồng hồ","Thước cuộn"],0,"Đồng hồ bấm giây đo được khoảng thời gian ngắn, chính xác."],
+["Biển báo có hình đầu lâu xương chéo nhắc nhở về nguy cơ nào?",["Chất dễ cháy","Chất độc","Điện cao thế","Lối thoát hiểm"],1,"Đầu lâu xương chéo là biển báo chất độc."],
+["Đơn vị nào sau đây dùng để đo thể tích?",["kg","°C","m³","km"],2,"m³ đo thể tích; kg đo khối lượng; °C đo nhiệt độ; km đo độ dài."],
+["Giới hạn đo (GHĐ) của một cái thước là:",["Độ dài giữa hai vạch chia liên tiếp","Độ dài nhỏ nhất ghi trên thước","Độ dài của vật cần đo","Độ dài lớn nhất ghi trên thước"],3,"GHĐ là số lớn nhất ghi trên thước. Độ dài giữa hai vạch liên tiếp là ĐCNN."],
+["Một thước có GHĐ 30 cm. Khoảng giữa vạch 0 và vạch 1 cm được chia thành 10 khoảng nhỏ bằng nhau. Độ chia nhỏ nhất (ĐCNN) của thước là:",["1 cm","0,5 cm","1 mm","10 cm"],2,"1 cm chia 10 khoảng, mỗi khoảng 0,1 cm = 1 mm."],
+["Khi đọc thể tích chất lỏng trong bình chia độ, mắt phải đặt:",["Ngang với mực chất lỏng trong bình","Cao hơn mực chất lỏng","Thấp hơn mực chất lỏng","Ở vị trí nào cũng được"],0,"Mắt đặt ngang với mực chất lỏng."],
+["Đổi 1,5 kg ra gam được:",["1 500 g","150 g","15 g","15 000 g"],0,"1,5 × 1 000 = 1 500 g."],
+["Đổi 250 cm ra mét được:",["25 m","2,5 m","0,25 m","2 500 m"],1,"1 m = 100 cm, nên 250 : 100 = 2,5 m."],
+["Buổi học bắt đầu lúc 7 giờ 15 phút và kết thúc lúc 10 giờ 45 phút. Buổi học kéo dài:",["3 giờ","3 giờ 15 phút","3 giờ 45 phút","3 giờ 30 phút"],3,"7 giờ 15 đến 10 giờ 15 là 3 giờ, thêm 30 phút là 3 giờ 30 phút."],
+["Bình chia độ đang chứa 50 cm³ nước. Thả chìm một hòn đá vào, mực nước dâng lên đến 74 cm³. Thể tích hòn đá là:",["50 cm³","74 cm³","24 cm³","124 cm³"],2,"74 − 50 = 24 cm³."],
+["Nhiệt kế y tế thường dùng để đo:",["Nhiệt độ nước sôi","Nhiệt độ cơ thể người","Nhiệt độ lò nung","Nhiệt độ món canh vừa nấu"],1,"Nhiệt kế y tế chỉ đo khoảng 35 °C đến 42 °C, dùng cho cơ thể người."],
+["Tính chất nào sau đây là tính chất hóa học của sắt?",["Có màu trắng xám","Dẫn điện tốt","Bị gỉ trong không khí ẩm","Cứng, khó uốn"],2,"Bị gỉ là tạo ra chất mới, nên là tính chất hóa học. Màu, dẫn điện, độ cứng là tính chất vật lí."],
+["Ở điều kiện thường, chất nào sau đây ở thể khí?",["Oxygen","Muối ăn","Nước","Đường"],0,"Oxygen ở thể khí. Muối, đường ở thể rắn; nước ở thể lỏng."],
+["Sự chuyển từ thể rắn sang thể lỏng gọi là:",["Đông đặc","Ngưng tụ","Bay hơi","Nóng chảy"],3,"Rắn → lỏng là nóng chảy."],
+["Hiện tượng nào sau đây là sự bay hơi?",["Quần áo ướt phơi ngoài nắng khô dần","Nước trong khay để ngăn đá hóa thành đá","Giọt sương đọng trên lá cây buổi sáng","Cây nến đang cháy bị chảy ra"],0,"Nước trong quần áo chuyển thành hơi: lỏng → khí là bay hơi."],
+["Sương mù vào sáng sớm được tạo thành do hiện tượng nào?",["Nóng chảy","Đông đặc","Ngưng tụ","Bay hơi"],2,"Hơi nước trong không khí gặp lạnh ngưng tụ thành hạt nước nhỏ li ti."],
+["Ở điều kiện thường, nước sôi ở nhiệt độ nào?",["0 °C","100 °C","37 °C","50 °C"],1,"Nước sôi ở 100 °C."],
+["Đặc điểm nào sau đây KHÔNG phải là dấu hiệu của vật sống?",["Trao đổi chất với môi trường","Lớn lên","Sinh sản","Có hình dạng không bao giờ thay đổi"],3,"Câu hỏi chữ KHÔNG: ba ý đầu là dấu hiệu của vật sống."],
+["Dãy nào sau đây gồm toàn vật thể nhân tạo?",["Cái ghế, quyển sách, xe đạp","Ngọn núi, dòng sông, hòn đá","Con chó, cây bàng, quả cam","Con cá, cái bàn, đám mây"],0,"Cái ghế, quyển sách, xe đạp đều do con người làm ra."],
+["Trong câu “Dây điện có lõi bằng đồng và vỏ bằng nhựa”, từ nào chỉ vật thể?",["đồng","nhựa","dây điện","đồng và nhựa"],2,"Dây điện là vật thể. Đồng, nhựa là chất làm nên vật thể."],
+["Oxygen chiếm khoảng bao nhiêu phần trăm thể tích không khí?",["78%","21%","1%","50%"],1,"Oxygen khoảng 21%, nitrogen khoảng 78%."],
+["Khí nào chiếm nhiều nhất trong không khí?",["Oxygen","Carbon dioxide","Nitrogen","Hơi nước"],2,"Nitrogen chiếm khoảng 78% thể tích không khí."],
+["Người ta thổi oxygen vào lò luyện thép và dùng oxygen trong đèn xì hàn cắt kim loại là nhờ tính chất nào?",["Duy trì sự cháy","Không màu","Tan ít trong nước","Không mùi"],0,"Oxygen duy trì sự cháy, làm lửa cháy mạnh, nhiệt độ cao."],
+["Việc làm nào sau đây góp phần làm GIẢM ô nhiễm không khí?",["Đốt rơm rạ sau thu hoạch","Xả khói nhà máy chưa xử lí","Dùng xe máy cũ xả nhiều khói","Trồng nhiều cây xanh"],3,"Cây xanh hấp thụ khí carbon dioxide, nhả oxygen, giữ bụi."],
+["Kính lúp thường có độ phóng đại khoảng:",["Từ 3 lần đến 20 lần","Từ 50 lần đến 500 lần","Từ 40 lần đến 3 000 lần","Trên 10 000 lần"],0,"Kính lúp phóng to 3 – 20 lần. 40 – 3 000 lần là kính hiển vi quang học."],
+["Bộ phận của kính hiển vi quang học dùng để đặt tiêu bản (mẫu vật) là:",["Thị kính","Vật kính","Bàn kính","Chân kính"],2,"Tiêu bản đặt trên bàn kính."],
+["Muốn quan sát rõ tế bào vảy hành, ta nên dùng:",["Mắt thường","Kính lúp","Kính râm","Kính hiển vi quang học"],3,"Tế bào rất nhỏ, kính lúp không đủ, phải dùng kính hiển vi quang học."]
+];
+const K_TG=[
+["Về sử dụng vật liệu và nguyên liệu:",[["Kim loại thường được dùng làm nồi vì nhiều kim loại dẫn nhiệt tốt.",true,"Kim loại dẫn nhiệt tốt, thức ăn nhanh chín."],["Nhựa và cao su đều có thể được sử dụng làm lớp bọc cách điện.",true,"Nhựa và cao su cách điện nên làm vỏ bọc dây điện."],["Mọi loại vật liệu đều có tính chất giống nhau nên có thể thay thế cho nhau trong mọi trường hợp.",false,"Mỗi vật liệu có tính chất riêng, phải chọn đúng vật liệu cho từng việc."],["Sử dụng nguyên liệu hợp lí góp phần hạn chế lãng phí tài nguyên.",true,""]]],
+["Về vật sống, vật không sống và vật thể:",[["Cây đậu là vật sống vì có thể sinh trưởng và tạo ra cây con.",true,""],["Một chiếc máy bay do con người chế tạo là vật thể tự nhiên.",false,"Máy bay do con người chế tạo nên là vật thể nhân tạo."],["Đá cuội là vật không sống dù có thể bị thay đổi hình dạng do tác động bên ngoài.",true,"Đá cuội bị mài mòn do nước chảy, nhưng không lớn lên, không sinh sản."],["Vật thể nhân tạo là vật thể được con người tạo ra.",true,""]]],
+["Về oxygen và không khí:",[["Oxygen cần thiết cho sự hô hấp của con người và nhiều sinh vật.",true,""],["Oxygen duy trì sự cháy.",true,""],["Không khí chỉ gồm duy nhất khí oxygen.",false,"Không khí có khoảng 78% nitrogen, 21% oxygen, 1% khí khác."],["Khi có cháy, cần bình tĩnh báo động và làm theo hướng dẫn thoát nạn an toàn.",true,""]]],
+["Về đo lường trong thực hành:",[["Giới hạn đo cho biết giá trị lớn nhất ghi trên dụng cụ đo.",true,""],["Độ chia nhỏ nhất là giá trị giữa hai vạch chia liên tiếp trên dụng cụ.",true,"Đây đúng là định nghĩa ĐCNN."],["Khi đọc thể tích chất lỏng trong bình chia độ, cần đặt mắt ngang với mặt chất lỏng.",true,""],["Có thể dùng nhiệt kế để đo chiều dài quyển sách.",false,"Nhiệt kế đo nhiệt độ. Đo chiều dài phải dùng thước."]]],
+["Về sự chuyển thể của chất:",[["Nước lỏng chuyển thành nước đá là quá trình đông đặc.",true,"Lỏng → rắn là đông đặc."],["Sáp nến rắn chảy thành lỏng khi được đun nóng là hiện tượng nóng chảy.",true,"Rắn → lỏng là nóng chảy."],["Hơi nước biến thành giọt nước khi gặp lạnh là sự hóa hơi.",false,"Khí → lỏng khi gặp lạnh là ngưng tụ, không phải hóa hơi."],["Sự chuyển thể có thể xảy ra khi chất nhận nhiệt hoặc tỏa nhiệt.",true,"Nóng chảy, bay hơi cần nhận nhiệt; đông đặc, ngưng tụ thì tỏa nhiệt."]]]
+];
+const K_TP=[
+["Về dụng cụ đo và đơn vị đo:",[["Để đo khối lượng của vật, ta dùng cân.",true,""],["Đơn vị đo thời gian trong hệ đơn vị đo lường chính thức của nước ta là giờ.",false,"Đơn vị đo thời gian là giây (s)."],["1 m³ = 1 000 lít.",true,""],["Trước khi đo cần ước lượng đại lượng cần đo để chọn dụng cụ phù hợp.",true,""]]],
+["Về các thể của chất:",[["Chất ở thể rắn có hình dạng xác định.",true,""],["Chất ở thể lỏng có hình dạng của phần vật chứa nó.",true,""],["Chất ở thể khí rất khó bị nén.",false,"Chất khí dễ bị nén."],["Sự bay hơi chỉ xảy ra khi nước đang sôi.",false,"Bay hơi xảy ra ở mọi nhiệt độ, ví dụ quần áo phơi khô dần."]]],
+["Về vật liệu:",[["Gỗ dẫn nhiệt kém nên thường dùng làm cán dao, quai nồi.",true,""],["Thủy tinh rất bền, khó vỡ khi va đập.",false,"Thủy tinh cứng nhưng giòn, dễ vỡ."],["Sắt để lâu trong không khí ẩm dễ bị gỉ.",true,""],["Cao su dẫn điện tốt nên được dùng làm lõi dây điện.",false,"Cao su cách điện. Lõi dây điện làm bằng đồng."]]],
+["Về kính lúp và kính hiển vi:",[["Kính lúp dùng để quan sát vật nhỏ mà mắt thường khó nhìn rõ.",true,""],["Thị kính là bộ phận đặt sát mẫu vật.",false,"Vật kính gần mẫu vật; thị kính gần mắt."],["Kính hiển vi quang học phóng to ảnh nhiều hơn kính lúp.",true,"Kính lúp 3 – 20 lần; kính hiển vi quang học 40 – 3 000 lần."],["Có thể lau thấu kính của kính hiển vi bằng tay áo cho nhanh.",false,"Phải lau bằng giấy lau kính chuyên dụng."]]],
+["Về oxygen và không khí:",[["Oxygen là chất khí không màu, không mùi.",true,""],["Ở điều kiện thường, oxygen ở thể lỏng.",false,"Ở điều kiện thường oxygen ở thể khí."],["Khói từ xe cộ và nhà máy là một nguyên nhân gây ô nhiễm không khí.",true,""],["Nitrogen là khí duy trì sự cháy và sự hô hấp.",false,"Oxygen mới duy trì sự cháy và sự hô hấp."]]]
+];
+const K_FG=[
+["2,6 m = __ cm","cm",260,"1 m = 100 cm, nên 2,6 × 100 = 260 cm.","Đề ôn · Trả lời ngắn câu 1a"],
+["750 g = __ kg","kg",0.75,"1 kg = 1 000 g, nên 750 : 1 000 = 0,75 kg.","Đề ôn · Trả lời ngắn câu 1b"],
+["1 giờ 45 phút = __ phút","phút",105,"1 giờ = 60 phút, nên 60 + 45 = 105 phút.","Đề ôn · Trả lời ngắn câu 1c"],
+["2,5 phút = __ giây","giây",150,"1 phút = 60 giây, nên 2,5 × 60 = 150 giây.","Đề ôn · Trả lời ngắn câu 1d"],
+["Bình chia độ có 65 cm³ nước. Thả chìm hoàn toàn một viên sỏi, mực nước lên đến 82 cm³. Thể tích ban đầu của nước trong bình là bao nhiêu?","cm³",65,"Thể tích ban đầu là số đọc lúc chưa thả sỏi: 65 cm³.","Đề ôn · Trả lời ngắn câu 3a","fg3a"],
+["Bình chia độ có 65 cm³ nước. Thả chìm hoàn toàn một viên sỏi, mực nước lên đến 82 cm³. Thể tích nước và viên sỏi sau khi thả sỏi vào là bao nhiêu?","cm³",82,"Mực nước sau khi thả sỏi là 82 cm³, gồm cả nước và sỏi.","Đề ôn · Trả lời ngắn câu 3b","fg3b"],
+["Bình chia độ có 65 cm³ nước. Thả chìm hoàn toàn một viên sỏi, mực nước lên đến 82 cm³. Thể tích viên sỏi là bao nhiêu?","cm³",17,"Thể tích sỏi = 82 − 65 = 17 cm³.","Đề ôn · Trả lời ngắn câu 3c"],
+["Viên sỏi có thể tích 17 cm³. Đổi ra mililít được bao nhiêu?","ml",17,"1 cm³ = 1 ml, nên 17 cm³ = 17 ml.","Đề ôn · Trả lời ngắn câu 3d"],
+["1 lạng = __ g","g",100,"1 lạng = 100 g (10 lạng = 1 kg).","Đề ôn · Tự luận câu 4a"],
+["1 g = __ kg","kg",0.001,"1 kg = 1 000 g, nên 1 g = 1 : 1 000 = 0,001 kg.","Đề ôn · Tự luận câu 4a"],
+["Hà mua cam 500 g, táo 2 kg, nho 6 lạng, bưởi 5 kg. Tổng khối lượng trái cây là bao nhiêu kilôgam?","kg",8.1,"Đổi hết ra kg: 0,5 + 2 + 0,6 + 5 = 8,1 kg.","Đề ôn · Tự luận câu 4b"],
+["Mỗi giờ một người lớn hít vào 0,5 m³ không khí. Trong một ngày đêm (24 giờ), người đó hít vào bao nhiêu m³ không khí?","m³",12,"0,5 × 24 = 12 m³.","Đề ôn · Tự luận câu 12a"],
+["Trong 12 m³ không khí, oxygen chiếm 1/5 thể tích. Cơ thể giữ lại 1/3 lượng oxygen đó. Cơ thể cần bao nhiêu m³ oxygen?","m³",0.8,"Oxygen: 12 : 5 = 2,4 m³. Giữ lại 1/3: 2,4 : 3 = 0,8 m³.","Đề ôn · Tự luận câu 12b"],
+["Phòng học dài 8 m, rộng 6 m, cao 3,6 m. Thể tích không khí trong phòng là bao nhiêu m³?","m³",172.8,"8 × 6 × 3,6 = 172,8 m³.","Đề ôn · Tự luận câu 13a"],
+["Phòng học có 172,8 m³ không khí, oxygen chiếm 1/5. Thể tích oxygen trong phòng là bao nhiêu m³?","m³",34.56,"172,8 : 5 = 34,56 m³.","Đề ôn · Tự luận câu 13a"],
+["Mỗi phút một học sinh hít thở 16 lần, mỗi lần lấy 100 ml oxygen. Lớp 35 học sinh học một tiết 45 phút cần tổng cộng bao nhiêu lít oxygen?","lít",2520,"1 bạn trong 1 phút: 16 × 100 = 1 600 ml. Cả lớp 45 phút: 1 600 × 35 × 45 = 2 520 000 ml = 2 520 lít = 2,52 m³, ít hơn 34,56 m³ nên đủ.","Đề ôn · Tự luận câu 13b"]
+];
+const K_FL=[
+["3,5 m = __ cm","cm",350,"3,5 × 100 = 350 cm.","Luyện thêm · Trả lời ngắn 1a"],
+["1 250 g = __ kg","kg",1.25,"1 250 : 1 000 = 1,25 kg.","Luyện thêm · Trả lời ngắn 1b"],
+["2 giờ 15 phút = __ phút","phút",135,"2 × 60 + 15 = 135 phút.","Luyện thêm · Trả lời ngắn 1c"],
+["1,5 lít = __ ml","ml",1500,"1 lít = 1 000 ml, nên 1,5 × 1 000 = 1 500 ml.","Luyện thêm · Trả lời ngắn 1d"],
+["Bình chia độ chứa 45 cm³ nước. Thả chìm chiếc chìa khóa, mực nước lên 53 cm³. Thể tích nước ban đầu là bao nhiêu?","cm³",45,"Thể tích ban đầu là số đọc lúc chưa thả chìa khóa: 45 cm³.","Luyện thêm · Trả lời ngắn 2a","fl2a"],
+["Bình chia độ chứa 45 cm³ nước. Thả chìm chiếc chìa khóa, mực nước lên 53 cm³. Thể tích nước và chìa khóa sau khi thả là bao nhiêu?","cm³",53,"Mực nước sau khi thả là 53 cm³, gồm cả nước và chìa khóa.","Luyện thêm · Trả lời ngắn 2b","fl2b"],
+["Bình chia độ chứa 45 cm³ nước. Thả chìm chiếc chìa khóa, mực nước lên 53 cm³. Thể tích chìa khóa là bao nhiêu?","cm³",8,"53 − 45 = 8 cm³.","Luyện thêm · Trả lời ngắn 2c"],
+["Chìa khóa có thể tích 8 cm³. Đổi ra mililít được bao nhiêu?","ml",8,"1 cm³ = 1 ml, nên 8 cm³ = 8 ml.","Luyện thêm · Trả lời ngắn 2d"],
+["7 lạng = __ g","g",700,"1 lạng = 100 g, nên 7 × 100 = 700 g.","Luyện thêm · Trả lời ngắn 3a"],
+["An mua 300 g thịt, 1,5 kg gạo và 7 lạng cá. An mua tất cả bao nhiêu kilôgam?","kg",2.5,"Đổi ra kg: 0,3 + 1,5 + 0,7 = 2,5 kg.","Luyện thêm · Trả lời ngắn 3b"],
+["3 phút 20 giây = __ giây","giây",200,"3 × 60 + 20 = 200 giây.","Luyện thêm · Đổi đơn vị"],
+["4 200 g = __ kg","kg",4.2,"4 200 : 1 000 = 4,2 kg.","Luyện thêm · Đổi đơn vị"],
+["45 cm = __ m","m",0.45,"45 : 100 = 0,45 m.","Luyện thêm · Đổi đơn vị"],
+["2 m³ = __ lít","lít",2000,"1 m³ = 1 000 lít, nên 2 × 1 000 = 2 000 lít.","Luyện thêm · Đổi đơn vị"]
+];
+const K_SORT=[
+{key:"c3a",src:"g",grp:"Vật sống hay vật không sống?",tag:"Đề ôn · Tự luận câu 3",big:true,o:["Vật sống","Vật không sống"],items:[
+["Cây lúa",0,"Cây lúa lớn lên, ra hoa, kết hạt, trao đổi chất."],["Con kiến",0,"Con kiến lớn lên, sinh sản, trao đổi chất."],["Viên gạch",1,"Viên gạch không lớn lên, không sinh sản."],["Chiếc xe đồ chơi",1,"Xe đồ chơi không có dấu hiệu của sự sống."],["Con gà",0,"Con gà ăn uống, lớn lên, đẻ trứng."],["Bánh mì",1,"Bánh mì không lớn lên, không sinh sản."],["Máy bay",1,"Máy bay không có dấu hiệu của sự sống."],["Ngọn núi",1,"Ngọn núi không lớn lên, không sinh sản."],["Hòn đá",1,"Hòn đá có thể bị mòn, vỡ nhưng không có dấu hiệu sống."],["Con mèo",0,"Con mèo ăn uống, lớn lên, sinh sản."]]},
+{key:"c3b",src:"g",grp:"Vật thể tự nhiên hay vật thể nhân tạo?",tag:"Đề ôn · Tự luận câu 3",big:true,o:["Vật thể tự nhiên","Vật thể nhân tạo"],items:[
+["Cây lúa",0,"Cây lúa là sinh vật, không do con người chế tạo."],["Con kiến",0,"Con kiến có sẵn trong tự nhiên."],["Viên gạch",1,"Viên gạch do con người nung từ đất sét."],["Chiếc xe đồ chơi",1,"Xe đồ chơi do con người làm ra."],["Con gà",0,"Con gà là sinh vật."],["Bánh mì",1,"Bánh mì do con người làm từ bột mì."],["Máy bay",1,"Máy bay do con người chế tạo."],["Ngọn núi",0,"Ngọn núi có sẵn trong tự nhiên."],["Hòn đá",0,"Hòn đá có sẵn trong tự nhiên."],["Con mèo",0,"Con mèo là sinh vật."]]},
+{key:"c5",src:"g",grp:"Từ tô màu là vật thể tự nhiên, vật thể nhân tạo hay chất?",tag:"Đề ôn · Tự luận câu 5",o:["Vật thể tự nhiên","Vật thể nhân tạo","Chất"],items:[
+["Trong quả <b>chanh</b> có nước, citric acid và một số chất khác.",0,"Quả chanh có sẵn trong tự nhiên."],["Trong quả chanh có <b>nước</b>, citric acid và một số chất khác.",2,"Nước là chất có trong quả chanh."],["Trong quả chanh có nước, <b>citric acid</b> và một số chất khác.",2,"Citric acid là chất tạo vị chua."],["<b>Cốc</b> bằng thủy tinh dễ vỡ hơn so với cốc bằng chất dẻo.",1,"Cái cốc do con người làm ra."],["Cốc bằng <b>thủy tinh</b> dễ vỡ hơn so với cốc bằng chất dẻo.",2,"Thủy tinh là chất làm nên cái cốc."],["Cốc bằng thủy tinh dễ vỡ hơn so với cốc bằng <b>chất dẻo</b>.",2,"Chất dẻo là chất làm nên cái cốc."],["Thuốc đầu <b>que diêm</b> được trộn một ít sulfur.",1,"Que diêm do con người làm ra."],["Thuốc đầu que diêm được trộn một ít <b>sulfur</b>.",2,"Sulfur (lưu huỳnh) là chất."],["<b>Quặng apatit</b> ở Lào Cai có chứa calcium phosphate với hàm lượng cao.",0,"Quặng có sẵn trong lòng đất."],["Quặng apatit ở Lào Cai có chứa <b>calcium phosphate</b> với hàm lượng cao.",2,"Calcium phosphate là chất có trong quặng."],["<b>Bóng đèn điện</b> được chế tạo từ thủy tinh, đồng và tungsten.",1,"Bóng đèn do con người chế tạo."],["Bóng đèn điện được chế tạo từ thủy tinh, <b>đồng</b> và tungsten.",2,"Đồng là chất làm dây dẫn trong bóng đèn."],["Bóng đèn điện được chế tạo từ thủy tinh, đồng và <b>tungsten</b>.",2,"Tungsten là chất làm dây tóc bóng đèn."]]},
+{key:"c8",src:"g",grp:"Vật liệu nào có các tính chất này?",tag:"Đề ôn · Tự luận câu 8",o:["Kim loại","Gốm","Gỗ","Thủy tinh","Cao su","Nhựa"],items:[
+["Dẻo, nhẹ, không dẫn điện, dẫn nhiệt kém, không bị ăn mòn, dễ bị biến dạng vì nhiệt.",5,"Nhựa: nối 6 – a."],["Trong suốt, cho ánh sáng đi qua, dẫn nhiệt kém, không dẫn điện, cứng nhưng giòn, dễ vỡ.",3,"Thủy tinh: nối 4 – b. Dấu hiệu nhận ra là trong suốt."],["Có ánh kim, dẫn điện, dẫn nhiệt tốt, có thể kéo thành sợi và dát mỏng, cứng và bền, có thể bị gỉ.",0,"Kim loại: nối 1 – c."],["Bền, chịu lực tốt, dễ tạo hình, dễ cháy, có thể bị mối mọt.",2,"Gỗ: nối 3 – d. Dấu hiệu là bị mối mọt."],["Không bị ăn mòn, dẫn nhiệt kém, hầu như không dẫn điện, cứng nhưng giòn, dễ vỡ.",1,"Gốm: nối 2 – e. Gốm cũng giòn như thủy tinh nhưng không trong suốt."],["Đàn hồi, bền, không dẫn điện và nhiệt, không thấm nước, dễ cháy.",4,"Cao su: nối 5 – g. Dấu hiệu là đàn hồi."]]},
+{key:"c6",src:"g",grp:"Chất nào phù hợp?",tag:"Đề ôn · Tự luận câu 6",o:["Dây đồng","Cao su","Nước","Cồn (ethanol)"],items:[
+["Dẫn điện tốt, dùng làm dây dẫn điện.",0,"Dây đồng – 3 – b."],["Có tính đàn hồi, độ bền cơ học cao, dùng làm nguyên liệu sản xuất lốp xe.",1,"Cao su – 4 – c."],["Có thể hòa tan nhiều chất khác, dùng làm dung môi.",2,"Nước – 1 – a."],["Cháy được trong oxygen, dùng làm nhiên liệu.",3,"Cồn – 2 – d."]]}
+];
+const K_ESS=[
+["Một bạn lấy viên bơ lạnh ra khỏi tủ. Sau một thời gian, bơ mềm dần rồi chuyển thành thể lỏng khi được làm nóng. Gọi tên sự chuyển thể và nêu điều kiện làm cho quá trình đó diễn ra.","<p><b>Sự nóng chảy</b> (rắn → lỏng).</p><p>Điều kiện: bơ <b>nhận nhiệt</b>, được làm nóng tới nhiệt độ nóng chảy của nó.</p>"],
+["Sau khi tắm nước nóng, gương trong phòng tắm mờ đi và xuất hiện giọt nước nhỏ. Giải thích hiện tượng dựa vào sự chuyển thể. Phân biệt với sự bay hơi.","<p>Hơi nước nóng bốc lên, gặp mặt gương lạnh hơn nên <b>ngưng tụ</b> thành giọt nước nhỏ bám trên gương, làm gương mờ.</p><ul><li><b>Ngưng tụ:</b> khí → lỏng, xảy ra khi hơi nước gặp lạnh.</li><li><b>Bay hơi:</b> lỏng → khí, xảy ra ở mặt thoáng chất lỏng, ở mọi nhiệt độ.</li><li>Hai quá trình ngược chiều nhau.</li></ul>"],
+["Phân loại vật sống, vật không sống, vật thể tự nhiên, vật thể nhân tạo: cây lúa, con kiến, viên gạch, chiếc xe đồ chơi, con gà, bánh mì, máy bay, ngọn núi, hòn đá, con mèo.","<div class='tw'><table><tr><th>Vật sống</th><td>cây lúa, con kiến, con gà, con mèo</td></tr><tr><th>Vật không sống</th><td>viên gạch, xe đồ chơi, bánh mì, máy bay, ngọn núi, hòn đá</td></tr><tr><th>Vật thể tự nhiên</th><td>cây lúa, con kiến, con gà, con mèo, ngọn núi, hòn đá</td></tr><tr><th>Vật thể nhân tạo</th><td>viên gạch, xe đồ chơi, bánh mì, máy bay</td></tr></table></div>"],
+["Mẹ nhờ Hà mua: cam 500 g, táo 2 kg, nho 6 lạng, bưởi 5 kg. a) 1 lạng bằng bao nhiêu gam, 1 gam bằng bao nhiêu kilôgam? b) Hà mua tổng cộng bao nhiêu kilôgam trái cây?","<p>a) 1 lạng = <b>100 g</b>; 1 g = <b>0,001 kg</b>.</p><p>b) Đổi hết ra kg: cam 0,5 kg; nho 6 lạng = 600 g = 0,6 kg.</p><p>Tổng: 0,5 + 2 + 0,6 + 5 = <b>8,1 kg</b>.</p>"],
+["Phân biệt từ in nghiêng chỉ vật thể tự nhiên, vật thể nhân tạo hay chất trong 5 câu: quả chanh có nước, citric acid; cốc thủy tinh – cốc chất dẻo; que diêm có sulfur; quặng apatit có calcium phosphate; bóng đèn điện làm từ thủy tinh, đồng, tungsten.","<div class='tw'><table><tr><th>Câu</th><th>Vật thể tự nhiên</th><th>Vật thể nhân tạo</th><th>Chất</th></tr><tr><td>1</td><td>quả chanh</td><td></td><td>nước, citric acid</td></tr><tr><td>2</td><td></td><td>cốc</td><td>thủy tinh, chất dẻo</td></tr><tr><td>3</td><td></td><td>que diêm</td><td>sulfur</td></tr><tr><td>4</td><td>quặng apatit</td><td></td><td>calcium phosphate</td></tr><tr><td>5</td><td></td><td>bóng đèn điện</td><td>thủy tinh, đồng, tungsten</td></tr></table></div>"],
+["Chọn cặp tính chất – ứng dụng cho: dây đồng, cao su, nước, cồn. Tính chất: 1. hòa tan nhiều chất; 2. cháy được trong oxygen; 3. dẫn điện tốt; 4. đàn hồi, bền. Ứng dụng: a) dung môi; b) dây dẫn điện; c) lốp xe; d) nhiên liệu.","<ul><li>Dây đồng – <b>3 – b</b></li><li>Cao su – <b>4 – c</b></li><li>Nước – <b>1 – a</b></li><li>Cồn – <b>2 – d</b></li></ul>"],
+["Viên đá lạnh bỏ lên đĩa: một giờ sau thành nước trải trên đĩa, đến trưa thì không còn nước. a) Nước biến đâu mất? b) Nước tồn tại ở những thể nào? c) Vẽ sơ đồ biến đổi giữa các thể. d) Vì sao nước trải đều trên mặt đĩa? e) Vì sao lúc đầu cho đá vào cốc thì có nước bám bên ngoài cốc?","<ul><li>a) Nước đã <b>bay hơi</b> vào không khí.</li><li>b) Ba thể: rắn (nước đá), lỏng (nước), khí (hơi nước).</li><li>c) Rắn → (nóng chảy) → Lỏng → (bay hơi) → Khí; chiều ngược: Khí → (ngưng tụ) → Lỏng → (đông đặc) → Rắn.</li><li>d) Đá nhận nhiệt từ không khí nên <b>nóng chảy</b> thành nước; chất lỏng không có hình dạng riêng nên trải ra mặt đĩa.</li><li>e) Hơi nước trong không khí gặp thành cốc lạnh nên <b>ngưng tụ</b> thành giọt nước bám ngoài cốc.</li></ul>"],
+["Nối vật liệu với tính chất: 1. Kim loại, 2. Gốm, 3. Gỗ, 4. Thủy tinh, 5. Cao su, 6. Nhựa (với các tính chất a – g trong bảng của đề).","<ul><li>1. Kim loại – <b>c</b> (ánh kim, dẫn điện, dẫn nhiệt tốt, có thể bị gỉ)</li><li>2. Gốm – <b>e</b> (không bị ăn mòn, cứng nhưng giòn)</li><li>3. Gỗ – <b>d</b> (dễ cháy, có thể bị mối mọt)</li><li>4. Thủy tinh – <b>b</b> (trong suốt, giòn, dễ vỡ)</li><li>5. Cao su – <b>g</b> (đàn hồi, không thấm nước)</li><li>6. Nhựa – <b>a</b> (dẻo, nhẹ, dễ biến dạng vì nhiệt)</li></ul>"],
+["a) Dựa vào tính chất nào mà đồng, nhôm được dùng làm dây điện? b) Đồng dẫn điện tốt hơn nhôm, vì sao dây điện cao thế lại thường dùng nhôm?","<p>a) Đồng và nhôm đều <b>dẫn điện tốt</b>, dễ kéo thành sợi.</p><p>b) Nhôm <b>nhẹ hơn</b> và <b>rẻ hơn</b> đồng nhiều. Dây cao thế rất dài, treo trên cao giữa các cột, nên dùng nhôm để cột đỡ nhẹ và tiết kiệm chi phí.</p>"],
+["Vì sao cửa làm bằng thép hộp thường phải phủ sơn, còn cửa inox thì thường không sơn?","<p>Thép hộp dễ bị <b>gỉ</b> khi gặp không khí ẩm, nước mưa. Lớp sơn ngăn thép tiếp xúc với không khí và nước, chống gỉ và đẹp hơn.</p><p>Inox (thép không gỉ) bền, <b>khó bị gỉ</b>, sẵn sáng bóng nên không cần sơn.</p>"],
+["Vì sao nồi nấu ăn thường làm bằng kim loại, còn quai nồi thường làm bằng gỗ hay nhựa?","<p>Nồi làm bằng kim loại vì kim loại <b>dẫn nhiệt tốt</b>, thức ăn nhanh chín, lại bền.</p><p>Quai làm bằng gỗ hay nhựa vì chúng <b>dẫn nhiệt kém</b>, cầm không bị nóng, không bỏng tay.</p>"],
+["Mỗi giờ một người lớn hít vào trung bình 0,5 m³ không khí, cơ thể giữ lại 1/3 lượng oxygen trong đó. Trong một ngày đêm, mỗi người cần: a) bao nhiêu thể tích không khí? b) bao nhiêu thể tích oxygen (oxygen chiếm 1/5 thể tích không khí)?","<p>Một ngày đêm = 24 giờ.</p><p>a) Không khí: 0,5 × 24 = <b>12 m³</b>.</p><p>b) Oxygen trong 12 m³ không khí: 12 : 5 = 2,4 m³. Cơ thể giữ lại 1/3: 2,4 : 3 = <b>0,8 m³</b>.</p>"],
+["Phòng học dài 8 m, rộng 6 m, cao 3,6 m. a) Tính thể tích không khí và oxygen trong phòng (oxygen chiếm 1/5). b) Lượng oxygen có đủ cho 35 học sinh trong tiết học 45 phút không? Biết mỗi phút một học sinh hít thở 16 lần, mỗi lần lấy 100 ml oxygen.","<p>a) Không khí: 8 × 6 × 3,6 = <b>172,8 m³</b>. Oxygen: 172,8 : 5 = <b>34,56 m³</b>.</p><p>b) 1 bạn trong 1 phút: 16 × 100 = 1 600 ml. 35 bạn trong 45 phút: 1 600 × 35 × 45 = 2 520 000 ml = 2 520 lít = 2,52 m³.</p><p>Vì 2,52 m³ &lt; 34,56 m³ nên lượng oxygen <b>đủ dùng</b>.</p>"],
+["Không khí bị ô nhiễm có thể gây ra những tác hại gì? Phải làm gì để bảo vệ không khí trong lành?","<p><b>Tác hại:</b> gây bệnh đường hô hấp (ho, hen, viêm phổi), bệnh về mắt, da; hại cây trồng, vật nuôi; gây mưa acid, làm Trái Đất nóng lên; khói mù làm giảm tầm nhìn.</p><p><b>Bảo vệ:</b> trồng nhiều cây xanh; không đốt rác, rơm rạ bừa bãi; đi bộ, đi xe đạp, xe buýt; xử lí khí thải nhà máy, xe cộ; tiết kiệm điện, dùng năng lượng sạch như Mặt Trời, gió.</p>"],
+["Hoa đang phụ mẹ nấu ăn thì vòi dẫn gas bị hở, gas phun ra và cháy mạnh. Hoa và mẹ nên xử lí như thế nào?","<ol><li>Bình tĩnh, không hoảng loạn.</li><li><b>Khóa ngay van bình gas</b> (nếu tới gần được an toàn) để ngắt nguồn gas.</li><li>Trùm khăn ướt, chăn ướt lên chỗ lửa để ngăn oxygen, hoặc dùng bình chữa cháy.</li><li>Không bật, tắt công tắc điện vì dễ phát tia lửa; mở cửa cho thoáng khí.</li><li>Lửa lớn không dập được: thoát ra ngoài ngay, hô hoán và gọi <b>114</b>.</li></ol>"]
+];
+
+/* =====================================================================
+   LỊCH SỬ 6
+   ===================================================================== */
+const MOTION=["Mặt Trời quay quanh Trái Đất.","Trái Đất quay quanh Mặt Trời.","Mặt Trăng quay quanh Trái Đất.","Mặt Trăng quay quanh Mặt Trời."];
+const WONDER=["Vạn Lý Trường Thành.","Vườn treo Ba-bi-lon.","Khu lăng mộ Gi-za.","Kim tự tháp."];
+const H_G=[
+["Lịch sử được hiểu là tất cả những gì",["đã xảy ra trong quá khứ.","sẽ xảy ra trong tương lai.","đang diễn ra ở hiện tại.","đã và đang diễn ra trong đời sống."],0,"Lịch sử là tất cả những gì đã xảy ra trong quá khứ."],
+["Lịch sử là gì?",["Những gì đã diễn ra trong quá khứ.","Sự hiểu biết về những gì đã diễn ra.","Ghi lại những gì đã diễn ra theo trật tự thời gian.","Sự bái vọng đến tổ tiên."],0,"Lịch sử là những gì đã diễn ra trong quá khứ."],
+["Tư liệu hiện vật là:",["đồ dùng mà thầy cô giáo em sử dụng để dạy học.","những lời mô tả về các hiện vật của người xưa được lưu truyền lại.","bản ghi chép nhật kí hành trình.","di tích, đồ vật của người xưa còn được lưu giữ lại trong lòng đất hay trên mặt đất."],3,"Tư liệu hiện vật là di tích, đồ vật của người xưa còn giữ lại được, ví dụ trống đồng, thành Cổ Loa."],
+["Vì sao tư liệu gốc có giá trị tin cậy nhất khi tìm hiểu lịch sử?",["Ghi lại được những câu chuyện truyền từ đời này qua đời khác.","Bổ sung và thay thế được tư liệu hiện vật và tư liệu chữ viết.","Cung cấp những thông tin đầu tiên, trực tiếp về sự kiện lịch sử.","Cung cấp những thông tin đầu tiên, gián tiếp về sự kiện lịch sử."],2,"Tư liệu gốc ra đời ngay vào thời kì đó, cho thông tin đầu tiên và trực tiếp. Chú ý chữ “trực tiếp”, không phải “gián tiếp”."],
+["Những tấm bia ghi tên người đỗ tiến sĩ thời xưa ở Văn Miếu (Hà Nội) thuộc tư liệu lịch sử nào?",["Tư liệu chữ viết.","Tư liệu truyền miệng.","Tư liệu hiện vật.","Cả tư liệu hiện vật và tư liệu chữ viết."],3,"Tấm bia là hiện vật, chữ khắc trên bia là chữ viết, nên thuộc cả hai loại."],
+["Một thập kỉ có bao nhiêu năm?",["100","1 000","10","10 000"],2,"1 thập kỉ = 10 năm; 1 thế kỉ = 100 năm; 1 thiên niên kỉ = 1 000 năm."],
+["Hiện nay trên thế giới sử dụng một thứ lịch chung nào?",["Dương lịch và âm lịch.","Dương lịch.","Âm lịch.","Công lịch."],3,"Thế giới dùng chung Công lịch, lấy năm ra đời của Chúa Giê-su làm năm đầu tiên của Công nguyên."],
+["Một thiên niên kỉ có bao nhiêu năm?",["100","1 000","10","10 000"],1,"1 thiên niên kỉ = 1 000 năm."],
+["Dương lịch là hệ lịch được tính theo chu kì chuyển động của",MOTION,1,"Dương lịch: Trái Đất quay quanh Mặt Trời. Mẹo nhớ: Dương – Mặt Trời, Âm – Mặt Trăng."],
+["Âm lịch là hệ lịch được tính theo chu kì chuyển động của",MOTION,2,"Âm lịch: Mặt Trăng quay quanh Trái Đất. Mẹo nhớ: Âm – Mặt Trăng, Dương – Mặt Trời."],
+["Các nhà khảo cổ học đã tìm thấy răng hóa thạch của Người tối cổ ở đâu trên đất nước Việt Nam?",["Hang Thẩm Hai, Thẩm Khuyên (Lạng Sơn).","Xuân Lộc (Đồng Nai).","Núi Đọ (Thanh Hóa).","Sơn Vi (Phú Thọ)."],0,"Răng hóa thạch: hang Thẩm Khuyên, Thẩm Hai (Lạng Sơn). Núi Đọ, Xuân Lộc tìm thấy công cụ đá."],
+["Tại di chỉ Núi Đọ (Thanh Hóa – Việt Nam), các nhà khảo cổ học đã tìm thấy dấu tích nào của Người tối cổ?",["Công cụ và vũ khí bằng sắt.","Răng hóa thạch.","Bộ xương hóa thạch.","Công cụ lao động bằng đá."],3,"Núi Đọ: công cụ đá ghè đẽo thô sơ. Răng hóa thạch ở Lạng Sơn."],
+["Nhiều thị tộc họ hàng, sống cạnh nhau đã tạo thành",["Bầy người nguyên thủy.","Bộ lạc.","Nhà nước.","Xóm làng."],1,"Nhiều thị tộc sống cạnh nhau, có quan hệ họ hàng hợp thành bộ lạc."],
+["Trong đời sống tinh thần, Người tinh khôn đã có tục",["thờ thần – vua.","chôn cất người chết.","xây dựng nhà cửa.","lập đền thờ các vị vua."],1,"Người tinh khôn chôn người chết kèm công cụ, đồ trang sức. Thời đó chưa có vua."],
+["Xã hội nguyên thủy đã trải qua những giai đoạn phát triển nào?",["Bầy người nguyên thủy, công xã thị tộc, bộ lạc.","Bầy người nguyên thủy, Người tinh khôn.","Bầy người nguyên thủy, Người tối cổ.","Bầy người nguyên thủy, công xã thị tộc."],3,"Hai giai đoạn: bầy người nguyên thủy, rồi công xã thị tộc. Người tối cổ, Người tinh khôn là tên loài người, không phải giai đoạn xã hội."],
+["Bầy người nguyên thủy là hình thức tổ chức xã hội của",["vượn người.","Người tối cổ.","Người tinh khôn.","Người hiện đại."],1,"Người tối cổ sống thành bầy. Người tinh khôn sống theo công xã thị tộc."],
+["Tổ chức xã hội của Người tối cổ là",["nhà nước.","chế độ phụ hệ.","công xã thị tộc.","sống thành bầy."],3,"Người tối cổ sống thành bầy, gồm vài gia đình, có người đứng đầu."],
+["Nội dung nào sau đây phản ánh đúng đời sống tinh thần của Người tinh khôn?",["Biết trồng trọt, thuần dưỡng động vật.","Sinh sống trong các hang động, mái đá.","Làm đồ trang sức bằng đá, đất nung.","Chế tạo công cụ và vũ khí bằng kim loại."],2,"Đồ trang sức thuộc đời sống tinh thần. Trồng trọt, chăn nuôi, nơi ở thuộc đời sống vật chất."],
+["Công trình nào của cư dân Ai Cập cổ đại được công nhận là kỳ quan thế giới cổ đại?",WONDER,3,"Kim tự tháp (lăng mộ của các pha-ra-ông) ở Ai Cập. Vườn treo Ba-bi-lon thuộc Lưỡng Hà, Vạn Lý Trường Thành thuộc Trung Quốc."],
+["Chữ viết của người Lưỡng Hà là chữ",["hình nêm khắc trên đất nung.","tượng hình trên giấy pa-py-rút.","san-xkrit trên lụa.","triện thư trên tre."],0,"Lưỡng Hà: chữ hình nêm trên đất sét. Ai Cập: chữ tượng hình trên giấy pa-py-rút."],
+["Nhà nước Ai Cập cổ đại được hình thành tại lưu vực của dòng sông nào dưới đây?",["Sông Nin.","Sông Ấn.","Sông Hằng.","Sông Ti-grơ."],0,"Ai Cập – sông Nin; Lưỡng Hà – sông Ti-grơ, Ơ-phrát; Ấn Độ – sông Ấn, sông Hằng."],
+["Công trình nào của cư dân Lưỡng Hà cổ đại được công nhận là kỳ quan thế giới cổ đại?",WONDER,1,"Vườn treo Ba-bi-lon ở Lưỡng Hà. Kim tự tháp ở Ai Cập."],
+["Ấn Độ cổ đại được hình thành trên lưu vực của con sông nào?",["Sông Nin.","Sông Ấn, sông Hằng.","Sông Hoàng Hà, sông Trường Giang.","Sông Ti-grơ."],1,"Ấn Độ – sông Ấn, sông Hằng. Hoàng Hà, Trường Giang là của Trung Quốc."],
+["Quốc gia cổ đại nào đã sáng tạo ra chữ số 0?",["Trung Quốc.","Ấn Độ.","Hy Lạp – La Mã.","Ai Cập."],1,"Người Ấn Độ cổ đại sáng tạo ra chữ số 0."]
+];
+const H_L=[
+["Truyền thuyết “Thánh Gióng” thuộc loại tư liệu nào?",["Tư liệu chữ viết","Tư liệu hiện vật","Tư liệu truyền miệng","Tư liệu gốc"],2,"Truyền thuyết, cổ tích, ca dao được kể lại qua nhiều đời là tư liệu truyền miệng."],
+["Trống đồng Đông Sơn thuộc loại tư liệu nào?",["Tư liệu hiện vật","Tư liệu chữ viết","Tư liệu truyền miệng","Tư liệu chữ viết và truyền miệng"],0,"Trống đồng là đồ vật của người xưa còn giữ lại, nên là tư liệu hiện vật."],
+["Bộ sách “Đại Việt sử kí toàn thư” thuộc loại tư liệu nào?",["Tư liệu hiện vật","Tư liệu chữ viết","Tư liệu truyền miệng","Tư liệu hiện vật và truyền miệng"],1,"Sách sử là bản ghi chép, thuộc tư liệu chữ viết."],
+["Một thế kỉ có bao nhiêu năm?",["10","100","1 000","50"],1,"1 thế kỉ = 100 năm."],
+["Năm 938 thuộc thế kỉ nào?",["Thế kỉ VIII","Thế kỉ IX","Thế kỉ X","Thế kỉ XI"],2,"Bỏ hai chữ số cuối của 938 còn 9, cộng 1 được 10: thế kỉ X."],
+["Năm 2026 thuộc thế kỉ nào?",["Thế kỉ XIX","Thế kỉ XX","Thế kỉ XXI","Thế kỉ XXII"],2,"20 + 1 = 21: thế kỉ XXI (từ năm 2001 đến năm 2100)."],
+["Năm 111 TCN cách năm 2026 bao nhiêu năm?",["1 915 năm","2 137 năm","2 026 năm","2 115 năm"],1,"Năm TCN thì cộng: 111 + 2026 = 2 137 năm."],
+["Năm 1945 cách năm 2026 bao nhiêu năm?",["71 năm","81 năm","91 năm","3 971 năm"],1,"Năm Công nguyên thì trừ: 2026 − 1945 = 81 năm."],
+["Người xưa dựa vào đâu để làm ra lịch?",["Sự lên xuống của thủy triều","Quan sát và tính toán sự di chuyển của Mặt Trăng, Mặt Trời","Sự thay đổi của thời tiết","Sự di chuyển của các đàn chim"],1,"Người xưa quan sát Mặt Trăng, Mặt Trời theo chu kì để tính thời gian và làm ra lịch."],
+["Quá trình tiến hóa từ vượn thành người diễn ra theo thứ tự nào?",["Vượn người → Người tối cổ → Người tinh khôn","Người tối cổ → Vượn người → Người tinh khôn","Vượn người → Người tinh khôn → Người tối cổ","Người tinh khôn → Người tối cổ → Vượn người"],0,"Vượn người tiến hóa thành Người tối cổ, rồi Người tối cổ tiến hóa thành Người tinh khôn."],
+["Người tinh khôn xuất hiện cách đây khoảng",["4 triệu năm","1 triệu năm","150 000 năm","10 000 năm"],2,"Người tinh khôn xuất hiện khoảng 150 000 năm trước, hình dáng giống người hiện đại."],
+["Công cụ đá ghè đẽo của Người tối cổ được tìm thấy ở địa điểm nào sau đây?",["Núi Đọ (Thanh Hóa)","Hoàng thành Thăng Long (Hà Nội)","Văn Miếu (Hà Nội)","Thành nhà Hồ (Thanh Hóa)"],0,"Núi Đọ (Thanh Hóa), Xuân Lộc (Đồng Nai) có công cụ đá của Người tối cổ. Các nơi còn lại có từ thời đã có nhà nước."],
+["Người tinh khôn sống theo tổ chức nào?",["Bầy người","Công xã thị tộc","Nhà nước","Vương quốc"],1,"Người tinh khôn sống theo công xã thị tộc; nhiều thị tộc hợp thành bộ lạc."],
+["Kim loại đầu tiên con người phát hiện ra là",["Sắt","Đồng đỏ","Vàng","Nhôm"],1,"Con người phát hiện đồng đỏ trước, sau đó là đồng thau, rồi đến sắt."],
+["Khi công cụ kim loại xuất hiện, xã hội nguyên thủy thay đổi như thế nào?",["Có của cải dư thừa, xã hội phân hóa giàu – nghèo","Mọi người càng làm chung, ăn chung hơn trước","Con người quay lại sống trong hang động","Xã hội không có gì thay đổi"],0,"Năng suất tăng, có của dư thừa, một số người chiếm làm của riêng nên xã hội phân hóa giàu – nghèo."],
+["Người Ai Cập cổ đại viết chữ trên",["đất sét","giấy pa-py-rút","lụa","thẻ tre"],1,"Ai Cập: chữ tượng hình trên giấy làm từ thân cây pa-py-rút."],
+["Bộ luật thành văn nổi tiếng của Lưỡng Hà cổ đại là",["Bộ luật Ha-mu-ra-bi","Luật Hồng Đức","Luật Gia Long","Luật Ma-nu"],0,"Bộ luật Ha-mu-ra-bi của Lưỡng Hà. Luật Ma-nu của Ấn Độ; Hồng Đức, Gia Long là luật của Việt Nam."],
+["Người Lưỡng Hà giỏi số học. Họ dùng hệ đếm lấy số nào làm cơ sở?",["10","60","100","12"],1,"Hệ đếm 60 của Lưỡng Hà, nên ngày nay 1 giờ có 60 phút, 1 phút có 60 giây."],
+["Lưỡng Hà cổ đại hình thành trên lưu vực hai con sông nào?",["Sông Nin","Sông Ti-grơ và Ơ-phrát","Sông Ấn và sông Hằng","Sông Hoàng Hà và Trường Giang"],1,"“Lưỡng Hà” nghĩa là hai con sông: Ti-grơ và Ơ-phrát."],
+["Người đứng đầu nhà nước Ai Cập cổ đại gọi là",["Pha-ra-ông","En-xi","Thiên tử","Hoàng đế"],0,"Ai Cập: Pha-ra-ông. Lưỡng Hà: En-xi."],
+["Chữ viết phổ biến của người Ấn Độ cổ đại là",["Chữ Phạn (San-xkrit)","Chữ hình nêm","Chữ tượng hình trên giấy pa-py-rút","Chữ Hán"],0,"Người Ấn Độ cổ đại dùng chữ Phạn."],
+["Kim tự tháp ở Ai Cập cổ đại là",["Lăng mộ của các pha-ra-ông","Cung điện của vua","Chợ buôn bán lớn","Thành lũy chống giặc"],0,"Kim tự tháp là lăng mộ của các pha-ra-ông, nổi tiếng nhất là kim tự tháp Kê-ốp."]
+];
+const H_TG=[
+["Khi nói về Công lịch:",[["Dựa vào chu kì chuyển động của Mặt Trăng.",false,"Công lịch dựa vào chu kì Trái Đất quay quanh Mặt Trời."],["Dựa vào chu kì chuyển động của Trái Đất quanh Mặt Trời.",true,""],["Lấy năm ra đời của Chúa Giê-su làm năm đầu tiên của Công nguyên.",true,""],["Tính theo chu kì quay của Trái Đất quanh Mặt Trăng.",false,"Trái Đất không quay quanh Mặt Trăng; Mặt Trăng mới quay quanh Trái Đất."]]],
+["Về lí do người Ai Cập cổ đại phát triển nông nghiệp xung quanh sông Nin:",[["Dòng sông mang lại phù sa màu mỡ mỗi khi lũ về.",true,""],["Khí hậu Ai Cập chỉ phù hợp cho việc chăn nuôi.",false,"Đất phù sa ven sông Nin rất thuận lợi cho trồng trọt."],["Nước tưới tiêu từ sông giúp tăng năng suất cây trồng.",true,""],["Sông Nin không ảnh hưởng đến nền nông nghiệp của Ai Cập.",false,"Sông Nin là nguồn nước và phù sa quan trọng nhất của Ai Cập."]]],
+["Về hoạt động kinh tế của cư dân Ai Cập cổ đại:",[["Nông nghiệp được xem là ngành kinh tế chính.",true,""],["Chăn nuôi, đánh cá, thủ công nghiệp, thương nghiệp có tính chất bổ trợ.",true,"Nông nghiệp là chính, các ngành này hỗ trợ thêm."],["Thủ công nghiệp được xem là ngành kinh tế chính.",false,"Ngành kinh tế chính là nông nghiệp."],["Chăn nuôi, đánh cá, thủ công nghiệp, thương nghiệp là các ngành kinh tế chủ chốt.",false,"Các ngành này chỉ bổ trợ; nông nghiệp mới là chủ chốt."]]],
+["Về đặc điểm của Người tinh khôn:",[["Hình dáng cơ bản giống con người hiện đại.",true,""],["Xuất hiện khoảng 4 triệu năm trước.",false,"Người tinh khôn xuất hiện khoảng 150 000 năm trước."],["Thể tích hộp sọ trung bình khoảng 1 400 cm³.",true,"Bộ não của Người tinh khôn lớn hơn Người tối cổ."],["Có thể tích hộp sọ trung bình từ 650 cm³ đến 1 200 cm³.",false,"Đó là hộp sọ của Người tối cổ."]]],
+["Di cốt hóa thạch của Người tối cổ được tìm thấy ở khu vực Đông Nam Á:",[["Thái Lan.",true,""],["Việt Nam.",true,"Răng hóa thạch ở Thẩm Khuyên, Thẩm Hai (Lạng Sơn)."],["Ấn Độ.",false,"Ấn Độ thuộc Nam Á, không thuộc Đông Nam Á."],["Indonesia.",true,""]]],
+["Xã hội nguyên thủy gồm những giai đoạn phát triển chính là:",[["Thời kì Người tối cổ.",true,"Ứng với giai đoạn bầy người nguyên thủy."],["Thời kì Người tinh khôn.",true,"Ứng với giai đoạn công xã thị tộc."],["Thời kì nông nghiệp.",false,""],["Thời kì xã hội phong kiến.",false,"Xã hội phong kiến ra đời rất lâu sau, khi đã có nhà nước."]]],
+["Về ý nghĩa của các công cụ bằng đá được mài trong đời sống nguyên thủy:",[["Tăng hiệu quả lao động và săn bắt.",true,""],["Giúp tạo ra nhiều công cụ đa dạng.",true,""],["Giúp chế tác đồ kim loại nhanh hơn.",false,"Công cụ đá mài không dùng để làm đồ kim loại."],["Chỉ được dùng làm vật trang trí.",false,"Công cụ đá mài dùng để lao động, săn bắt."]]]
+];
+const H_TP=[
+["Về thời gian trong lịch sử:",[["1 thế kỉ có 100 năm.",true,""],["Năm 2026 thuộc thế kỉ XX.",false,"Năm 2026 thuộc thế kỉ XXI."],["Năm 111 TCN cách năm 2026 là 2 137 năm.",true,"111 + 2026 = 2 137 năm."],["Âm lịch được tính theo chu kì Trái Đất quay quanh Mặt Trời.",false,"Âm lịch tính theo chu kì Mặt Trăng quay quanh Trái Đất."]]],
+["Về tư liệu lịch sử:",[["Truyền thuyết Sơn Tinh – Thủy Tinh là tư liệu truyền miệng.",true,""],["Trống đồng Đông Sơn là tư liệu chữ viết.",false,"Trống đồng là tư liệu hiện vật."],["Tư liệu gốc cung cấp thông tin đầu tiên, trực tiếp về sự kiện lịch sử.",true,""],["Tư liệu truyền miệng luôn chính xác tuyệt đối.",false,"Truyền miệng qua nhiều đời nên có thêm yếu tố tưởng tượng."]]],
+["Về các quốc gia cổ đại:",[["Người Ai Cập viết chữ tượng hình trên giấy pa-py-rút.",true,""],["Vườn treo Ba-bi-lon là công trình của người Ai Cập.",false,"Vườn treo Ba-bi-lon thuộc Lưỡng Hà."],["Người Ấn Độ cổ đại sáng tạo ra chữ số 0.",true,""],["Lưỡng Hà hình thành bên sông Nin.",false,"Lưỡng Hà hình thành bên sông Ti-grơ và Ơ-phrát; sông Nin là của Ai Cập."]]]
+];
+const H_FG=[
+["Khoảng năm 208 TCN, Thục Phán lên làm vua, xưng là An Dương Vương. Sự kiện này cách năm 2026 bao nhiêu năm?","năm",2234,"Năm TCN thì cộng: 208 + 2026 = 2 234 năm.","Đề ôn · Tự luận câu 1"],
+["Năm 179 TCN, Triệu Đà chiếm được Âu Lạc. Sự kiện này cách năm 2026 bao nhiêu năm?","năm",2205,"Năm TCN thì cộng: 179 + 2026 = 2 205 năm.","Đề ôn · Tự luận câu 1"],
+["Năm 40, khởi nghĩa Hai Bà Trưng. Sự kiện này cách năm 2026 bao nhiêu năm?","năm",1986,"Năm Công nguyên thì trừ: 2026 − 40 = 1 986 năm.","Đề ôn · Tự luận câu 1"],
+["Năm 248, khởi nghĩa Bà Triệu bùng nổ. Sự kiện này cách năm 2026 bao nhiêu năm?","năm",1778,"2026 − 248 = 1 778 năm.","Đề ôn · Tự luận câu 1"],
+["Năm 938, Ngô Quyền chỉ huy quân dân chiến thắng quân Nam Hán trên sông Bạch Đằng. Sự kiện này cách năm 2026 bao nhiêu năm?","năm",1088,"2026 − 938 = 1 088 năm.","Đề ôn · Tự luận câu 1"],
+["Năm 1010, Lý Công Uẩn dời đô từ Hoa Lư về Đại La, đổi tên thành Thăng Long. Sự kiện này cách năm 2026 bao nhiêu năm?","năm",1016,"2026 − 1010 = 1 016 năm.","Đề ôn · Tự luận câu 1"]
+];
+const H_FL=[
+["3 thế kỉ = __ năm","năm",300,"1 thế kỉ = 100 năm, nên 3 × 100 = 300 năm.","Luyện thêm · Đơn vị thời gian"],
+["2 thiên niên kỉ = __ năm","năm",2000,"1 thiên niên kỉ = 1 000 năm, nên 2 × 1 000 = 2 000 năm.","Luyện thêm · Đơn vị thời gian"],
+["5 thập kỉ = __ năm","năm",50,"1 thập kỉ = 10 năm, nên 5 × 10 = 50 năm.","Luyện thêm · Đơn vị thời gian"],
+["Năm 500 TCN cách năm 2026 bao nhiêu năm?","năm",2526,"Năm TCN thì cộng: 500 + 2026 = 2 526 năm.","Luyện thêm · Tính thời gian"],
+["Năm 1288, quân dân nhà Trần chiến thắng quân Nguyên trên sông Bạch Đằng. Sự kiện này cách năm 2026 bao nhiêu năm?","năm",738,"2026 − 1288 = 738 năm.","Luyện thêm · Tính thời gian"],
+["Năm 1428, Lê Lợi lên ngôi vua. Sự kiện này cách năm 2026 bao nhiêu năm?","năm",598,"2026 − 1428 = 598 năm.","Luyện thêm · Tính thời gian"],
+["Năm 1802, nhà Nguyễn được thành lập. Sự kiện này cách năm 2026 bao nhiêu năm?","năm",224,"2026 − 1802 = 224 năm.","Luyện thêm · Tính thời gian"]
+];
+const H_SORT=[
+{key:"c1",src:"g",grp:"Sự kiện này thuộc thế kỉ nào?",tag:"Đề ôn · Tự luận câu 1",o:["Thế kỉ III TCN","Thế kỉ II TCN","Thế kỉ I","Thế kỉ III","Thế kỉ X","Thế kỉ XI"],items:[
+["Khoảng năm 208 TCN, Thục Phán lên làm vua, xưng là An Dương Vương.",0,"208 TCN: bỏ hai chữ số cuối còn 2, cộng 1 được 3: thế kỉ III TCN."],
+["Năm 179 TCN, Triệu Đà chiếm được Âu Lạc.",1,"179 TCN: 1 + 1 = 2: thế kỉ II TCN."],
+["Năm 40, khởi nghĩa Hai Bà Trưng.",2,"Từ năm 1 đến năm 100 là thế kỉ I."],
+["Năm 248, khởi nghĩa Bà Triệu bùng nổ.",3,"248: 2 + 1 = 3: thế kỉ III."],
+["Năm 938, Ngô Quyền chiến thắng quân Nam Hán trên sông Bạch Đằng.",4,"938: 9 + 1 = 10: thế kỉ X."],
+["Năm 1010, Lý Công Uẩn dời đô về Đại La, đổi tên thành Thăng Long.",5,"1010: 10 + 1 = 11: thế kỉ XI."]]},
+{key:"tl",src:"l",grp:"Thuộc loại tư liệu nào?",tag:"Luyện thêm · Tư liệu lịch sử",o:["Tư liệu truyền miệng","Tư liệu chữ viết","Tư liệu hiện vật","Cả hiện vật và chữ viết"],items:[
+["Truyền thuyết Thánh Gióng",0,"Truyền thuyết được kể lại qua nhiều đời."],
+["Trống đồng Đông Sơn",2,"Đồ vật của người xưa còn giữ lại."],
+["Sách “Đại Việt sử kí toàn thư”",1,"Sách sử là bản ghi chép."],
+["Bia tiến sĩ ở Văn Miếu",3,"Tấm bia là hiện vật, trên bia có khắc chữ."],
+["Thành Cổ Loa",2,"Di tích còn lại trên mặt đất."],
+["Truyền thuyết Sơn Tinh – Thủy Tinh",0,"Truyền thuyết được kể lại qua nhiều đời."]]},
+{key:"c2",src:"g",grp:"Đời sống vật chất hay tinh thần của Người tinh khôn?",tag:"Đề ôn · Tự luận câu 2",o:["Đời sống vật chất","Đời sống tinh thần"],items:[
+["Chôn cất người chết",1,"Tục chôn cất thể hiện niềm tin, tình cảm: đời sống tinh thần."],
+["Làm đồ trang sức bằng đá, vỏ ốc, đất nung",1,"Làm đẹp là nhu cầu tinh thần."],
+["Vẽ tranh trên vách hang đá",1,"Nghệ thuật thuộc đời sống tinh thần."],
+["Biết trồng trọt, chăn nuôi",0,"Làm ra lương thực, thực phẩm: đời sống vật chất."],
+["Mài đá làm công cụ",0,"Công cụ lao động thuộc đời sống vật chất."],
+["Làm đồ gốm",0,"Đồ dùng hằng ngày thuộc đời sống vật chất."],
+["Dùng lửa để sưởi ấm, nướng thức ăn",0,"Ăn, ở, sưởi ấm thuộc đời sống vật chất."]]},
+{key:"nguoi",src:"l",grp:"Người tối cổ hay Người tinh khôn?",tag:"Luyện thêm · Nguồn gốc loài người",o:["Người tối cổ","Người tinh khôn"],items:[
+["Sống thành bầy",0,"Người tối cổ sống thành bầy người nguyên thủy."],
+["Sống theo công xã thị tộc",1,"Người tinh khôn sống theo thị tộc, bộ lạc."],
+["Thể tích hộp sọ từ 650 cm³ đến 1 200 cm³",0,"Người tinh khôn có hộp sọ lớn hơn, khoảng 1 400 cm³."],
+["Hình dáng giống người hiện đại",1,"Người tinh khôn có hình dáng như người ngày nay."],
+["Có tục chôn cất người chết",1,"Tục chôn cất có từ thời Người tinh khôn."],
+["Ghè đẽo đá thô sơ làm rìu tay",0,"Người tối cổ ghè đẽo đá thô sơ; Người tinh khôn biết mài đá."],
+["Biết trồng trọt, chăn nuôi",1,"Người tinh khôn mới biết trồng trọt, chăn nuôi."]]},
+{key:"c6",src:"g",grp:"Gắn với quốc gia cổ đại nào?",tag:"Đề ôn · Tự luận câu 6",o:["Ai Cập","Lưỡng Hà","Ấn Độ"],items:[
+["Kim tự tháp",0,"Lăng mộ của các pha-ra-ông Ai Cập."],
+["Chữ tượng hình trên giấy pa-py-rút",0,"Chữ viết của người Ai Cập."],
+["Kĩ thuật ướp xác",0,"Người Ai Cập ướp xác người chết."],
+["Hệ đếm thập phân, giỏi hình học",0,"Người Ai Cập đếm theo hệ 10, tính được diện tích, thể tích."],
+["Chữ hình nêm khắc trên đất sét",1,"Chữ viết của người Lưỡng Hà."],
+["Vườn treo Ba-bi-lon",1,"Kì quan của Lưỡng Hà."],
+["Bộ luật Ha-mu-ra-bi",1,"Bộ luật thành văn của Lưỡng Hà."],
+["Hệ đếm lấy số 60 làm cơ sở",1,"Hệ đếm của Lưỡng Hà, nên 1 giờ có 60 phút."],
+["Sáng tạo ra chữ số 0",2,"Thành tựu của người Ấn Độ."],
+["Chữ Phạn",2,"Chữ viết của người Ấn Độ."],
+["Sông Nin",0,"Ai Cập hình thành bên sông Nin."],
+["Sông Ti-grơ và Ơ-phrát",1,"Lưỡng Hà nghĩa là hai con sông."],
+["Sông Ấn và sông Hằng",2,"Ấn Độ hình thành bên sông Ấn, sông Hằng."]]}
+];
+const H_ESS=[
+["Xác định các sự kiện sau thuộc thế kỉ nào và cách năm 2026 bao nhiêu năm: 208 TCN Thục Phán xưng An Dương Vương; 179 TCN Triệu Đà chiếm Âu Lạc; năm 40 khởi nghĩa Hai Bà Trưng; năm 248 khởi nghĩa Bà Triệu; năm 938 chiến thắng Bạch Đằng; năm 1010 dời đô về Thăng Long.","<div class='tw'><table><tr><th>Sự kiện</th><th>Thế kỉ</th><th>Cách năm 2026</th></tr><tr><td>208 TCN – Thục Phán xưng An Dương Vương</td><td>III TCN</td><td>208 + 2026 = 2 234 năm</td></tr><tr><td>179 TCN – Triệu Đà chiếm Âu Lạc</td><td>II TCN</td><td>179 + 2026 = 2 205 năm</td></tr><tr><td>Năm 40 – Khởi nghĩa Hai Bà Trưng</td><td>I</td><td>2026 − 40 = 1 986 năm</td></tr><tr><td>Năm 248 – Khởi nghĩa Bà Triệu</td><td>III</td><td>2026 − 248 = 1 778 năm</td></tr><tr><td>Năm 938 – Chiến thắng Bạch Đằng</td><td>X</td><td>2026 − 938 = 1 088 năm</td></tr><tr><td>Năm 1010 – Dời đô về Thăng Long</td><td>XI</td><td>2026 − 1010 = 1 016 năm</td></tr></table></div><p>Mẹo: năm TCN thì <b>cộng</b>, năm Công nguyên thì <b>trừ</b>.</p>"],
+["Trình bày những nét chính về đời sống vật chất, đời sống tinh thần của Người tối cổ và Người tinh khôn.","<p><b>Người tối cổ</b></p><ul><li>Vật chất: ghè đẽo đá thành công cụ thô sơ (rìu tay); sống bằng săn bắt, hái lượm; ở trong hang động, mái đá; biết dùng lửa.</li><li>Tổ chức, tinh thần: sống thành bầy (bầy người nguyên thủy); đời sống tinh thần còn sơ khai.</li></ul><p><b>Người tinh khôn</b></p><ul><li>Vật chất: biết mài đá, làm công cụ sắc và đa dạng hơn; biết trồng trọt, chăn nuôi, làm gốm; dựng lều, nhà để ở; biết tạo ra lửa.</li><li>Tinh thần: chôn cất người chết; làm đồ trang sức bằng đá, vỏ ốc, đất nung; vẽ tranh trên vách hang; sống theo thị tộc, bộ lạc, gắn bó với cộng đồng.</li></ul>"],
+["Theo em, kim loại ra đời có vai trò như thế nào đối với sản xuất và đời sống của người nguyên thủy?","<ul><li><b>Sản xuất:</b> công cụ kim loại cứng, sắc hơn đá nên năng suất lao động tăng; con người khai hoang, mở rộng diện tích trồng trọt; xuất hiện thêm nghề luyện kim, chế tác đồ kim loại.</li><li><b>Đời sống:</b> của cải làm ra nhiều, có của dư thừa; xã hội phân hóa giàu – nghèo; công xã thị tộc dần tan rã, con người bước sang xã hội có giai cấp và nhà nước.</li></ul>"],
+["Lao động có vai trò như thế nào trong việc làm thay đổi con người và cuộc sống của người nguyên thủy?","<ul><li>Nhờ lao động, đôi tay dần khéo léo, cơ thể biến đổi để thích nghi (đi đứng thẳng, bộ não phát triển); con người ngày càng hoàn thiện mình.</li><li>Lao động giúp con người chế tạo công cụ ngày càng tốt hơn, biết dùng lửa, biết trồng trọt, chăn nuôi.</li><li>Nhờ đó cuộc sống ổn định hơn: từ chỗ sống nhờ thiên nhiên đến tự làm ra lương thực, từ hang động đến định cư lâu dài.</li></ul>"],
+["Em hiểu thế nào là tư liệu hiện vật, tư liệu gốc? Nêu ví dụ cụ thể.","<p><b>Tư liệu hiện vật:</b> những di tích, đồ vật của người xưa còn được giữ lại trong lòng đất hay trên mặt đất. Ví dụ: trống đồng Đông Sơn, thành Cổ Loa, Hoàng thành Thăng Long.</p><p><b>Tư liệu gốc:</b> tư liệu ra đời vào chính thời kì xảy ra sự kiện, cung cấp những thông tin đầu tiên và trực tiếp về sự kiện đó. Ví dụ: bản Tuyên ngôn Độc lập do Chủ tịch Hồ Chí Minh viết năm 1945; ảnh chụp, nhật kí của người trực tiếp tham gia sự kiện.</p>"],
+["Nêu những thành tựu văn hóa chủ yếu của người Ai Cập, Lưỡng Hà. Vì sao xã hội nguyên thủy ở phương Đông phân hóa không triệt để?","<p><b>Ai Cập:</b> chữ tượng hình viết trên giấy pa-py-rút; hệ đếm thập phân, giỏi hình học; làm ra lịch; kĩ thuật ướp xác; kim tự tháp, tượng Nhân sư.</p><p><b>Lưỡng Hà:</b> chữ hình nêm khắc trên đất sét; hệ đếm lấy số 60 làm cơ sở; làm ra âm lịch; Bộ luật Ha-mu-ra-bi; vườn treo Ba-bi-lon.</p><p><b>Vì sao phân hóa không triệt để:</b> cư dân phương Đông sống ven các dòng sông lớn, đất phù sa mềm, dễ canh tác. Họ phải cùng nhau làm thủy lợi, chống lũ lụt, chống giặc ngoài nên quan hệ cộng đồng vẫn gắn bó chặt chẽ. Vì vậy dù đã có giàu – nghèo, nhiều tập tục của xã hội nguyên thủy vẫn được giữ lại.</p>"]
+];
+
+/* =====================================================================
+   ĐỊA LÍ 6 (đề cương THCS Tùng Thiện)
+   ===================================================================== */
+const D_G=[
+["Kinh tuyến là:",["Những đường tròn song song với Xích đạo.","Những nửa đường tròn nối hai cực của Trái Đất.","Đường có độ dài lớn nhất trên Trái Đất.","Những đường chỉ có ở bán cầu Bắc."],1,"Kinh tuyến là nửa đường tròn nối cực Bắc với cực Nam. Đường tròn song song với Xích đạo là vĩ tuyến."],
+["Tọa độ địa lí của một điểm được xác định bởi:",["Kinh độ và độ cao.","Vĩ độ và độ cao.","Kinh độ và vĩ độ.","Khoảng cách và phương hướng."],2,"Tọa độ địa lí gồm kinh độ và vĩ độ của điểm đó."],
+["Tỉ lệ bản đồ cho biết:",["Khoảng cách giữa các địa điểm trên thực tế.","Mức độ thu nhỏ khoảng cách trên bản đồ so với thực tế.","Độ cao của địa hình.","Diện tích của khu vực được thể hiện."],1,"Tỉ lệ bản đồ cho biết bản đồ được thu nhỏ bao nhiêu lần so với thực tế."],
+["Bản đồ có tỉ lệ 1 : 1 000 000. 1 cm trên bản đồ tương ứng với:",["1 km ngoài thực tế.","10 km ngoài thực tế.","100 km ngoài thực tế.","1 000 km ngoài thực tế."],1,"1 × 1 000 000 = 1 000 000 cm = 10 km."],
+["Kí hiệu bản đồ có tác dụng:",["Trang trí bản đồ.","Thể hiện các đối tượng địa lí trên bản đồ.","Xác định tỉ lệ bản đồ.","Xác định phương hướng."],1,"Kí hiệu dùng để thể hiện các đối tượng địa lí như thành phố, sông, rừng."],
+["Bảng chú giải trên bản đồ có tác dụng:",["Cho biết kích thước bản đồ.","Giải thích ý nghĩa của các kí hiệu.","Xác định kinh tuyến gốc.","Xác định khoảng cách thực tế."],1,"Bảng chú giải cho biết mỗi kí hiệu trên bản đồ có nghĩa là gì."],
+["Lược đồ trí nhớ là:",["Những thông tin không gian được lưu giữ trong trí óc con người.","Bản đồ có độ chính xác tuyệt đối về khoảng cách.","Bản đồ chỉ thể hiện thời tiết.","Bảng số liệu về dân số."],0,"Lược đồ trí nhớ vẽ lại những gì ta nhớ về một nơi quen thuộc, không cần chính xác theo tỉ lệ."],
+["Trên một bản đồ có mũi tên chỉ hướng Bắc hướng lên trên trang giấy, phía trên bản đồ là hướng:",["Nam.","Tây.","Bắc.","Đông."],2,"Mũi tên chỉ Bắc hướng lên trên thì phía trên là Bắc, dưới là Nam, phải là Đông, trái là Tây."],
+["Vĩ tuyến gốc là:",["Kinh tuyến gốc.","Xích đạo.","Chí tuyến Bắc.","Vòng cực Bắc."],1,"Xích đạo là vĩ tuyến gốc, ghi 0°."],
+["Kinh tuyến gốc có số độ:",["0°.","90°.","180°.","360°."],0,"Kinh tuyến gốc là 0°, đi qua đài thiên văn Greenwich ở nước Anh."],
+["Tỉ lệ 1 : 500 000 có nghĩa là:",["1 cm trên bản đồ bằng 500 000 km thực tế.","1 cm trên bản đồ bằng 500 000 cm thực tế.","500 000 cm trên bản đồ bằng 1 cm thực tế.","Bản đồ lớn gấp 500 000 lần thực tế."],1,"1 cm trên bản đồ ứng với 500 000 cm ngoài thực tế (cùng đơn vị cm), tức là 5 km."],
+["Nếu khoảng cách trên bản đồ là 6 cm, tỉ lệ bản đồ 1 : 1 000 000 thì khoảng cách thực tế là:",["6 km.","60 km.","600 km.","6 000 km."],1,"6 × 1 000 000 = 6 000 000 cm = 60 km."],
+["Loại kí hiệu thường được dùng để thể hiện đường sắt, đường ô tô là:",["Kí hiệu điểm.","Kí hiệu đường.","Kí hiệu diện tích.","Kí hiệu chữ."],1,"Đường sắt, đường ô tô, sông là đối tượng kéo dài nên dùng kí hiệu đường."],
+["Muốn biết một kí hiệu trên bản đồ thể hiện đối tượng nào, cần dựa vào:",["Tỉ lệ bản đồ.","Phương hướng.","Bảng chú giải.","Kinh tuyến."],2,"Bảng chú giải giải thích ý nghĩa từng kí hiệu."],
+["Lược đồ trí nhớ thường được xây dựng dựa trên:",["Sự ghi nhớ và hiểu biết của người vẽ về không gian quen thuộc.","Một quy định bắt buộc mọi người vẽ giống nhau.","Các số liệu khí hậu của toàn thế giới.","Chỉ độ cao của các đỉnh núi."],0,"Mỗi người vẽ theo trí nhớ của mình nên lược đồ có thể khác nhau."],
+["Phía đối diện với hướng Đông là:",["Bắc.","Nam.","Tây.","Đông Bắc."],2,"Đông đối diện Tây, Bắc đối diện Nam."],
+["Vĩ tuyến nào chia Trái Đất thành bán cầu Bắc và bán cầu Nam?",["Chí tuyến Bắc.","Vòng cực Bắc.","Xích đạo.","Chí tuyến Nam."],2,"Xích đạo chia Trái Đất thành bán cầu Bắc và bán cầu Nam."],
+["Một điểm có tọa độ 105°Đ, 21°B nằm ở:",["Bán cầu Đông và bán cầu Bắc.","Bán cầu Tây và bán cầu Bắc.","Bán cầu Đông và bán cầu Nam.","Bán cầu Tây và bán cầu Nam."],0,"105°Đ là kinh độ Đông nên ở bán cầu Đông; 21°B là vĩ độ Bắc nên ở bán cầu Bắc."],
+["Khi mũi tên chỉ Bắc hướng lên trên trang giấy, phía bên phải bản đồ là hướng:",["Tây.","Đông.","Nam.","Bắc."],1,"Phải là Đông, trái là Tây."],
+["Hướng nằm giữa hướng Bắc và hướng Đông là:",["Tây Bắc.","Đông Nam.","Tây Nam.","Đông Bắc."],3,"Giữa Bắc và Đông là Đông Bắc."],
+["Trên bản đồ tỉ lệ 1 : 200 000, đoạn đường dài 3 cm tương ứng ngoài thực tế là:",["6 km.","60 km.","600 m.","600 km."],0,"3 × 200 000 = 600 000 cm = 6 km."],
+["Hai địa điểm cách nhau 12 km. Trên bản đồ tỉ lệ 1 : 300 000, khoảng cách giữa chúng là:",["3 cm.","4 cm.","6 cm.","36 cm."],1,"Đổi 12 km = 1 200 000 cm, chia cho 300 000 được 4 cm."],
+["Loại kí hiệu phù hợp để thể hiện một vùng trồng lúa là:",["Kí hiệu điểm.","Kí hiệu đường.","Kí hiệu diện tích.","Mũi tên chỉ Bắc."],2,"Vùng trồng lúa chiếm cả một khoảng rộng nên dùng kí hiệu diện tích."],
+["Để người khác hiểu các kí hiệu tự chọn trong lược đồ trí nhớ, em cần:",["Tô tất cả bằng một màu.","Bỏ tên các địa điểm.","Chỉ vẽ đường đi.","Thêm bảng chú giải phù hợp."],3,"Bảng chú giải giúp người khác hiểu kí hiệu em tự đặt ra."]
+];
+const D_L=[
+["Hướng nằm giữa hướng Nam và hướng Tây là:",["Tây Bắc","Đông Nam","Tây Nam","Đông Bắc"],2,"Giữa Nam và Tây là Tây Nam."],
+["Phía đối diện với hướng Bắc là:",["Nam","Đông","Tây","Đông Bắc"],0,"Bắc đối diện Nam."],
+["Phía đối diện với hướng Đông Bắc là:",["Tây Bắc","Đông Nam","Tây Nam","Nam"],2,"Đông đối diện Tây, Bắc đối diện Nam, nên Đông Bắc đối diện Tây Nam."],
+["Khi mũi tên chỉ Bắc hướng lên trên trang giấy, phía bên trái bản đồ là hướng:",["Đông","Tây","Nam","Bắc"],1,"Trái là Tây, phải là Đông."],
+["Kinh tuyến gốc đi qua đài thiên văn Greenwich ở nước nào?",["Pháp","Mỹ","Anh","Việt Nam"],2,"Đài thiên văn Greenwich ở nước Anh."],
+["Một điểm có tọa độ 60°T, 30°N nằm ở:",["Bán cầu Đông và bán cầu Bắc","Bán cầu Tây và bán cầu Bắc","Bán cầu Đông và bán cầu Nam","Bán cầu Tây và bán cầu Nam"],3,"60°T là kinh độ Tây (bán cầu Tây); 30°N là vĩ độ Nam (bán cầu Nam)."],
+["Trên bản đồ tỉ lệ 1 : 500 000, đoạn dài 4 cm ứng với thực tế là:",["2 km","20 km","200 km","2 000 km"],1,"4 × 500 000 = 2 000 000 cm = 20 km."],
+["Hai thành phố cách nhau 50 km. Trên bản đồ tỉ lệ 1 : 1 000 000, khoảng cách giữa chúng là:",["5 cm","50 cm","0,5 cm","500 cm"],0,"Đổi 50 km = 5 000 000 cm, chia cho 1 000 000 được 5 cm."],
+["Loại kí hiệu phù hợp để thể hiện một sân bay là:",["Kí hiệu điểm","Kí hiệu đường","Kí hiệu diện tích","Mũi tên chỉ Bắc"],0,"Sân bay có vị trí cụ thể nên dùng kí hiệu điểm."],
+["Loại kí hiệu phù hợp để thể hiện một con sông là:",["Kí hiệu điểm","Kí hiệu đường","Kí hiệu diện tích","Bảng chú giải"],1,"Sông là đối tượng kéo dài nên dùng kí hiệu đường."],
+["Tỉ lệ bản đồ được thể hiện ở những dạng nào?",["Tỉ lệ số và tỉ lệ thước","Tỉ lệ phần trăm và tỉ lệ số","Chỉ có tỉ lệ thước","Tỉ lệ độ cao và tỉ lệ thước"],0,"Có hai dạng: tỉ lệ số (ví dụ 1 : 100 000) và tỉ lệ thước."],
+["Việc làm đầu tiên khi tìm đường đi trên bản đồ là:",["Đọc bảng chú giải","Chọn ngay đường ngắn nhất","Đo khoảng cách bằng thước","Tô màu các con đường"],0,"Thứ tự: đọc chú giải → xác định điểm đầu, điểm đến → nhận biết tuyến đường, điểm mốc → chọn tuyến phù hợp."],
+["Khi ghi tọa độ địa lí của một điểm, cần ghi:",["Chỉ kinh độ","Chỉ vĩ độ","Kinh độ và vĩ độ, kèm hướng Đông/Tây, Bắc/Nam","Độ cao và khoảng cách"],2,"Ví dụ: 105°Đ, 21°B."],
+["100 000 cm bằng:",["1 km","10 km","100 m","100 km"],0,"100 000 cm = 1 000 m = 1 km."]
+];
+const D_TG=[
+["Về tỉ lệ bản đồ:",[["Tỉ lệ bản đồ cho biết mức độ thu nhỏ khoảng cách trên bản đồ so với khoảng cách thực tế.",true,""],["Bản đồ có tỉ lệ 1 : 100 000 thì 1 cm trên bản đồ bằng 100 km ngoài thực tế.",false,"1 cm ứng với 100 000 cm = 1 km, không phải 100 km."],["Có thể dùng tỉ lệ bản đồ để tính khoảng cách thực tế.",true,""],["Tỉ lệ thước là một dạng thể hiện tỉ lệ bản đồ.",true,""]]],
+["Về kí hiệu và bảng chú giải:",[["Kí hiệu điểm thường dùng để thể hiện đối tượng có vị trí cụ thể.",true,""],["Bảng chú giải giải thích ý nghĩa các kí hiệu được sử dụng trên bản đồ.",true,""],["Tất cả đối tượng địa lí trên bản đồ đều được thể hiện bằng cùng một loại kí hiệu.",false,"Có ba loại kí hiệu: điểm, đường, diện tích."],["Kí hiệu đường có thể dùng để thể hiện sông, đường giao thông.",true,""]]],
+["Về tỉ lệ bản đồ:",[["Tỉ lệ số là một dạng thể hiện tỉ lệ bản đồ.",true,""],["Tỉ lệ 1 : 100 000 nghĩa là 1 cm trên bản đồ bằng 100 000 cm ngoài thực tế.",true,""],["Tỉ lệ bản đồ không có ý nghĩa trong việc tính khoảng cách thực tế.",false,"Nhờ tỉ lệ bản đồ mới tính được khoảng cách thực tế."],["Tỉ lệ thước được thể hiện bằng một thước đo có chia đoạn và ghi khoảng cách thực tế tương ứng.",true,""]]],
+["Về kí hiệu và bảng chú giải:",[["Kí hiệu bản đồ giúp người đọc nhận biết các đối tượng địa lí.",true,""],["Bảng chú giải giải thích ý nghĩa của các kí hiệu trên bản đồ.",true,""],["Kí hiệu diện tích có thể dùng để thể hiện khu vực rừng.",true,""],["Kí hiệu đường chỉ được dùng để thể hiện sông.",false,"Kí hiệu đường còn thể hiện đường ô tô, đường sắt."]]],
+["Kinh tuyến, vĩ tuyến và phương hướng:",[["Kinh tuyến gốc có số độ 0°.",true,""],["Xích đạo là đường chia Trái Đất thành bán cầu Đông và bán cầu Tây.",false,"Xích đạo chia Trái Đất thành bán cầu Bắc và bán cầu Nam."],["Trên bản đồ có mũi tên Bắc hướng lên trên, phía dưới là hướng Nam.",true,""],["Tọa độ địa lí của một điểm chỉ cần có kinh độ.",false,"Tọa độ địa lí cần cả kinh độ và vĩ độ."]]],
+["Thực hành sử dụng bản đồ và lược đồ trí nhớ:",[["Tỉ lệ 1 : 50 000 nghĩa là 1 cm trên bản đồ ứng với 500 m thực tế.",true,"1 × 50 000 = 50 000 cm = 500 m."],["Đoạn dài 2 cm trên bản đồ tỉ lệ 1 : 500 000 ứng với 100 km thực tế.",false,"2 × 500 000 = 1 000 000 cm = 10 km, không phải 100 km."],["Kí hiệu dùng trong lược đồ cần thống nhất với chú giải.",true,""],["Lược đồ trí nhớ bắt buộc phải thể hiện chính xác mọi khoảng cách theo tỉ lệ.",false,"Lược đồ trí nhớ vẽ theo trí nhớ, không cần chính xác theo tỉ lệ."]]]
+];
+const D_TP=[
+["Về phương hướng trên bản đồ:",[["Phía trên của mọi bản đồ luôn là hướng Bắc.",false,"Phải dựa vào mũi tên chỉ Bắc hoặc kinh tuyến, vĩ tuyến; không mặc định phía trên là Bắc."],["Có thể xác định phương hướng dựa vào kinh tuyến, vĩ tuyến.",true,""],["Hướng Tây Bắc nằm giữa hướng Tây và hướng Bắc.",true,""],["Đối diện với hướng Đông Nam là hướng Đông Bắc.",false,"Đối diện Đông Nam là Tây Bắc."]]],
+["Về tỉ lệ và khoảng cách:",[["100 000 cm = 1 km.",true,""],["1 000 000 cm = 100 km.",false,"1 000 000 cm = 10 km."],["Trên bản đồ tỉ lệ 1 : 2 000 000, 3 cm ứng với 60 km.",true,"3 × 2 000 000 = 6 000 000 cm = 60 km."],["Muốn tính khoảng cách thực tế, lấy khoảng cách bản đồ chia cho mẫu số tỉ lệ.",false,"Phải nhân với mẫu số tỉ lệ."]]],
+["Về tọa độ và lược đồ trí nhớ:",[["Xích đạo là vĩ tuyến gốc 0°.",true,""],["Kinh tuyến là những vòng tròn song song với Xích đạo.",false,"Đó là vĩ tuyến. Kinh tuyến là nửa đường tròn nối hai cực."],["Điểm có tọa độ 105°Đ, 21°B nằm ở bán cầu Bắc.",true,"21°B là vĩ độ Bắc."],["Lược đồ trí nhớ của mọi người về cùng một con đường phải giống hệt nhau.",false,"Mỗi người nhớ khác nhau nên lược đồ có thể khác nhau."]]]
+];
+const D_FG=[
+["100 000 cm = __ km","km",1,"100 000 cm = 1 000 m = 1 km. Mẹo: bỏ 5 chữ số 0.","Đề ôn · Nội dung Bài 3"],
+["1 000 000 cm = __ km","km",10,"Bỏ 5 chữ số 0: 1 000 000 cm = 10 km.","Đề ôn · Nội dung Bài 3"],
+["Bản đồ tỉ lệ 1 : 2 000 000. Đoạn dài 3 cm trên bản đồ ứng với bao nhiêu km ngoài thực tế?","km",60,"3 × 2 000 000 = 6 000 000 cm = 60 km.","Đề ôn · Nội dung Bài 3"],
+["Tỉ lệ 1 : 1 000 000: 1 cm trên bản đồ bằng bao nhiêu km?","km",10,"1 × 1 000 000 = 1 000 000 cm = 10 km.","Đề ôn · Câu hỏi ôn tập 8"],
+["Tỉ lệ 1 : 2 000 000: 5 cm trên bản đồ bằng bao nhiêu km?","km",100,"5 × 2 000 000 = 10 000 000 cm = 100 km.","Đề ôn · Câu hỏi ôn tập 9"]
+];
+const D_FL=[
+["Bản đồ tỉ lệ 1 : 500 000. Đoạn dài 4 cm trên bản đồ ứng với bao nhiêu km?","km",20,"4 × 500 000 = 2 000 000 cm = 20 km.","Luyện thêm · Tính khoảng cách thực tế"],
+["Bản đồ tỉ lệ 1 : 200 000. Đoạn dài 7 cm trên bản đồ ứng với bao nhiêu km?","km",14,"7 × 200 000 = 1 400 000 cm = 14 km.","Luyện thêm · Tính khoảng cách thực tế"],
+["Bản đồ tỉ lệ 1 : 50 000. Đoạn dài 6 cm trên bản đồ ứng với bao nhiêu km?","km",3,"6 × 50 000 = 300 000 cm = 3 km.","Luyện thêm · Tính khoảng cách thực tế"],
+["Bản đồ tỉ lệ 1 : 1 500 000. Đoạn dài 2 cm trên bản đồ ứng với bao nhiêu km?","km",30,"2 × 1 500 000 = 3 000 000 cm = 30 km.","Luyện thêm · Tính khoảng cách thực tế"],
+["Bản đồ tỉ lệ 1 : 25 000. Đoạn dài 8 cm trên bản đồ ứng với bao nhiêu mét?","m",2000,"8 × 25 000 = 200 000 cm = 2 000 m.","Luyện thêm · Tính khoảng cách thực tế"],
+["Hai địa điểm cách nhau 25 km. Trên bản đồ tỉ lệ 1 : 500 000, khoảng cách giữa chúng là bao nhiêu cm?","cm",5,"Đổi 25 km = 2 500 000 cm, chia cho 500 000 được 5 cm.","Luyện thêm · Tính khoảng cách trên bản đồ"],
+["Hai thành phố cách nhau 90 km. Trên bản đồ tỉ lệ 1 : 3 000 000, khoảng cách giữa chúng là bao nhiêu cm?","cm",3,"Đổi 90 km = 9 000 000 cm, chia cho 3 000 000 được 3 cm.","Luyện thêm · Tính khoảng cách trên bản đồ"],
+["250 000 cm = __ km","km",2.5,"Bỏ 5 chữ số 0: 250 000 cm = 2,5 km.","Luyện thêm · Đổi đơn vị"]
+];
+const D_SORT=[
+{key:"c11",src:"g",grp:"Dùng loại kí hiệu nào để thể hiện?",tag:"Đề ôn · Câu hỏi ôn tập 11",big:true,o:["Kí hiệu điểm","Kí hiệu đường","Kí hiệu diện tích"],items:[
+["Thành phố",0,"Thành phố có vị trí cụ thể trên bản đồ."],
+["Sân bay",0,"Sân bay có vị trí cụ thể."],
+["Sông",1,"Sông là đối tượng kéo dài."],
+["Đường ô tô",1,"Đường giao thông là đối tượng kéo dài."],
+["Đường sắt",1,"Đường sắt là đối tượng kéo dài."],
+["Rừng",2,"Rừng chiếm cả một vùng rộng."],
+["Vùng trồng lúa",2,"Vùng trồng lúa chiếm cả một vùng rộng."]]},
+{key:"huong",src:"l",grp:"Mũi tên chỉ Bắc hướng lên trên. Phần này của bản đồ là hướng nào?",tag:"Luyện thêm · Phương hướng",big:true,o:["Bắc","Đông Bắc","Đông","Đông Nam","Nam","Tây Nam","Tây","Tây Bắc"],items:[
+["Phía trên",0,"Trên là Bắc."],
+["Phía dưới",4,"Dưới là Nam."],
+["Bên phải",2,"Phải là Đông."],
+["Bên trái",6,"Trái là Tây."],
+["Góc trên bên phải",1,"Nằm giữa Bắc và Đông: Đông Bắc."],
+["Góc dưới bên phải",3,"Nằm giữa Nam và Đông: Đông Nam."],
+["Góc dưới bên trái",5,"Nằm giữa Nam và Tây: Tây Nam."],
+["Góc trên bên trái",7,"Nằm giữa Bắc và Tây: Tây Bắc."]]},
+{key:"bancau",src:"l",grp:"Điểm có tọa độ này nằm ở đâu?",tag:"Luyện thêm · Tọa độ địa lí",big:true,o:["Bán cầu Đông và bán cầu Bắc","Bán cầu Tây và bán cầu Bắc","Bán cầu Đông và bán cầu Nam","Bán cầu Tây và bán cầu Nam"],items:[
+["105°Đ, 21°B",0,"Đ: kinh độ Đông → bán cầu Đông. B: vĩ độ Bắc → bán cầu Bắc."],
+["60°T, 30°N",3,"T: kinh độ Tây → bán cầu Tây. N: vĩ độ Nam → bán cầu Nam."],
+["30°Đ, 15°N",2,"Đ → bán cầu Đông. N → bán cầu Nam."],
+["80°T, 40°B",1,"T → bán cầu Tây. B → bán cầu Bắc."],
+["120°Đ, 10°N",2,"Đ → bán cầu Đông. N → bán cầu Nam."]]}
+];
+const D_ESS=[
+["Kinh tuyến là gì?","<p>Kinh tuyến là <b>nửa đường tròn nối hai cực</b> của Trái Đất.</p><p>Kinh tuyến gốc 0° đi qua đài thiên văn Greenwich ở nước Anh.</p>"],
+["Vĩ tuyến là gì? Xích đạo có số độ bao nhiêu?","<p>Vĩ tuyến là <b>vòng tròn song song với Xích đạo</b>.</p><p>Xích đạo là vĩ tuyến gốc, có số độ <b>0°</b>.</p>"],
+["Tọa độ địa lí gồm những thành phần nào?","<p>Gồm <b>kinh độ</b> và <b>vĩ độ</b> của điểm, kèm hướng tương ứng (Đông/Tây, Bắc/Nam). Ví dụ: 105°Đ, 21°B.</p>"],
+["Bản đồ là gì?","<p>Bản đồ là <b>hình vẽ thu nhỏ tương đối chính xác</b> một khu vực hoặc toàn bộ bề mặt Trái Đất <b>trên mặt phẳng</b>.</p>"],
+["Kể bốn hướng chính và cách xác định hướng Bắc trên bản đồ.","<p>Bốn hướng chính: <b>Bắc, Nam, Đông, Tây</b>.</p><p>Xác định hướng Bắc dựa vào <b>kinh tuyến, vĩ tuyến</b> hoặc <b>mũi tên chỉ Bắc</b>. Không phải bản đồ nào phía trên cũng là Bắc.</p><p>Khi mũi tên Bắc hướng lên trên: trên là Bắc, dưới là Nam, phải là Đông, trái là Tây.</p>"],
+["Tỉ lệ bản đồ cho biết điều gì?","<p>Cho biết <b>mức độ thu nhỏ</b> khoảng cách trên bản đồ so với khoảng cách thực tế tương ứng.</p>"],
+["Có những dạng tỉ lệ nào?","<p><b>Tỉ lệ số</b> (ví dụ 1 : 1 000 000) và <b>tỉ lệ thước</b>.</p>"],
+["Tỉ lệ 1 : 1 000 000: 1 cm trên bản đồ bằng bao nhiêu km?","<p>1 × 1 000 000 = 1 000 000 cm = <b>10 km</b>.</p>"],
+["Tỉ lệ 1 : 2 000 000: 5 cm trên bản đồ bằng bao nhiêu km?","<p>5 × 2 000 000 = 10 000 000 cm = <b>100 km</b>.</p>"],
+["Kí hiệu bản đồ dùng để làm gì?","<p>Kí hiệu dùng để <b>thể hiện các đối tượng địa lí</b> trên bản đồ.</p>"],
+["Kể ba loại kí hiệu và ví dụ.","<ul><li><b>Kí hiệu điểm:</b> sân bay, thành phố.</li><li><b>Kí hiệu đường:</b> đường ô tô, sông.</li><li><b>Kí hiệu diện tích:</b> rừng, vùng trồng lúa.</li></ul>"],
+["Bảng chú giải có vai trò gì?","<p><b>Giải thích ý nghĩa</b> các kí hiệu được dùng trên bản đồ.</p>"],
+["Tìm đường trên bản đồ cần làm gì?","<ol><li>Đọc bảng chú giải.</li><li>Xác định điểm đầu và điểm đến.</li><li>Nhận biết các tuyến đường và điểm mốc.</li><li>Chọn tuyến đường phù hợp; có thể dùng tỉ lệ để ước tính khoảng cách.</li></ol>"],
+["Lược đồ trí nhớ là gì?","<p>Là lược đồ thể hiện <b>hiểu biết, thông tin không gian được giữ trong trí óc</b> con người. Không yêu cầu chính xác như bản đồ đo vẽ theo tỉ lệ.</p>"],
+["Thực hành vẽ lược đồ trí nhớ một đường đi quen thuộc (ví dụ từ nhà đến trường).","<p>Lược đồ cần có:</p><ul><li><b>Điểm đầu</b>, <b>điểm đến</b> và đường nối giữa hai điểm.</li><li>Ít nhất <b>3 địa điểm</b> nổi bật dọc đường (ví dụ: chợ, ngã tư, cây xăng).</li><li><b>Bảng chú giải</b> khớp với kí hiệu đã vẽ.</li></ul><p>Mỗi bạn có thể vẽ khác nhau, miễn là rõ ràng và đúng với đường đi quen thuộc.</p>"]
+];
+
+/* ================= CẤU HÌNH MÔN ================= */
+const SUBJ={
+ khtn:{name:"KHTN",tfLab:["a)","b)","c)","d)"],h1:"Ôn thi KHTN 6",eyebrow:"KHTN 6 · Ôn tập giữa kì I · 2026–2027",fillMeta:"đổi đơn vị, tính thể tích, khối lượng",sortMeta:"vật sống, vật thể, chất, vật liệu",p:"",
+   // Câu con làm sai hoặc khoanh lẫn trên đề giấy
+   seed:["g10","g11","g21","g22","g26","g28","tg1b","tg2c","tg4b","tg5d","fg7","fg8"],
+   D:{G:K_G,L:K_L,TG:K_TG,TP:K_TP,FG:K_FG,FL:K_FL,SORT:K_SORT,ESS:K_ESS}},
+ ls:{name:"Lịch sử",tfLab:["A.","B.","C.","D."],h1:"Ôn thi Lịch sử 6",eyebrow:"Lịch sử 6 · Ôn tập giữa kì I · 2026–2027",fillMeta:"tính khoảng cách thời gian, đơn vị thời gian",sortMeta:"thế kỉ, tư liệu, đời sống, quốc gia cổ đại",p:"s",
+   seed:["sg10","sg14","sg18","stg1a","stg1b","stg2d","stg3b","stg3d","stg4d","stg5a"],
+   D:{G:H_G,L:H_L,TG:H_TG,TP:H_TP,FG:H_FG,FL:H_FL,SORT:H_SORT,ESS:H_ESS}},
+ dl:{name:"Địa lí",tfLab:["a)","b)","c)","d)"],tfStart:25,essLabel:"Câu hỏi ôn tập",h1:"Ôn thi Địa lí 6",eyebrow:"Địa lí 6 · Ôn tập giữa kì I · 2026–2027",fillMeta:"tính khoảng cách bằng tỉ lệ bản đồ",sortMeta:"loại kí hiệu, phương hướng, bán cầu",p:"d",
+   seed:[],
+   D:{G:D_G,L:D_L,TG:D_TG,TP:D_TP,FG:D_FG,FL:D_FL,SORT:D_SORT,ESS:D_ESS}}
+};
+const LOGO={
+ khtn:'<svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/><path d="M7.4 15h9.2"/></svg>',
+ ls:'<svg viewBox="0 0 24 24"><path d="M3 9.5L12 4l9 5.5"/><path d="M4 9.5h16"/><path d="M6.5 9.5v8M10 9.5v8M14 9.5v8M17.5 9.5v8"/><path d="M3.5 20h17"/></svg>',
+ dl:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 7.5h14M5 16.5h14"/></svg>'
+};
+
+/* ================= CHUẨN HÓA ================= */
+const DBS={},IDX={},EIDX={};
+function buildDB(key){
+  const c=SUBJ[key],p=c.p,D=c.D,db={mcq:[],tf:[],fill:[],sort:[],essay:[]};
+  // ord = thứ tự giống đề giấy: Phần I → Phần II → Phần III → Tự luận (theo số câu), sau đó mới đến bộ luyện thêm
+  const tl=tag=>{let m=/Nội dung Bài (\d+)/.exec(tag);if(m)return 10000+Number(m[1])*1000;m=/Câu hỏi ôn tập (\d+)/.exec(tag);if(m)return 50000+Number(m[1])*1000;m=/Tự luận câu (\d+)/.exec(tag);return m?400000+Number(m[1])*1000:-1;};
+  D.G.forEach((r,i)=>db.mcq.push({id:p+"g"+(i+1),src:"g",q:r[0],o:r[1],a:r[2],why:r[3],tag:"Đề ôn · Câu "+(i+1),ord:100000+i}));
+  D.L.forEach((r,i)=>db.mcq.push({id:p+"l"+(i+1),src:"l",q:r[0],o:r[1],a:r[2],why:r[3],tag:"Luyện thêm · Câu "+(i+1),ord:500000+i}));
+  const tfNo=i=>(c.tfStart||1)+i;
+  const addTF=(arr,pre,src,label,base)=>arr.forEach((r,i)=>db.tf.push({id:pre+(i+1),src:src,stem:r[0],tag:label+" · Đúng – Sai câu "+(src==="g"?tfNo(i):i+1),ord:base+i*10,s:r[1].map((x,k)=>({id:pre+(i+1)+"abcd"[k],k:k,t:x[0],a:x[1],why:x[2]||"",ord:base+i*10+k}))}));
+  addTF(D.TG,p+"tg","g","Đề ôn",200000); addTF(D.TP,p+"tp","l","Luyện thêm",600000);
+  const addFill=(arr,pre,src,base)=>{let n=0;arr.forEach((r,i)=>{const id=r[5]?p+r[5]:pre+(++n);const t=src==="g"?tl(r[4]):-1;db.fill.push({id:id,src:src,q:r[0],unit:r[1],a:r[2],why:r[3],tag:r[4],ord:t>0?t+600+i:base+i});});};
+  addFill(D.FG,p+"fg","g",300000); addFill(D.FL,p+"fl","l",700000);
+  D.SORT.forEach((g,gi)=>{const src=g.src||"g",t=src==="g"?tl(g.tag):-1;g.items.forEach((x,j)=>db.sort.push({id:p+"pl-"+g.key+"-"+(j+1),src:src,grp:g.grp,tag:g.tag,big:!!g.big,o:g.o,q:x[0],a:x[1],why:x[2]||"",ord:(t>0?t:800000)+gi*50+j}));});
+  D.ESS.forEach((r,i)=>db.essay.push({id:p+"es"+(i+1),n:i+1,q:r[0],ans:r[1]}));
+  db.mcq.forEach(d=>IDX[d.id]={kind:"mcq",d});
+  db.sort.forEach(d=>IDX[d.id]={kind:"sort",d});
+  db.fill.forEach(d=>IDX[d.id]={kind:"fill",d});
+  db.tf.forEach(t=>t.s.forEach(s=>IDX[s.id]={kind:"tf1",d:s,p:t}));
+  db.essay.forEach(e=>EIDX[e.id]=e);
+  DBS[key]=db;
+}
+Object.keys(SUBJ).forEach(buildDB);
+
+/* ================= LƯU TIẾN ĐỘ ================= */
+const KEY="lop6-gk1-v3", V2_KEY="lop6-gk1-v2", OLD_KEY="khtn6-gk1-v1";
+function freshSub(s){const w={};SUBJ[s].seed.forEach(id=>w[id]=1);return {wrong:w,last:{},known:{},tot:{a:0,c:0}};}
+function fresh(){const sub={};Object.keys(SUBJ).forEach(s=>sub[s]=freshSub(s));return {sub:sub,opts:{src:"all",n:0,shufQ:false,shufO:false,subj:"ls",sound:true}};}
+function asSub(x){return {wrong:x.wrong||{},last:x.last||{},known:x.known||{},tot:Object.assign({a:0,c:0},x.tot||{})};}
+let store=fresh();
+function load(){
+  try{
+    const raw=localStorage.getItem(KEY);
+    if(raw){const o=JSON.parse(raw),f=fresh();Object.keys(SUBJ).forEach(s=>{if(o.sub&&o.sub[s])f.sub[s]=asSub(o.sub[s]);});f.opts=Object.assign(f.opts,o.opts||{});store=f;}
+    else{
+      // Bản trước: giữ tiến độ, đưa cài đặt về mặc định mới (không trộn, làm hết bộ)
+      const v2=localStorage.getItem(V2_KEY),old=localStorage.getItem(OLD_KEY),f=fresh();
+      if(v2){const o=JSON.parse(v2);Object.keys(SUBJ).forEach(s=>{if(o.sub&&o.sub[s])f.sub[s]=asSub(o.sub[s]);});if(o.opts&&SUBJ[o.opts.subj])f.opts.subj=o.opts.subj;store=f;save();}
+      else if(old){f.sub.khtn=asSub(JSON.parse(old));store=f;save();}
+    }
+  }catch(e){}
+  if(!SUBJ[store.opts.subj])store.opts.subj="ls";
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}}
+const cur=()=>store.sub[store.opts.subj];
+const curDB=()=>DBS[store.opts.subj];
+
+/* ================= TIỆN ÍCH ================= */
+const $=s=>document.querySelector(s);
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function fmtNum(x){const neg=x<0;x=Math.abs(x);let p=String(+x.toFixed(6)).split(".");let i=p[0].replace(/\B(?=(\d{3})+(?!\d))/g," ");return (neg?"−":"")+i+(p[1]?","+p[1]:"");}
+function numCands(v){const s=String(v).replace(/\s+/g,"").replace(/[^0-9.,\-]/g,"");if(!s||!/\d/.test(s))return [];return [Number(s.replace(/\./g,"").replace(",",".")),Number(s.replace(/,/g,""))].filter(n=>Number.isFinite(n));}
+function numOk(v,a){return numCands(v).some(n=>Math.abs(n-a)<1e-9);}
+function plain(h){const d=document.createElement("div");d.innerHTML=h;return d.textContent;}
+const MODE_NAME={mcq:"Trắc nghiệm",tf:"Đúng – Sai",fill:"Điền đáp án",sort:"Phân loại & nối",review:"Ôn câu sai",retry:"Làm lại câu sai"};
+const sections=["home","quiz","result","cards"].map(id=>document.getElementById(id));
+function show(id){sections.forEach(s=>s.hidden=s.id!==id);window.scrollTo(0,0);}
+const rootStyle=document.documentElement.style;
+if("ResizeObserver" in window){const ro=new ResizeObserver(()=>{const h=Math.max($("#sheet").offsetHeight,$("#csheet").offsetHeight);rootStyle.setProperty("--sheet-h",h+"px");});ro.observe($("#sheet"));ro.observe($("#csheet"));}
+
+/* ================= ÂM THANH (tự tạo bằng Web Audio, không cần file, chạy được khi không có mạng) ================= */
+const SND=(function(){
+  let ctx=null,master=null;
+  function ready(){
+    if(!store.opts.sound)return null;
+    try{
+      if(!ctx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;ctx=new AC();master=ctx.createGain();master.gain.value=0.55;master.connect(ctx.destination);}
+      if(ctx.state==="suspended")ctx.resume();
+      return ctx;
+    }catch(e){return null;}
+  }
+  function note(f,at,dur,vol,type){
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.type=type||"sine";o.frequency.setValueAtTime(f,at);
+    g.gain.setValueAtTime(0.0001,at);g.gain.exponentialRampToValueAtTime(vol,at+0.012);g.gain.exponentialRampToValueAtTime(0.0001,at+dur);
+    o.connect(g);g.connect(master);o.start(at);o.stop(at+dur+0.03);
+  }
+  function bell(f,at,dur,vol){note(f,at,dur,vol,"sine");note(f*2,at,dur*0.6,vol*0.25,"sine");}
+  const P={
+    ok:t=>{bell(784,t,0.22,0.32);bell(1047,t+0.09,0.34,0.32);},                                   // đúng: ting-ting
+    bad:t=>{note(311,t,0.16,0.16,"triangle");note(233,t+0.14,0.28,0.16,"triangle");},              // sai: nhẹ nhàng, không chói
+    streak:t=>{[523,659,784,1047].forEach((f,i)=>bell(f,t+i*0.07,0.3,0.26));},                     // chuỗi 5 lần đúng
+    fix:t=>{[392,494,587,784,988].forEach((f,i)=>bell(f,t+i*0.06,0.32,0.24));},                   // sửa được câu từng sai
+    win:t=>{[523,659,784].forEach((f,i)=>bell(f,t+i*0.11,0.3,0.26));[523,659,784,1047].forEach(f=>bell(f,t+0.38,0.95,0.13));}, // kết quả tốt
+    good:t=>{[523,659,784].forEach((f,i)=>bell(f,t+i*0.11,0.36,0.26));},
+    soft:t=>{bell(523,t,0.3,0.2);bell(659,t+0.16,0.45,0.2);},
+    tap:t=>{note(1400,t,0.05,0.06,"sine");}
+  };
+  return {play:function(name,delay){const c=ready();if(!c||!P[name])return;try{P[name](c.currentTime+0.01+(delay||0));}catch(e){}}};
+})();
+const SND_ON='<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>';
+const SND_OFF='<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>';
+function renderSnd(){
+  const on=!!store.opts.sound,lab=on?"Tắt âm thanh":"Bật âm thanh";
+  document.querySelectorAll(".snd").forEach(b=>{b.innerHTML=on?SND_ON:SND_OFF;b.setAttribute("aria-pressed",String(on));b.setAttribute("aria-label",lab);b.title=lab;});
+  $("#sndOpt").checked=on;
+}
+function setSound(on){store.opts.sound=on;save();renderSnd();if(on)SND.play("ok");}
+document.querySelectorAll(".snd").forEach(b=>b.addEventListener("click",()=>setSound(!store.opts.sound)));
+$("#sndOpt").addEventListener("change",e=>setSound(e.target.checked));
+
+/* ================= TRANG CHỦ ================= */
+const ICON={
+ mcq:'<svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.6"/><path d="M11.5 7H20"/><circle cx="6" cy="17" r="2.6"/><path d="M11.5 17H20"/><circle cx="6" cy="7" r=".9" fill="currentColor"/></svg>',
+ tf:'<svg viewBox="0 0 24 24"><path d="M2.5 12.5l3.5 3.5 6-7"/><path d="M15 9l6 6M21 9l-6 6"/></svg>',
+ fill:'<svg viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="8" rx="1.5"/><path d="M6.5 8v3M10 8v4.5M13.5 8v3M17 8v4.5"/></svg>',
+ sort:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="7.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="6.5" rx="1.5"/><path d="M14 7h3.5a2.5 2.5 0 0 1 2.5 2.5V11M10 17H6.5A2.5 2.5 0 0 1 4 14.5V13"/></svg>',
+ essay:'<svg viewBox="0 0 24 24"><rect x="3" y="6.5" width="13" height="14.5" rx="2"/><path d="M8 3.5h10.5a2 2 0 0 1 2 2V17"/><path d="M6.5 11.5h6M6.5 15h4"/></svg>',
+ review:'<svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4v5h-5"/></svg>'
+};
+function srcOk(x){return store.opts.src==="all"||x.src===store.opts.src;}
+function lastChip(m){const l=cur().last[m];return l?`Lần trước: ${l.c}/${l.t} ${m==="tf"?"ý":"câu"}`:"Chưa làm";}
+function renderHome(){
+  const s=store.opts.subj,cfg=SUBJ[s],db=DBS[s],st=store.sub[s];
+  document.body.dataset.subj=s;
+  $("#logo").innerHTML=LOGO[s]; $("#eyebrow").textContent=cfg.eyebrow; $("#h1").textContent=cfg.h1;
+  document.querySelectorAll("#subj button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.s===s)));
+  document.querySelectorAll(".note[data-for]").forEach(n=>n.hidden=n.dataset.for!==s);
+  const nM=db.mcq.filter(srcOk).length,nT=db.tf.filter(srcOk).length,nF=db.fill.filter(srcOk).length,nS=db.sort.filter(srcOk).length;
+  const nW=Object.keys(st.wrong).filter(id=>IDX[id]).length;
+  const nK=db.essay.filter(e=>st.known[e.id]).length;
+  $("#stA").textContent=st.tot.a;
+  $("#stP").textContent=st.tot.a?Math.round(st.tot.c/st.tot.a*100)+"%":"–";
+  $("#stW").textContent=nW;
+  const cards=[
+   {m:"review",cls:"review"+(nW?" wide":""),h:"Ôn câu sai",meta:nW?"Gồm câu con làm sai trong app và câu sai hoặc khoanh lẫn trên đề giấy (nếu có). Làm đúng thì câu tự rời khỏi danh sách.":"Chưa có câu nào cần ôn lại. Câu nào con làm sai sẽ hiện ở đây.",chip:nW?`${nW} câu cần ôn`:"Trống",dis:!nW},
+   {m:"mcq",h:"Trắc nghiệm A, B, C, D",meta:`${nM} câu · chọn 1 đáp án đúng`,chip:lastChip("mcq"),dis:!nM},
+   {m:"tf",h:"Đúng – Sai",meta:`${nT} câu · mỗi câu 4 ý`,chip:lastChip("tf"),dis:!nT},
+   {m:"fill",h:"Điền đáp án",meta:`${nF} câu · ${cfg.fillMeta}`,chip:lastChip("fill"),dis:!nF},
+   {m:"sort",h:"Phân loại & nối",meta:`${nS} câu · ${cfg.sortMeta}`,chip:lastChip("sort"),dis:!nS},
+   {m:"essay",h:"Thẻ tự luận",meta:`${db.essay.length} thẻ · tự trả lời rồi lật xem đáp án`,chip:`Đã thuộc ${nK}/${db.essay.length}`}
+  ];
+  if(!nW)cards.push(cards.shift());
+  $("#modes").innerHTML=cards.map(c=>`<button type="button" class="mode ${c.cls||""}" data-m="${c.m}" ${c.dis?"disabled":""}><span class="mi">${ICON[c.m]}</span><h3>${c.h}</h3><span class="meta">${c.meta}</span><span class="chip">${c.chip}</span></button>`).join("");
+  document.querySelectorAll(".seg").forEach(seg=>{const k=seg.dataset.key;seg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(String(store.opts[k])===b.dataset.v)));});
+  $("#shufQ").checked=!!store.opts.shufQ; $("#shufO").checked=!!store.opts.shufO;
+}
+$("#subj").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;store.opts.subj=b.dataset.s;save();renderHome();});
+$("#modes").addEventListener("click",e=>{const b=e.target.closest(".mode");if(!b||b.disabled)return;const m=b.dataset.m;if(m==="essay")startCards();else start(m);});
+document.querySelectorAll(".seg").forEach(seg=>seg.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const k=seg.dataset.key;store.opts[k]=k==="n"?Number(b.dataset.v):b.dataset.v;save();renderHome();}));
+$("#shufQ").addEventListener("change",e=>{store.opts.shufQ=e.target.checked;save();});
+$("#shufO").addEventListener("change",e=>{store.opts.shufO=e.target.checked;save();});
+let resetArm=null;
+const RESET_LABEL="Đặt lại tiến độ môn này";
+$("#reset").addEventListener("click",e=>{const b=e.currentTarget;if(!resetArm){b.textContent=`Bấm lần nữa để xóa tiến độ môn ${SUBJ[store.opts.subj].name}`;b.classList.add("arm");resetArm=setTimeout(()=>{resetArm=null;b.textContent=RESET_LABEL;b.classList.remove("arm");},4000);return;}clearTimeout(resetArm);resetArm=null;store.sub[store.opts.subj]=freshSub(store.opts.subj);save();b.textContent="Đã đặt lại";b.classList.remove("arm");setTimeout(()=>{b.textContent=RESET_LABEL;},2000);renderHome();});
+
+/* ================= LƯỢT LÀM BÀI ================= */
+function wrapItem(kind,d,p){
+  if(kind==="mcq"){const order=d.o.map((_,i)=>i);if(store.opts.shufO)shuffle(order);return {kind,d,order,tag:d.tag,ord:d.ord};}
+  if(kind==="sort")return {kind,d,order:d.o.map((_,i)=>i),tag:d.tag,ord:d.ord};
+  if(kind==="fill")return {kind,d,tag:d.tag,ord:d.ord};
+  if(kind==="tf"){const st=d.s.slice();if(store.opts.shufO)shuffle(st);return {kind:"tf",stem:d.stem,stmts:st,tag:d.tag,ord:d.ord};}
+  if(kind==="tf1")return {kind:"tf",stem:p.stem,stmts:[d],tag:p.tag,ord:d.ord};
+}
+function arrange(list){return store.opts.shufQ?shuffle(list):list.sort((a,b)=>a.ord-b.ord);}
+function fromIds(ids){return ids.filter(id=>IDX[id]).map(id=>{const r=IDX[id];return wrapItem(r.kind,r.d,r.p);});}
+function buildItems(mode){
+  const db=curDB();let list=[];const n=Number(store.opts.n);
+  if(mode==="review")return arrange(fromIds(Object.keys(cur().wrong)));
+  if(mode==="mcq")list=db.mcq.filter(srcOk).map(d=>wrapItem("mcq",d));
+  if(mode==="tf")list=db.tf.filter(srcOk).map(d=>wrapItem("tf",d));
+  if(mode==="fill")list=db.fill.filter(srcOk).map(d=>wrapItem("fill",d));
+  if(mode==="sort")list=db.sort.filter(srcOk).map(d=>wrapItem("sort",d));
+  arrange(list);
+  if(n)list=list.slice(0,n);
+  return list;
+}
+let S=null,actFn=null,C=null;
+function start(mode,items){
+  items=items||buildItems(mode);
+  if(!items.length)return;
+  S={subj:store.opts.subj,mode,items,i:0,c:0,t:0,streak:0,wrong:[],answered:false};
+  updateStreak(false);show("quiz");renderItem();
+}
+function renderItem(){
+  const w=S.items[S.i];S.answered=false;S.prevStreak=S.streak;
+  $("#qcount").textContent=`${S.i+1}/${S.items.length}`;
+  $("#qtag").textContent=w.tag;
+  $("#pfill").style.width=(S.i/S.items.length*100)+"%";
+  if(document.activeElement)document.activeElement.blur();
+  if(w.kind==="mcq"||w.kind==="sort")renderMCQ(w);else if(w.kind==="tf")renderTF(w);else renderFill(w);
+}
+function setSheet(state,title,why,btn){
+  const sh=$("#sheet");sh.dataset.state=state;
+  $("#fbTitle").innerHTML=title;
+  const wy=$("#fbWhy");wy.innerHTML=why||"";wy.hidden=!why;
+  const a=$("#act");
+  if(!btn){a.hidden=true;actFn=null;}else{a.hidden=false;a.textContent=btn.label;a.disabled=!!btn.disabled;actFn=btn.fn;}
+}
+$("#act").addEventListener("click",()=>{if(actFn)actFn();});
+function record(id,ok){
+  const st=store.sub[S.subj],was=!!st.wrong[id];
+  S.t++;st.tot.a++;
+  if(ok){S.c++;st.tot.c++;S.streak++;delete st.wrong[id];}
+  else{S.streak=0;st.wrong[id]=1;S.wrong.push(id);}
+  save();
+  return ok&&was; // true = vừa sửa được một câu từng làm sai
+}
+function updateStreak(bump){const el=$("#streak");$("#stk").textContent=S?S.streak:0;el.classList.toggle("hot",!!S&&S.streak>=3);if(bump){el.classList.remove("bump");void el.offsetWidth;el.classList.add("bump");}}
+const OK_WORDS=["Chính xác","Đúng rồi","Chuẩn"];
+function feedback(ok,title,why,fixed){
+  const last=S.i===S.items.length-1;
+  const ms=ok&&S.streak>=5&&Math.floor(S.streak/5)>Math.floor((S.prevStreak||0)/5);
+  if(ok&&fixed)title+=" · đã sửa được câu sai";
+  else if(ms)title+=` · ${S.streak} lần đúng liên tiếp`;
+  SND.play(!ok?"bad":fixed?"fix":ms?"streak":"ok");
+  $("#pfill").style.width=((S.i+1)/S.items.length*100)+"%";
+  updateStreak(ok);
+  setSheet(ok?"ok":"bad",title,why,{label:last?"Xem kết quả":"Tiếp tục",fn:next});
+  setTimeout(()=>{const a=$("#act");if(a&&!a.hidden)a.focus({preventScroll:true});},30);
+}
+function next(){if(!S.answered)return;S.i++;if(S.i>=S.items.length){showResult();return;}renderItem();window.scrollTo(0,0);}
+
+/* Trắc nghiệm & phân loại */
+const LET="ABCDEFGH";
+function renderMCQ(w){
+  const d=w.d,many=d.o.length>4,duo=w.kind==="sort"&&d.o.length<=3;
+  $("#qbody").innerHTML=(d.grp?`<p class="grp">${d.grp}</p>`:"")+
+   `<h2 class="qtext${d.big?" big":""}">${d.q}</h2>`+
+   `<div class="opts${many?" grid":""}${duo?" duo":""}">`+w.order.map((oi,k)=>`<button type="button" class="opt" data-k="${k}"><span class="lt">${LET[k]}</span><span class="ot">${d.o[oi]}</span></button>`).join("")+`</div>`;
+  $("#qbody").querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>pickMCQ(Number(b.dataset.k))));
+  setSheet("idle","Chạm vào đáp án con chọn","",null);
+}
+function pickMCQ(k){
+  if(S.answered)return;S.answered=true;
+  const w=S.items[S.i],d=w.d,ok=w.order[k]===d.a;
+  $("#qbody").querySelectorAll(".opt").forEach((b,j)=>{b.disabled=true;const oi=w.order[j];if(oi===d.a)b.classList.add("is-ok");else if(j===k)b.classList.add("is-bad");else b.classList.add("is-dim");});
+  const fixed=record(d.id,ok);
+  feedback(ok,ok?OK_WORDS[Math.floor(Math.random()*3)]:"Chưa đúng",(ok?"":`Đáp án đúng: <b>${d.o[d.a]}</b>. `)+d.why,fixed);
+}
+
+/* Đúng – Sai */
+function renderTF(w){
+  const n=w.stmts.length,lab=SUBJ[S.subj].tfLab;w.picks=new Array(n).fill(null);
+  $("#qbody").innerHTML=`<h2 class="qtext">${w.stem}</h2><div class="tf-list">`+w.stmts.map((s,k)=>`<div class="tf-row" data-k="${k}"><p class="tf-t"><span class="tf-l">${lab[s.k]}</span> ${s.t}</p><div class="tf-btns" role="group" aria-label="Chọn Đúng hoặc Sai"><button type="button" class="tfb" data-v="1">Đúng</button><button type="button" class="tfb" data-v="0">Sai</button></div><p class="tf-why" hidden></p></div>`).join("")+`</div>`;
+  $("#qbody").querySelectorAll(".tf-row").forEach(row=>{const k=Number(row.dataset.k);row.querySelectorAll(".tfb").forEach(b=>b.addEventListener("click",()=>{if(S.answered)return;SND.play("tap");w.picks[k]=Number(b.dataset.v);row.querySelectorAll(".tfb").forEach(x=>{x.classList.toggle("on",x===b);x.setAttribute("aria-pressed",String(x===b));});const done=w.picks.every(p=>p!==null);$("#act").disabled=!done;if(done)$("#fbTitle").textContent="Đã chọn đủ, bấm Kiểm tra";}));});
+  setSheet("idle",n>1?`Chọn Đúng hoặc Sai cho cả ${n} ý`:"Ý này Đúng hay Sai?","",{label:"Kiểm tra",disabled:true,fn:checkTF});
+}
+function checkTF(){
+  if(S.answered)return;const w=S.items[S.i];if(w.picks.some(p=>p===null))return;S.answered=true;
+  let nOk=0,nFix=0;const rows=$("#qbody").querySelectorAll(".tf-row");
+  w.stmts.forEach((s,k)=>{const ok=(w.picks[k]===1)===s.a;if(ok)nOk++;const row=rows[k];row.classList.add(ok?"is-ok":"is-bad");row.querySelectorAll(".tfb").forEach(b=>b.disabled=true);
+    const wy=row.querySelector(".tf-why");const ans=s.a?"Đúng":"Sai";
+    if(!ok||!s.a){wy.innerHTML=`<span class="k">${ok?"Con chọn đúng":"Đáp án: "+ans}.</span> ${s.why||(s.a?"Ý này đúng.":"")}`;wy.hidden=false;}
+    if(record(s.id,ok))nFix++;});
+  const n=w.stmts.length,all=nOk===n;
+  let title,why="";
+  if(n===1){title=all?OK_WORDS[0]:"Chưa đúng";}
+  else{title=all?`Đúng cả ${n} ý`:`Đúng ${nOk}/${n} ý`;if(n===4){const pts=[0,0.1,0.25,0.5,1][nOk];why=`Cách chấm thường dùng: đúng 1 ý 0,1 đ · 2 ý 0,25 đ · 3 ý 0,5 đ · 4 ý 1 đ. Câu này được <b>${fmtNum(pts)} điểm</b>.`;}}
+  feedback(all,title,why,nFix>0);
+}
+
+/* Điền đáp án */
+function renderFill(w){
+  const d=w.d;
+  const tip=Number.isInteger(d.a)?"Chỉ cần gõ số.":"Số thập phân dùng dấu phẩy, ví dụ 0,75.";
+  $("#qbody").innerHTML=`<h2 class="qtext">${d.q.replace("__",'<span class="blank"></span>')}</h2><div class="fill"><input id="fillIn" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="Nhập số" aria-label="Đáp số"><span class="unit">${d.unit}</span></div><p class="fill-tip">${tip}</p>`;
+  const inp=$("#fillIn");
+  inp.addEventListener("input",()=>{$("#act").disabled=!inp.value.trim();});
+  inp.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();if(!S.answered&&inp.value.trim())checkFill();else if(S.answered)next();}});
+  setSheet("idle","Gõ đáp số rồi bấm Kiểm tra","",{label:"Kiểm tra",disabled:true,fn:checkFill});
+  if(window.matchMedia&&window.matchMedia("(pointer:fine)").matches)setTimeout(()=>inp.focus({preventScroll:true}),50);
+}
+function checkFill(){
+  if(S.answered)return;const w=S.items[S.i],d=w.d,inp=$("#fillIn");if(!inp.value.trim())return;S.answered=true;
+  const ok=numOk(inp.value,d.a);inp.readOnly=true;inp.classList.add(ok?"is-ok":"is-bad");
+  const fixed=record(d.id,ok);
+  feedback(ok,ok?OK_WORDS[Math.floor(Math.random()*3)]:"Chưa đúng",(ok?"":`Đáp số: <b>${fmtNum(d.a)} ${d.unit}</b>. `)+d.why,fixed);
+}
+
+/* Kết quả */
+function showResult(){
+  const m=S.mode,pct=S.t?Math.round(S.c/S.t*100):0,unit=m==="tf"?"ý":"câu";
+  if(m!=="retry"){store.sub[S.subj].last[m]={c:S.c,t:S.t};save();}
+  $("#rMode").textContent=SUBJ[S.subj].name+" · "+MODE_NAME[m];
+  $("#rScore").textContent=`Đúng ${S.c}/${S.t} ${unit}`;
+  $("#rMsg").textContent=pct>=90?"Rất vững. Làm thêm một lượt trộn câu để chắc chắn hơn.":pct>=70?"Khá ổn. Đọc lại các câu sai bên dưới rồi làm lại ngay.":"Cần ôn thêm. Đọc kĩ giải thích từng câu sai, rồi bấm Làm lại câu sai.";
+  const CIRC=2*Math.PI*60,arc=$("#rArc");arc.style.strokeDasharray=CIRC;arc.style.strokeDashoffset=CIRC;
+  $("#rPct").textContent=pct+"%";
+  SND.play(pct>=80?"win":pct>=50?"good":"soft",0.15);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{arc.style.strokeDashoffset=CIRC*(1-pct/100);}));
+  const wrongIds=[...new Set(S.wrong)];
+  const acts=[];
+  if(wrongIds.length)acts.push(`<button type="button" class="btn primary" id="rRetry">Làm lại ${wrongIds.length} câu sai</button>`);
+  if(m!=="retry"&&m!=="review")acts.push(`<button type="button" class="btn ${wrongIds.length?"ghost":"primary"}" id="rAgain">Làm lượt mới</button>`);
+  acts.push(`<button type="button" class="btn ghost" id="rHome">Về trang chủ</button>`);
+  $("#rActs").innerHTML=acts.join("");
+  $("#rListT").hidden=!wrongIds.length;
+  $("#rList").innerHTML=wrongIds.map(id=>{const r=IDX[id];let q,a;
+    if(r.kind==="mcq"||r.kind==="sort"){q=(r.d.grp?r.d.grp+" ":"")+plain(r.d.q);a=r.d.o[r.d.a];}
+    else if(r.kind==="fill"){q=plain(r.d.q.replace("__","…"));a=fmtNum(r.d.a)+" "+r.d.unit;}
+    else{q=r.d.t;a=r.d.a?"Đúng":"Sai";}
+    return `<li><span class="rq">${q}</span><span class="ra">→ ${a}</span></li>`;}).join("");
+  const rr=$("#rRetry");if(rr)rr.addEventListener("click",()=>start("retry",arrange(fromIds(wrongIds))));
+  const ra=$("#rAgain");if(ra)ra.addEventListener("click",()=>start(m));
+  $("#rHome").addEventListener("click",goHome);
+  show("result");
+}
+function goHome(){S=null;C=null;renderHome();show("home");}
+$("#quit").addEventListener("click",goHome);
+
+/* ================= THẺ TỰ LUẬN ================= */
+function startCards(onlyUnknown){
+  const s=store.opts.subj,ids=DBS[s].essay.map(e=>e.id),unk=ids.filter(id=>!store.sub[s].known[id]);
+  const deck=(onlyUnknown!==false&&unk.length?unk:ids).slice();
+  C={subj:s,deck,pos:0,shown:false};show("cards");renderCard();
+}
+function renderCard(){
+  const cb=$("#cbody"),all=DBS[C.subj].essay,known=store.sub[C.subj].known;
+  if(C.pos>=C.deck.length){
+    const nK=all.filter(e=>known[e.id]).length;
+    if(nK===all.length)SND.play("win",0.3);
+    $("#cfill").style.width="100%";$("#ccount").textContent="";
+    cb.innerHTML=`<div class="fcard done"><h2>Xong lượt thẻ</h2><p>Đã thuộc ${nK}/${all.length} câu tự luận môn ${SUBJ[C.subj].name}.</p></div>`;
+    $("#csheet").dataset.state="idle";$("#cfb").textContent=nK<all.length?"Ôn tiếp các thẻ chưa thuộc?":"Con đã thuộc hết các thẻ.";
+    $("#cNo").hidden=false;$("#cNo").textContent="Về trang chủ";$("#cNo").onclick=goHome;
+    const a=$("#cAct");a.hidden=false;a.textContent=nK<all.length?"Ôn thẻ chưa thuộc":"Ôn lại tất cả";a.onclick=()=>startCards(nK<all.length);
+    return;
+  }
+  const e=EIDX[C.deck[C.pos]];C.shown=false;
+  $("#ccount").textContent=`${C.pos+1}/${C.deck.length}`;
+  $("#cfill").style.width=(C.pos/C.deck.length*100)+"%";
+  cb.innerHTML=`<div class="fcard"><span class="tag" style="justify-self:start">${SUBJ[C.subj].essLabel||"Tự luận"} · Câu ${e.n}</span><p class="fq">${e.q}</p><p class="fhint" id="fhint">Tự nói hoặc viết ra câu trả lời trước, rồi mới xem đáp án.</p><div class="fans" id="fans" hidden>${e.ans}</div></div>`;
+  $("#csheet").dataset.state="idle";$("#cfb").textContent="Nghĩ xong thì xem đáp án";
+  $("#cNo").hidden=true;
+  const a=$("#cAct");a.hidden=false;a.textContent="Xem đáp án";a.onclick=reveal;
+}
+function reveal(){
+  if(C.shown)return;C.shown=true;SND.play("tap");$("#fans").hidden=false;$("#fhint").hidden=true;
+  $("#cfb").textContent="Con trả lời được ý chính chưa?";
+  const no=$("#cNo");no.hidden=false;no.textContent="Chưa thuộc";no.onclick=()=>markCard(false);
+  const a=$("#cAct");a.textContent="Đã thuộc";a.onclick=()=>markCard(true);
+}
+function markCard(known){
+  const id=C.deck[C.pos],kn=store.sub[C.subj].known;
+  if(known){kn[id]=1;SND.play("ok");}else{delete kn[id];if(C.deck.indexOf(id,C.pos+1)===-1)C.deck.push(id);}
+  save();C.pos++;renderCard();window.scrollTo(0,0);
+}
+$("#cquit").addEventListener("click",goHome);
+
+/* ================= BÀN PHÍM ================= */
+document.addEventListener("keydown",e=>{
+  if(e.target&&(e.target.tagName==="INPUT"||e.target.tagName==="BUTTON")&&e.key==="Enter")return;
+  if(!$("#quiz").hidden&&S){
+    const w=S.items[S.i];
+    if((w.kind==="mcq"||w.kind==="sort")&&!S.answered&&e.key.length===1){const k="12345678".indexOf(e.key)>-1?"12345678".indexOf(e.key):"abcdefgh".indexOf(e.key.toLowerCase());if(k>-1&&k<w.order.length){pickMCQ(k);return;}}
+    if(e.key==="Enter"){const a=$("#act");if(!a.hidden&&!a.disabled&&actFn){e.preventDefault();actFn();}}
+  }else if(!$("#cards").hidden&&C&&e.key==="Enter"){const a=$("#cAct");if(!a.hidden)a.click();}
+});
+
+load();renderHome();renderSnd();
+})();
+</script>
+
+</body>
+</html>
