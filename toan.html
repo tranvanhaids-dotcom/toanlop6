@@ -1,15 +1,6 @@
-<!doctype html>
-<html lang="vi">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>
-:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-body{margin:0;font-family:system-ui,sans-serif;font-size:14px}
-img{max-width:100%}
-[hidden]{display:none!important}
-</style>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Luyện Toán 6</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
@@ -238,6 +229,7 @@ h1{font-size:clamp(36px,9vw,48px);font-weight:800;letter-spacing:-.01em}
 .th p{margin:0;font-size:15.5px}
 .th .tw{font-size:14px}
 .th .btn{justify-self:start;padding:9px 16px;font-size:15px}
+.th.pp{border-color:var(--warm);border-left-width:5px}
 .fcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:14px}
 .fq{font-size:19px;font-weight:600;margin:0;line-height:1.5}
 .fans{border-top:2px dashed var(--line);padding-top:14px;font-size:17px;line-height:1.55}
@@ -346,8 +338,6 @@ h1{font-size:clamp(36px,9vw,48px);font-weight:800;letter-spacing:-.01em}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
-</head>
-<body>
 
 <section id="home">
   <div class="wrap">
@@ -520,7 +510,7 @@ h1{font-size:clamp(36px,9vw,48px);font-weight:800;letter-spacing:-.01em}
    Thêm câu vào một đề đã có: gọi ngay("yyyy-mm-dd") trước các câu mới để
    chúng hiện trong thẻ "Bài mới thêm".
    ===================================================================== */
-const DATA_VER="29/10/2026";
+const DATA_VER="01/11/2026";
 const SRC={
   pt2:{name:"Phiếu ôn tập Toán 6 (số 2)",added:"2026-10-29"},
   kt:{name:"Đề kiểm tra Số học (40 phút)",added:"2026-10-29"},
@@ -528,13 +518,18 @@ const SRC={
   gv:{name:"Đề cương ôn tập giữa kì I",added:"2026-10-29"},
   tt2:{name:"Đề kiểm tra giữa kì I (đề số 02)",added:"2026-10-29"},
   tt1:{name:"Đề kiểm tra giữa kì I (đề số 01)",added:"2026-10-29"},
+  gv2:{name:"Đề giữa kì I 90 phút (đề số 1)",added:"2026-11-01",note:"lý thuyết liên quan: Bài 6, 9, 18, 19, 20"},
+  ltt6:{name:"Phiếu Bài 6: Lũy thừa (bồi dưỡng)",added:"2026-11-01",note:"phương pháp giải ở Học lý thuyết › Bài 6"},
+  dh9:{name:"Phiếu Bài 9: Dấu hiệu chia hết (bồi dưỡng)",added:"2026-11-01",note:"phương pháp giải ở Học lý thuyết › Bài 9"},
   lt:{name:"Luyện thêm đúng chỗ con hay sai",added:"2026-10-29"}
 };
 const TOPIC={
   taphop:{name:"Tập hợp, số tự nhiên"},
   pheptinh:{name:"Phép tính và lũy thừa"},
+  luythua:{name:"Lũy thừa: viết gọn, số chính phương, so sánh"},
   timx:{name:"Tìm x"},
   chiahet:{name:"Chia hết, ước, bội, số nguyên tố"},
+  dauhieu:{name:"Dấu hiệu chia hết cho 2, 3, 5, 9"},
   hinh:{name:"Hình học trực quan"},
   dientich:{name:"Chu vi, diện tích"},
   loivan:{name:"Toán có lời văn"},
@@ -815,12 +810,207 @@ P("15","chiahet","n + a chia hết cho n","Có bao nhiêu số tự nhiên n th�
 E("16","chiahet","n + a chia hết cho n","Tìm tất cả các số tự nhiên n sao cho n + 15 chia hết cho n (gõ tất cả giá trị).",[1,3,5,15],"n + 15 chia hết cho n khi 15 chia hết cho n: n ∈ Ư(15) = {1; 3; 5; 15}.");
 M("17","chiahet","n hay n + 1","Có bao nhiêu số tự nhiên n thỏa mãn n + 10 chia hết cho n + 1?",["2","3","4","6"],1,"Tách n + 10 = (n + 1) + 9, nên n + 1 ∈ Ư(9) = {1; 3; 9}, suy ra n ∈ {0; 2; 8}: 3 giá trị. Khác dạng “chia hết cho n”: ở đây phải trừ đi 1, và n = 0 được nhận.");
 
+/* ---------- Đề giữa kì I 90 phút (đề số 1) · bổ sung 01/11/2026 ---------- */
+src("gv2");
+M("c1","chiahet","Câu 1","Tập hợp nào sau đây chỉ bao gồm các phần tử là số nguyên tố?",["{0; 3}","{1; 3}","{2; 5}","{5; 9}"],2,"2 và 5 đều là số nguyên tố. Số 0 và số 1 không là số nguyên tố; 9 = 3·3 là hợp số.");
+M("c2","pheptinh","Câu 2","Tích 5⁹·25 được viết dưới dạng một lũy thừa là",["5¹¹","5¹²","5¹³","5¹⁴"],0,"25 = 5² nên 5⁹·5² = 5<sup>9+2</sup> = 5¹¹.");
+M("c3","chiahet","Câu 3","Trong các biểu thức sau, biểu thức nào có giá trị <b>không</b> chia hết cho 3?",["3³ + 5 + 1","24 + 81","345 + 15 − 21","3·4·5 + 2"],3,"3·4·5 chia hết cho 3 còn 2 thì không, nên 3·4·5 + 2 = 62 không chia hết cho 3. Ba biểu thức còn lại bằng 33; 105; 339, đều có tổng các chữ số chia hết cho 3.");
+M("c4","chiahet","Câu 4","Số 54 có tất cả bao nhiêu ước?",["6","7","8","9"],2,"Tìm ước theo cặp: 54 = 1·54 = 2·27 = 3·18 = 6·9. Ư(54) = {1; 2; 3; 6; 9; 18; 27; 54}: 8 ước.");
+M("c5","hinh","Câu 5","Khung gỗ trang trí dưới đây có hình ảnh của các hình nào?",["Hình lục giác đều, hình thang cân","Hình thoi, hình thang cân","Hình thoi, hình lục giác đều","Hình thang cân, hình bình hành"],0,"Viền ngoài có 6 cạnh bằng nhau: hình lục giác đều. Tấm kệ ngang nối hai đỉnh đối nhau, chia lục giác thành 2 hình thang cân. Không có hình bình hành: hai cạnh bên của mỗi nửa không song song với nhau.",{fig:"hexshelf",ws:1});
+M("c6","hinh","Câu 6","Trong các khẳng định sau, khẳng định nào là <b>sai</b>?",["Hình thoi có hai đường chéo vuông góc","Hình thoi có bốn góc bằng nhau","Hình thoi có bốn cạnh bằng nhau","Hình thoi có các cạnh đối song song"],1,"Hình thoi chỉ có các góc đối bằng nhau; bốn góc bằng nhau là hình vuông, hình chữ nhật. Đề hỏi khẳng định <b>sai</b>, nên không chọn C (C là khẳng định đúng).",{ws:1});
+M("c7","dientich","Câu 7","Một hình vuông có diện tích là 64 cm². Chu vi của hình vuông đó là",["128 cm","128 m","32 m","32 cm"],3,"8·8 = 64 nên cạnh dài 8 cm; chu vi 4·8 = 32 cm. Để ý đơn vị: đề cho cm² nên đáp án là cm.");
+M("c8","dientich","Câu 8","Cho hình vẽ: Hình chữ nhật ABCD có chu vi bằng 88 cm được chia thành 5 hình chữ nhật có cùng kích thước. Diện tích của hình chữ nhật ABCD bằng",["480 cm²","420 cm²","160 cm²","Đáp án khác"],0,"Cạnh trên AB gồm 2 chiều dài, cạnh dưới DC gồm 3 chiều rộng, nên 2 chiều dài = 3 chiều rộng. Coi chiều rộng là 2 phần thì chiều dài là 3 phần. Nửa chu vi = AB + AD = 6 phần + 5 phần = 11 phần = 44 cm, mỗi phần 4 cm. Chiều dài 12 cm, chiều rộng 8 cm; AB = 24 cm, AD = 20 cm; diện tích 24·20 = 480 cm². Câu ngay sau hướng dẫn làm từng bước.",{fig:"rect5",ws:1});
+P("c8b","dientich","Câu 8 (làm từng bước)","Hình chữ nhật ABCD có chu vi 88 cm, được chia thành 5 hình chữ nhật nhỏ bằng nhau như hình vẽ. Tính diện tích ABCD.",[["Cạnh trên AB gồm 2 chiều dài, cạnh dưới DC gồm 3 chiều rộng, mà AB = DC. Coi chiều rộng hình nhỏ là 2 phần thì chiều dài là mấy phần?","num",3,"phần"],["AB = 2 chiều dài, AD = 1 chiều dài + 1 chiều rộng. Nửa chu vi AB + AD gồm bao nhiêu phần?","num",11,"phần"],["Nửa chu vi là 88 : 2 = 44 cm. Mỗi phần dài","num",4,"cm"],["Chiều dài hình nhỏ","num",12,"cm"],["Chiều rộng hình nhỏ","num",8,"cm"],["Diện tích hình chữ nhật ABCD","num",480,"cm²"]],"AB = 2·12 = 24 cm, AD = 12 + 8 = 20 cm. Thử lại chu vi: 2·(24 + 20) = 88 cm. Diện tích 24·20 = 480 cm².",{fig:"rect5"});
+N("b1a","pheptinh","Bài I.1","Thực hiện phép tính: 185 + 79 + 15 + 221",500,"","(185 + 15) + (79 + 221) = 200 + 300 = 500.");
+N("b1b","pheptinh","Bài I.2","Thực hiện phép tính: 48·55 + 48·45 − 200",4600,"","48·(55 + 45) − 200 = 4 800 − 200 = 4 600.");
+N("b1c","pheptinh","Bài I.3","Thực hiện phép tính: 120 : [54 − (5 + 2)²] + 2026⁰",25,"","(5 + 2)² = 7² = 49; 54 − 49 = 5; 120 : 5 = 24; 2026⁰ = 1; 24 + 1 = 25.");
+N("b2a","timx","Bài II.1a","Tìm số tự nhiên x, biết: (x + 2) − 14 = 30",42,"","x + 2 = 30 + 14 = 44; x = 44 − 2 = 42.");
+N("b2b","timx","Bài II.1b","Tìm số tự nhiên x, biết: 4 + 5x = 11² − 22",19,"","11² − 22 = 121 − 22 = 99; 5x = 99 − 4 = 95; x = 19.");
+N("b2c","timx","Bài II.1c","Tìm số tự nhiên x, biết: 3<sup>x</sup> + 3<sup>x+2</sup> = 270",3,"","3<sup>x+2</sup> = 3<sup>x</sup>·9 nên 3<sup>x</sup>·(1 + 9) = 270; 3<sup>x</sup> = 27 = 3³; x = 3.");
+P("b2d","chiahet","Bài II.2","Tìm các chữ số a và b sao cho số <span class='ov'>3a54b</span> chia hết cho cả 2, 5 và 9.",[["Chia hết cho cả 2 và 5 nên b =","num",0,""],["Tổng các chữ số 3 + a + 5 + 4 + 0 = 12 + a phải chia hết cho 9. Vậy a =","num",6,""]],"Số cần tìm: 36540. Thử lại: tận cùng là 0; tổng các chữ số 18 chia hết cho 9.");
+P("b3","loivan","Bài III","Hưởng ứng chương trình “Cùng em đến trường”, Nam dự định mua một phần quà tặng các em nhỏ có hoàn cảnh khó khăn. Phần quà gồm 10 quyển vở giá 12 000 đồng/quyển và 5 chiếc bút mực giá 18 000 đồng/chiếc.<span class='ql'>1) Tính tổng số tiền Nam cần có để mua phần quà trên.</span><span class='ql'>2) Hiện tại</span> Nam chưa có tiền để dành. Để mua phần quà đó, Nam lên kế hoạch mỗi tuần tiết kiệm 50 000 đồng từ tiền tiêu vặt. Hỏi sau ít nhất bao nhiêu tuần thì Nam sẽ có đủ tiền?</span>",[["Đọc đề: phần quà có mấy chiếc bút mực?","num",5,"chiếc"],["Tiền 10 quyển vở","num",120000,"đồng"],["Tiền 5 chiếc bút mực","num",90000,"đồng"],["1) Tổng số tiền Nam cần có","num",210000,"đồng"],["2) Số tuần ít nhất để đủ tiền","num",5,"tuần"]],"210 000 : 50 000 = 4 dư 10 000. Sau 4 tuần Nam mới có 200 000 đồng, chưa đủ, nên cần ít nhất 5 tuần. “Ít nhất bao nhiêu tuần thì đủ” thì phải làm tròn lên.");
+P("b4","dientich","Bài IV","Vườn thực nghiệm sinh học của một trường THCS có dạng hình chữ nhật với chiều dài 20 m và chiều rộng 10 m. Trong khu vườn có một phần đất trồng hoa dạng hình thang ABCD với độ dài hai đáy là AB = 9 m; CD = 12 m và chiều cao bằng 4 m (đáy CD nằm trên một cạnh của khu vườn như hình vẽ). Phần đất còn lại dùng để trồng các loại cây khác.<span class='ql'>1) Tính diện tích phần đất trồng hoa và diện tích phần đất trồng các loại cây khác.</span><span class='ql'>2) Người ta làm hàng rào bao quanh khu vườn nhưng không rào đoạn CD của phần đất trồng hoa. Tính chiều dài của hàng rào cần làm.</span>",[["Diện tích cả khu vườn","num",200,"m²"],["1) Diện tích phần đất trồng hoa (hình thang)","num",42,"m²"],["1) Diện tích phần đất trồng cây khác","num",158,"m²"],["Chu vi khu vườn","num",60,"m"],["2) Chiều dài hàng rào (không rào đoạn CD)","num",48,"m"]],"Hình thang: (9 + 12)·4 : 2 = 42 m²; 20·10 − 42 = 158 m². Chu vi vườn (20 + 10)·2 = 60 m; bỏ đoạn CD dài 12 m: 60 − 12 = 48 m.",{fig:"garden"});
+N("b5","nangcao","Bài V","Tìm tất cả các số nguyên tố p sao cho 2p + 7 là số nguyên tố và 5p + 1 là số chính phương.",3,"","Thử p = 2: 5p + 1 = 11 không là số chính phương. p = 3: 2p + 7 = 13 là số nguyên tố, 5p + 1 = 16 = 4² (nhận). Với p &gt; 3 thì p chia 3 dư 1 hoặc dư 2. Nếu dư 1 thì 2p + 7 chia hết cho 3 và lớn hơn 3, là hợp số (loại). Nếu dư 2 thì 5p + 1 chia 3 dư 2, mà số chính phương chia 3 chỉ dư 0 hoặc 1 (loại). Vậy p = 3.");
+
+/* ---------- Phiếu Bài 6: Lũy thừa (bồi dưỡng) · bổ sung 01/11/2026 ---------- */
+const SS=(a,b)=>[a+" &lt; "+b,a+" &gt; "+b,a+" = "+b];
+src("ltt6");
+M("1a","luythua","Bài 1a","Viết gọn dưới dạng một lũy thừa: 3·3·3·3·3",["3⁵","5³","3·5","15"],0,"Có 5 thừa số 3 nên viết là 3⁵ (cơ số 3, số mũ 5).");
+M("1b","luythua","Bài 1b","Viết gọn dưới dạng một lũy thừa: 12·12·3·4",["12²·3·4","12³","12⁴","48³"],1,"3·4 = 12 nên tích có 3 thừa số 12: 12³. Viết 12²·3·4 là chưa thành <b>một</b> lũy thừa.");
+M("1c","luythua","Bài 1c","Viết gọn dưới dạng một lũy thừa: 100·10·10",["100³","10³","10⁴","1000²"],2,"100 = 10² nên 10²·10·10 = 10<sup>2+1+1</sup> = 10⁴ (cũng viết được là 100², vì 10·10 = 100). Không phải 100³ = 1 000 000.");
+M("1d","luythua","Bài 1d","Viết gọn dưới dạng một lũy thừa: 2·2·2·2·3·3·3·3",["2⁴ + 3⁴","5⁸","6⁸","6⁴"],3,"Ghép từng cặp 2·3 = 6, được 4 thừa số 6: 6⁴. Viết 2⁴·3⁴ là đúng nhưng chưa thành một lũy thừa.");
+M("1e","luythua","Bài 1e","Viết gọn dưới dạng một lũy thừa: 5·5·5·5·5·5",["5⁶","6⁵","5·6","5⁵"],0,"Có 6 thừa số 5: 5⁶. Cơ số là số được nhân, số mũ là số thừa số.");
+M("1f","luythua","Bài 1f","Viết gọn dưới dạng một lũy thừa: 2·2·2·…·2 (52 thừa số 2)",["52²","2⁵²","2·52","2⁵¹"],1,"52 thừa số 2 thì cơ số là 2, số mũ là 52: 2⁵².");
+M("2a","luythua","Bài 2a","Viết gọn tích sau dưới dạng lũy thừa: 8·8·6·6·6·7·7·7",["8²·6³·7³","8³·6³·7²","8²·6²·7³","21⁸"],0,"Đếm từng loại thừa số: hai số 8, ba số 6, ba số 7.");
+M("2b","luythua","Bài 2b","Viết gọn tích sau dưới dạng lũy thừa: 2·3·3·5·5·5·5",["2·3³·5⁴","2·3²·5⁴","2²·3²·5⁴","2·3²·5³"],1,"Một số 2, hai số 3, bốn số 5: 2·3²·5⁴.");
+M("2c","luythua","Bài 2c","Viết gọn tích sau dưới dạng lũy thừa: 5·5·5·5·4·4·4",["5³·4⁴","20⁷","5⁴·4³","5⁴·4⁴"],2,"Bốn số 5, ba số 4: 5⁴·4³. Không được gộp thành 20⁷ vì hai số mũ khác nhau.");
+M("2d","luythua","Bài 2d","Viết gọn tích sau dưới dạng lũy thừa: 1000·10·10·10",["10⁶","1000³","10⁵","10⁴"],0,"1000 = 10³ nên 10³·10·10·10 = 10<sup>3+1+1+1</sup> = 10⁶ (hoặc 10·10·10 = 1000, tích là 1000²).");
+M("2e","luythua","Bài 2e","Viết gọn tích sau dưới dạng lũy thừa: 16·4·4·2·2·8",["16³","4⁷","2¹²","2¹³"],3,"Đưa hết về cơ số 2: 16 = 2⁴, 4 = 2², 8 = 2³. Cộng số mũ: 4 + 2 + 2 + 1 + 1 + 3 = 13, được 2¹³.");
+M("2f","luythua","Bài 2f","Viết gọn tích sau dưới dạng lũy thừa: 8·8·10·25·16",["8²·10³","2⁸·10³","2¹⁰·10²","2⁸·10⁴"],1,"8·8 = 2⁶; 25·16 = 400 = 4·100 = 2²·10². Gộp lại: 2⁶·2²·10·10² = 2⁸·10³ (= 256 000).");
+N("3a","luythua","Bài 3a","Viết A = 8²·32⁴ dưới dạng một lũy thừa của 2: A = 2<sup>n</sup>. Tìm n.",26,"","8 = 2³ nên 8² = 2³·2³ = 2⁶; 32 = 2⁵ nên 32⁴ = 2<sup>5+5+5+5</sup> = 2²⁰. A = 2<sup>6+20</sup> = 2²⁶.");
+N("3b","luythua","Bài 3b","Viết B = 27³·9⁴·243 dưới dạng một lũy thừa của 3: B = 3<sup>n</sup>. Tìm n.",22,"","27³ = (3³)³ = 3⁹; 9⁴ = (3²)⁴ = 3⁸; 243 = 3⁵. B = 3<sup>9+8+5</sup> = 3²².");
+N("3c","luythua","Bài 3c","Viết C = 6²·36⁴·216² dưới dạng một lũy thừa của 6: C = 6<sup>n</sup>. Tìm n.",16,"","36 = 6² nên 36⁴ = 6⁸; 216 = 6³ nên 216² = 6⁶. C = 6<sup>2+8+6</sup> = 6¹⁶.");
+N("3d","luythua","Bài 3d","Viết D = 3⁴·81²·9⁵ dưới dạng một lũy thừa của 3: D = 3<sup>n</sup>. Tìm n.",22,"","81 = 3⁴ nên 81² = 3⁸; 9 = 3² nên 9⁵ = 3¹⁰. D = 3<sup>4+8+10</sup> = 3²².");
+N("4a","luythua","Bài 4a","Viết kết quả dưới dạng một lũy thừa: 64 : 2³ = 2<sup>n</sup>. Tìm n.",3,"","64 = 2⁶ nên 2⁶ : 2³ = 2<sup>6−3</sup> = 2³.");
+N("4b","luythua","Bài 4b","Viết kết quả dưới dạng một lũy thừa: 243 : 3⁴ = 3<sup>n</sup>. Tìm n.",1,"","243 = 3⁵ nên 3⁵ : 3⁴ = 3¹ = 3.");
+N("4c","luythua","Bài 4c","Viết kết quả dưới dạng một lũy thừa: 625 : 5³ = 5<sup>n</sup>. Tìm n.",1,"","625 = 5⁴ nên 5⁴ : 5³ = 5¹ = 5.");
+N("4d","luythua","Bài 4d","Viết kết quả dưới dạng một lũy thừa: 7⁵ : 343 = 7<sup>n</sup>. Tìm n.",2,"","343 = 7³ nên 7⁵ : 7³ = 7².");
+N("4e","luythua","Bài 4e","Viết kết quả dưới dạng một lũy thừa: 100 000 : 10³ = 10<sup>n</sup>. Tìm n.",2,"","100 000 = 10⁵ (có 5 chữ số 0) nên 10⁵ : 10³ = 10².");
+N("4f","luythua","Bài 4f","Viết kết quả dưới dạng một lũy thừa: 11⁵ : 121 = 11<sup>n</sup>. Tìm n.",3,"","121 = 11² nên 11⁵ : 11² = 11³.");
+N("4g","luythua","Bài 4g","Viết kết quả dưới dạng một lũy thừa: 243 : 3³ : 3 = 3<sup>n</sup>. Tìm n.",1,"","Chia từ trái qua phải: 3⁵ : 3³ = 3²; 3² : 3¹ = 3¹.");
+N("4h","luythua","Bài 4h","Viết kết quả dưới dạng một lũy thừa: 4⁸ : 64 : 16 = 4<sup>n</sup>. Tìm n.",3,"","64 = 4³, 16 = 4²: 4<sup>8−3−2</sup> = 4³.");
+P("5a","luythua","Bài 5a","Viết mỗi số sau thành bình phương của một số tự nhiên: 64; 121; 225.",[["64 = ?²","num",8,""],["121 = ?²","num",11,""],["225 = ?²","num",15,""]],"64 = 8²; 121 = 11²; 225 = 15². Nên thuộc bình phương các số từ 1 đến 20.");
+P("5b","luythua","Bài 5b","Viết mỗi số sau thành lập phương của một số tự nhiên: 64; 125; 343.",[["64 = ?³","num",4,""],["125 = ?³","num",5,""],["343 = ?³","num",7,""]],"64 = 4³; 125 = 5³; 343 = 7³. Số 64 vừa là bình phương (8²) vừa là lập phương (4³).");
+E("6","luythua","Bài 6","Số chính phương là số bằng bình phương của một số tự nhiên. Trong các số 0; 1; 18; 25; 49; 81; 90; 200; 1000, số nào là số chính phương? (gõ tất cả)",[0,1,25,49,81],"0 = 0², 1 = 1², 25 = 5², 49 = 7², 81 = 9². Số 200 và 1000 không phải: 14² = 196, 15² = 225; 31² = 961, 32² = 1 024.");
+E("7a","luythua","Bài 7a","Tìm các số từ 1 đến 50 là bình phương của một số tự nhiên (gõ tất cả).",[1,4,9,16,25,36,49],"1²; 2²; …; 7². Số 8² = 64 đã vượt quá 50.");
+E("7b","luythua","Bài 7b","Tìm các số từ 51 đến 100 là bình phương của một số tự nhiên (gõ tất cả).",[64,81,100],"8² = 64; 9² = 81; 10² = 100. Nhớ lấy cả 100 vì đề ghi “đến 100”.");
+E("7c","luythua","Bài 7c","Tìm các số từ 1 đến 50 là lập phương của một số tự nhiên (gõ tất cả).",[1,8,27],"1³ = 1; 2³ = 8; 3³ = 27. Còn 4³ = 64 đã vượt quá 50.");
+E("7d","luythua","Bài 7d","Tìm các số từ 51 đến 100 là lập phương của một số tự nhiên (gõ tất cả).",[64],"Chỉ có 4³ = 64 (5³ = 125 &gt; 100).");
+P("8","luythua","Bài 8","Mỗi số sau có là số chính phương không? a) 1³ + 2³; b) 1³ + 2³ + 3³; c) 1³ + 2³ + 3³ + 4³.",[["a) 1³ + 2³ =","num",9,""],["9 là bình phương của số nào?","num",3,""],["b) 1³ + 2³ + 3³ =","num",36,""],["36 là bình phương của số nào?","num",6,""],["c) 1³ + 2³ + 3³ + 4³ =","num",100,""],["100 là bình phương của số nào?","num",10,""]],"Cả ba số đều là số chính phương: 9 = 3², 36 = 6², 100 = 10². Điều thú vị: 3 = 1 + 2; 6 = 1 + 2 + 3; 10 = 1 + 2 + 3 + 4.");
+M("9a","luythua","Bài 9a","Viết số 64 391 thành tổng giá trị các chữ số bằng cách dùng các lũy thừa của 10 (mẫu: <span class='ov'>abcd</span> = a·10³ + b·10² + c·10 + d).",["6·10⁵ + 4·10⁴ + 3·10³ + 9·10² + 1","6·10⁴ + 4·10³ + 3·10² + 9·10 + 1","6·10⁴ + 4·10³ + 3·10² + 9 + 1","6·10⁴ + 4·10³ + 9·10² + 3·10 + 1"],1,"Số có 5 chữ số nên chữ số đầu đi với 10⁴, rồi giảm dần: 10³, 10², 10, hàng đơn vị.");
+M("9b","luythua","Bài 9b","Viết số 56 231 theo lũy thừa của 10.",["5·10⁴ + 6·10³ + 2·10² + 3·10 + 1","5·10⁴ + 6·10³ + 2·10 + 3·10² + 1","5·10⁵ + 6·10⁴ + 2·10³ + 3·10² + 1","5·10³ + 6·10² + 2·10 + 3 + 1"],0,"56 231 gồm 5 chục nghìn, 6 nghìn, 2 trăm, 3 chục và 1 đơn vị.");
+M("9c","luythua","Bài 9c","Viết số 7 895 theo lũy thừa của 10.",["7·10⁴ + 8·10³ + 9·10² + 5","7·10³ + 8·10² + 9·10 + 5","7·10³ + 8·10² + 9 + 5","7·10² + 8·10 + 9 + 5"],1,"Số có 4 chữ số: chữ số đầu đi với 10³.");
+M("9d","luythua","Bài 9d","Viết số 12 576 theo lũy thừa của 10.",["1·10⁴ + 2·10³ + 5·10² + 7·10 + 6","1·10⁴ + 2·10³ + 5·10² + 7 + 6","1·10⁵ + 2·10⁴ + 5·10³ + 7·10² + 6","1·10⁴ + 2·10³ + 7·10² + 5·10 + 6"],0,"Mỗi chữ số đi với lũy thừa của 10 theo hàng của nó: hàng chục nghìn là 10⁴, hàng nghìn là 10³, …");
+N("10a","luythua","Bài 10a","Tính (mẫu: 2·10³ + 7·10² + 8·10 + 7 = 2000 + 700 + 80 + 7 = 2787): 2·10³ + 6·10² + 0·10 + 1",2601,"","2 000 + 600 + 0 + 1 = 2 601.");
+N("10b","luythua","Bài 10b","Tính: 5·10⁴ + 7·10³ + 9·10² + 1·10 + 5",57915,"","50 000 + 7 000 + 900 + 10 + 5 = 57 915.");
+N("10c","luythua","Bài 10c","Tính: 6·10⁴ + 9·10³ + 9·10² + 2·10 + 3",69923,"","60 000 + 9 000 + 900 + 20 + 3 = 69 923.");
+N("10d","luythua","Bài 10d","Tính: 9·10⁴ + 2·10³ + 4·10² + 0·10 + 9",92409,"","90 000 + 2 000 + 400 + 0 + 9 = 92 409.");
+N("11a","luythua","Bài 11a","Tính giá trị: 5⁴",625,"","5·5·5·5 = 625.");
+N("11b","luythua","Bài 11b","Tính giá trị: 3⁴ : 3²",9,"","3<sup>4−2</sup> = 3² = 9.");
+N("11c","luythua","Bài 11c","Tính giá trị: 2⁴·2²",64,"","2<sup>4+2</sup> = 2⁶ = 64.");
+N("11d","luythua","Bài 11d","Tính giá trị: (2⁴)²",256,"","(2⁴)² = 2⁴·2⁴ = 2⁸ = 256.");
+P("12a","luythua","Bài 12a","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: A = 2²·5² − 3² − 10",[["A =","num",81,""],["A = 3<sup>?</sup>","num",4,""]],"4·25 − 9 − 10 = 81 = 3⁴ (cũng bằng 9²).");
+P("12b","luythua","Bài 12b","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: B = 3³·3² + 2² + 3²",[["B =","num",256,""],["B = 2<sup>?</sup>","num",8,""]],"3⁵ = 243; 243 + 4 + 9 = 256 = 2⁸ (cũng bằng 4⁴ hay 16²).");
+P("12c","luythua","Bài 12c","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: C = 5·4³ + 2⁴·5",[["C =","num",400,""],["C = ?²","num",20,""]],"5·64 + 16·5 = 320 + 80 = 400 = 20².");
+P("12d","luythua","Bài 12d","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: D = 5³ + 6³ + 7³ + 79·2²",[["D =","num",1000,""],["D = 10<sup>?</sup>","num",3,""]],"125 + 216 + 343 + 316 = 1 000 = 10³.");
+P("13a","luythua","Bài 13a","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: E = 3·(5² − 4²)",[["E =","num",27,""],["E = 3<sup>?</sup>","num",3,""]],"3·(25 − 16) = 3·9 = 27 = 3³.");
+P("13b","luythua","Bài 13b","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: F = 8² + 6² + 5²",[["F =","num",125,""],["F = 5<sup>?</sup>","num",3,""]],"64 + 36 + 25 = 125 = 5³.");
+P("13c","luythua","Bài 13c","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: G = 5·4² + 3²·5·2 − 1",[["G =","num",169,""],["G = ?²","num",13,""]],"80 + 90 − 1 = 169 = 13².");
+P("13d","luythua","Bài 13d","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: H = 6³ − 8² − 2³",[["H =","num",144,""],["H = ?²","num",12,""]],"216 − 64 − 8 = 144 = 12².");
+P("13i","luythua","Bài 13i","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: I = 2 + 3² + 4² + 13²",[["I =","num",196,""],["I = ?²","num",14,""]],"2 + 9 + 16 + 169 = 196 = 14².");
+P("13j","luythua","Bài 13j","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: J = 1³ + 2³ + 3³ + 4³ + 5³ + 6³",[["J =","num",441,""],["J = ?²","num",21,""]],"1 + 8 + 27 + 64 + 125 + 216 = 441 = 21² (để ý 21 = 1 + 2 + 3 + 4 + 5 + 6).");
+P("13k","luythua","Bài 13k","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: K = 5³ + 6² + 8²",[["K =","num",225,""],["K = ?²","num",15,""]],"125 + 36 + 64 = 225 = 15².");
+P("13l","luythua","Bài 13l","Tính giá trị rồi viết kết quả dưới dạng một lũy thừa: L = 1³ + 2³ + 3³ + 4³ + 5³",[["L =","num",225,""],["L = ?²","num",15,""]],"1 + 8 + 27 + 64 + 125 = 225 = 15² (để ý 15 = 1 + 2 + 3 + 4 + 5).");
+N("14a","timx","Bài 14a","Tìm số tự nhiên n, biết 2<sup>n</sup> = 16",4,"","16 = 2⁴ nên n = 4.");
+N("14b","timx","Bài 14b","Tìm số tự nhiên n, biết 3<sup>n</sup> = 243",5,"","243 = 3⁵ nên n = 5.");
+N("14c","timx","Bài 14c","Tìm số tự nhiên n, biết 4<sup>n</sup> = 4096",6,"","Nhân dần: 4; 16; 64; 256; 1 024; 4 096. Vậy 4 096 = 4⁶ và n = 6.");
+N("14d","timx","Bài 14d","Tìm số tự nhiên n, biết 5<sup>n</sup> = 15625",6,"","Nhân dần: 5; 25; 125; 625; 3 125; 15 625. Vậy 15 625 = 5⁶ và n = 6.");
+N("14e","timx","Bài 14e","Tìm số tự nhiên n, biết 4<sup>n−1</sup> = 1024",6,"","1 024 = 4⁵ nên n − 1 = 5, n = 6. Đừng dừng ở n − 1 = 5.");
+N("14f","timx","Bài 14f","Tìm số tự nhiên n, biết 6<sup>n+3</sup> = 216",0,"","216 = 6³ nên n + 3 = 3, n = 0.");
+E("15a","timx","Bài 15a","Tìm số tự nhiên x, biết x² = x³ (gõ tất cả giá trị).",[0,1],"Chỉ có 0 và 1 nâng lên lũy thừa nào cũng bằng chính nó: 0² = 0³ = 0; 1² = 1³ = 1. Với x ≥ 2 thì x³ = x²·x lớn hơn x².");
+N("15b","timx","Bài 15b","Tìm số tự nhiên x, biết 3<sup>x−1</sup> = 27",4,"","27 = 3³ nên x − 1 = 3, x = 4.");
+N("15c","timx","Bài 15c","Tìm số tự nhiên x, biết 3<sup>x+1</sup> = 9",1,"","9 = 3² nên x + 1 = 2, x = 1.");
+N("15d","timx","Bài 15d","Tìm số tự nhiên x, biết 6<sup>x−1</sup> = 36",3,"","36 = 6² nên x − 1 = 2, x = 3.");
+N("15e","timx","Bài 15e","Tìm số tự nhiên x, biết 3<sup>2x+1</sup> = 27",1,"","27 = 3³ nên 2x + 1 = 3; 2x = 2; x = 1.");
+E("15f","timx","Bài 15f","Tìm số tự nhiên x, biết x⁵⁰ = x (gõ tất cả giá trị).",[0,1],"x⁵⁰ = x chỉ đúng khi x = 0 hoặc x = 1. Với x ≥ 2 thì x⁵⁰ lớn hơn x rất nhiều.");
+N("16a","timx","Bài 16a","Tìm số tự nhiên x, biết (2x − 1)³ = 125",3,"","125 = 5³ nên 2x − 1 = 5; 2x = 6; x = 3.");
+N("16b","timx","Bài 16b","Tìm số tự nhiên x, biết (2x − 1)⁵ = x⁵",1,"","Cùng số mũ 5 nên hai cơ số bằng nhau: 2x − 1 = x, tức x + (x − 1) = x, nên x − 1 = 0, x = 1. Thử lại: 1⁵ = 1⁵.");
+N("16c","timx","Bài 16c","Tìm số tự nhiên x, biết 2x⁵ + 2 = 4",1,"","2x⁵ = 2; x⁵ = 1 = 1⁵; x = 1. Chú ý: 2x⁵ là 2·x⁵, chỉ có x được nâng lên lũy thừa.");
+N("16d","timx","Bài 16d","Tìm số tự nhiên x, biết 4x³ + 15 = 19",1,"","4x³ = 4; x³ = 1; x = 1.");
+N("16e","timx","Bài 16e","Tìm số tự nhiên x, biết (x + 1)² = 4",1,"","4 = 2² nên x + 1 = 2, x = 1.");
+N("16f","timx","Bài 16f","Tìm số tự nhiên x, biết (x − 1)² = 25",6,"","25 = 5² nên x − 1 = 5, x = 6.");
+N("17a","timx","Bài 17a","Tìm x, biết (2x + 1)³ = 9·81",4,"","9·81 = 729 = 9³ nên 2x + 1 = 9; 2x = 8; x = 4.");
+N("17b","timx","Bài 17b","Tìm x, biết 5<sup>x</sup> + 5<sup>x+2</sup> = 650",2,"","5<sup>x+2</sup> = 5<sup>x</sup>·25 nên 5<sup>x</sup>·(1 + 25) = 650; 5<sup>x</sup> = 25 = 5²; x = 2.");
+N("17c","timx","Bài 17c","Tìm x, biết (4x − 1)² = 25·9",4,"","25·9 = 225 = 15² nên 4x − 1 = 15; 4x = 16; x = 4.");
+M("18a","luythua","Bài 18a","So sánh 3⁸ và 9⁵.",SS("3⁸","9⁵"),0,"9⁵ = (3²)⁵ = 3¹⁰. Cùng cơ số 3, số mũ 8 &lt; 10 nên 3⁸ &lt; 9⁵.");
+M("18b","luythua","Bài 18b","So sánh 2⁸ và 4⁶.",SS("2⁸","4⁶"),0,"4⁶ = (2²)⁶ = 2¹². Vì 8 &lt; 12 nên 2⁸ &lt; 4⁶.");
+M("18c","luythua","Bài 18c","So sánh 2⁴ và 4².",SS("2⁴","4²"),2,"2⁴ = 16 và 4² = 16, hai lũy thừa bằng nhau.");
+M("18d","luythua","Bài 18d","So sánh 3¹⁸ và 27⁴.",SS("3¹⁸","27⁴"),1,"27⁴ = (3³)⁴ = 3¹². Vì 18 &gt; 12 nên 3¹⁸ &gt; 27⁴.");
+M("18e","luythua","Bài 18 (ý cuối)","So sánh (100 − 99)²⁰⁰⁰ và (100 + 99)⁰.",SS("(100 − 99)²⁰⁰⁰","(100 + 99)⁰"),2,"(100 − 99)²⁰⁰⁰ = 1²⁰⁰⁰ = 1 và (100 + 99)⁰ = 199⁰ = 1. Hai số bằng nhau.");
+M("19a","luythua","Bài 19a","So sánh 2¹⁰⁰ và 1024⁹ (đưa về cùng cơ số hoặc cùng số mũ).",SS("2¹⁰⁰","1024⁹"),1,"1024 = 2¹⁰ nên 1024⁹ = 2⁹⁰. Vì 100 &gt; 90 nên 2¹⁰⁰ &gt; 1024⁹.");
+M("19b","luythua","Bài 19b","So sánh 5³⁰ và 6·5²⁹.",SS("5³⁰","6·5²⁹"),0,"5³⁰ = 5·5²⁹, mà 5 &lt; 6 nên 5³⁰ &lt; 6·5²⁹.");
+M("19c","luythua","Bài 19c","So sánh 2⁹⁸ và 9⁴⁹.",SS("2⁹⁸","9⁴⁹"),0,"2⁹⁸ = (2²)⁴⁹ = 4⁴⁹. Cùng số mũ 49, cơ số 4 &lt; 9 nên 2⁹⁸ &lt; 9⁴⁹.");
+M("19d","luythua","Bài 19d","So sánh 10³⁰ và 2¹⁰⁰.",SS("10³⁰","2¹⁰⁰"),0,"10³⁰ = (10³)¹⁰ = 1000¹⁰ và 2¹⁰⁰ = (2¹⁰)¹⁰ = 1024¹⁰. Vì 1000 &lt; 1024 nên 10³⁰ &lt; 2¹⁰⁰.");
+M("20a","nangcao","Bài 20a","So sánh 27¹¹ và 81⁸.",SS("27¹¹","81⁸"),1,"27¹¹ = (3³)¹¹ = 3³³; 81⁸ = (3⁴)⁸ = 3³². Vì 33 &gt; 32 nên 27¹¹ &gt; 81⁸.");
+M("20b","nangcao","Bài 20b","So sánh 625⁵ và 125⁷.",SS("625⁵","125⁷"),0,"625⁵ = (5⁴)⁵ = 5²⁰; 125⁷ = (5³)⁷ = 5²¹. Vì 20 &lt; 21 nên 625⁵ &lt; 125⁷.");
+M("20c","nangcao","Bài 20c","So sánh 5³⁶ và 11²⁴.",SS("5³⁶","11²⁴"),1,"5³⁶ = (5³)¹² = 125¹²; 11²⁴ = (11²)¹² = 121¹². Vì 125 &gt; 121 nên 5³⁶ &gt; 11²⁴.");
+M("20d","nangcao","Bài 20d","So sánh 3<sup>2n</sup> và 2<sup>3n</sup> (n là số tự nhiên).",["3<sup>2n</sup> &lt; 2<sup>3n</sup> với mọi n","3<sup>2n</sup> &gt; 2<sup>3n</sup> khi n ≥ 1, bằng nhau khi n = 0","Luôn bằng nhau"],1,"3<sup>2n</sup> = (3²)<sup>n</sup> = 9<sup>n</sup>; 2<sup>3n</sup> = (2³)<sup>n</sup> = 8<sup>n</sup>. Cùng số mũ n: khi n ≥ 1 thì 9<sup>n</sup> &gt; 8<sup>n</sup>; khi n = 0 cả hai đều bằng 1.");
+M("21a","nangcao","Bài 21a","So sánh 99²⁰ và 9999¹⁰.",SS("99²⁰","9999¹⁰"),0,"99²⁰ = (99²)¹⁰ = 9801¹⁰ &lt; 9999¹⁰.");
+M("21b","nangcao","Bài 21b","So sánh 2³⁰⁰ và 3²⁰⁰.",SS("2³⁰⁰","3²⁰⁰"),0,"2³⁰⁰ = (2³)¹⁰⁰ = 8¹⁰⁰; 3²⁰⁰ = (3²)¹⁰⁰ = 9¹⁰⁰. Vì 8 &lt; 9 nên 2³⁰⁰ &lt; 3²⁰⁰.");
+M("21c","nangcao","Bài 21c","So sánh 3⁵⁰⁰ và 7³⁰⁰.",SS("3⁵⁰⁰","7³⁰⁰"),0,"3⁵⁰⁰ = (3⁵)¹⁰⁰ = 243¹⁰⁰; 7³⁰⁰ = (7³)¹⁰⁰ = 343¹⁰⁰. Vì 243 &lt; 343 nên 3⁵⁰⁰ &lt; 7³⁰⁰.");
+M("21d","nangcao","Bài 21d","So sánh 8⁵ và 3·4⁷.",SS("8⁵","3·4⁷"),0,"8⁵ = 2¹⁵ = 2·2¹⁴; 3·4⁷ = 3·2¹⁴. Vì 2 &lt; 3 nên 8⁵ &lt; 3·4⁷.");
+M("22a","nangcao","Bài 22a","So sánh 3²¹ và 2³¹ (so sánh trung gian và các cách khác).",SS("3²¹","2³¹"),1,"3²¹ = 3·3²⁰ = 3·9¹⁰; 2³¹ = 2·2³⁰ = 2·8¹⁰. Vì 3 &gt; 2 và 9¹⁰ &gt; 8¹⁰ nên 3²¹ &gt; 2³¹.");
+M("22b","nangcao","Bài 22b","So sánh 5²⁹⁹ và 3⁵⁰¹.",SS("5²⁹⁹","3⁵⁰¹"),0,"So sánh trung gian: 5²⁹⁹ &lt; 5³⁰⁰ = 125¹⁰⁰ &lt; 243¹⁰⁰ = 3⁵⁰⁰ &lt; 3⁵⁰¹.");
+M("22c","nangcao","Bài 22c","So sánh 5²³ và 6·5²².",SS("5²³","6·5²²"),0,"5²³ = 5·5²², mà 5 &lt; 6 nên 5²³ &lt; 6·5²².");
+M("22d","nangcao","Bài 22d","So sánh 10¹⁰ và 48·50⁵.",SS("10¹⁰","48·50⁵"),0,"10¹⁰ = 100⁵ = (2·50)⁵ = 2⁵·50⁵ = 32·50⁵ &lt; 48·50⁵.");
+M("22e","nangcao","Bài 22e","So sánh 125⁵ và 25⁷.",SS("125⁵","25⁷"),1,"125⁵ = (5³)⁵ = 5¹⁵; 25⁷ = (5²)⁷ = 5¹⁴. Vì 15 &gt; 14 nên 125⁵ &gt; 25⁷.");
+M("22f","nangcao","Bài 22f","So sánh 3⁵⁴ và 2⁸¹.",SS("3⁵⁴","2⁸¹"),1,"3⁵⁴ = (3²)²⁷ = 9²⁷; 2⁸¹ = (2³)²⁷ = 8²⁷. Vì 9 &gt; 8 nên 3⁵⁴ &gt; 2⁸¹.");
+M("23a","nangcao","Bài 23a","So sánh A = 222³³³ và B = 333²²².",SS("A","B"),1,"A = (222³)¹¹¹ và B = (333²)¹¹¹. Ta có 222³ = (2·111)³ = 8·111³ = 888·111², còn 333² = (3·111)² = 9·111². Vì 888 &gt; 9 nên A &gt; B.");
+M("23b","nangcao","Bài 23b","So sánh C = 2⁶⁹ và D = 5³¹.",SS("C","D"),0,"C = 2⁶·2⁶³ = 64·(2⁹)⁷ = 64·512⁷; D = 5³·5²⁸ = 125·(5⁴)⁷ = 125·625⁷. Vì 64 &lt; 125 và 512⁷ &lt; 625⁷ nên C &lt; D.");
+
+/* ---------- Phiếu Bài 9: Dấu hiệu chia hết (bồi dưỡng) · bổ sung 01/11/2026 ---------- */
+src("dh9");
+E("1a","dauhieu","Bài 1","Trong các số 483; 572; 330; 615; 298, số nào chia hết cho 2? (gõ tất cả)",[572,330,298],"Các số có chữ số tận cùng chẵn: 572; 330; 298.");
+E("1b","dauhieu","Bài 1","Trong các số 483; 572; 330; 615; 298, số nào chia hết cho 5? (gõ tất cả)",[330,615],"Các số có chữ số tận cùng là 0 hoặc 5.");
+E("2a","dauhieu","Bài 2a","Trong các số 120; 235; 476; 250; 423; 261; 735; 122; 357, số nào chia hết cho 2?",[120,476,250,122],"Tận cùng là 0; 6; 0; 2.");
+E("2b","dauhieu","Bài 2b","Trong các số 120; 235; 476; 250; 423; 261; 735; 122; 357, số nào chia hết cho 5?",[120,235,250,735],"Tận cùng là 0 hoặc 5.");
+E("2c","dauhieu","Bài 2c","Trong các số 120; 235; 476; 250; 423; 261; 735; 122; 357, số nào chia hết cho 2 nhưng không chia hết cho 5?",[476,122],"Tận cùng chẵn nhưng khác 0.");
+E("2d","dauhieu","Bài 2d","Trong các số 120; 235; 476; 250; 423; 261; 735; 122; 357, số nào chia hết cho cả 2 và 5?",[120,250],"Tận cùng là 0.");
+E("3a","dauhieu","Bài 3","Trong các số 233; 169; 111; 450; 846, số nào chia hết cho 3?",[111,450,846],"Tổng các chữ số: 233 → 8; 169 → 16; 111 → 3; 450 → 9; 846 → 18. Lấy các số có tổng chia hết cho 3.");
+E("3b","dauhieu","Bài 3","Trong các số 233; 169; 111; 450; 846, số nào chia hết cho 9?",[450,846],"Tổng các chữ số 9 và 18 chia hết cho 9. Số 111 (tổng 3) chỉ chia hết cho 3.");
+E("4a","dauhieu","Bài 4a","Trong các số 372; 261; 4262; 7372; 5426; 65426; 7371, số nào chia hết cho 3?",[372,261,7371],"Tổng các chữ số: 372 → 12; 261 → 9; 4262 → 14; 7372 → 19; 5426 → 17; 65426 → 23; 7371 → 18.");
+E("4b","dauhieu","Bài 4b","Trong các số 372; 261; 4262; 7372; 5426; 65426; 7371, số nào chia hết cho 9?",[261,7371],"Tổng các chữ số 9 và 18 chia hết cho 9.");
+E("4c","dauhieu","Bài 4c","Trong các số 372; 261; 4262; 7372; 5426; 65426; 7371, số nào chia hết cho cả 3 và 9?",[261,7371],"Số chia hết cho 9 thì chia hết cho 3, nên đáp án giống câu b.");
+E("5a","dauhieu","Bài 5a","Cho các số 3510; 9520; 1137; 2965; 6363; 4203. Số nào chia hết cho 5 nhưng không chia hết cho 9?",[9520,2965],"Chia hết cho 5: 3510; 9520; 2965. Trong đó 3510 có tổng các chữ số 9 nên chia hết cho 9 (loại).");
+E("5b","dauhieu","Bài 5b","Cho các số 3510; 9520; 1137; 2965; 6363; 4203. Số nào chia hết cho 9 nhưng không chia hết cho 5?",[6363,4203],"Chia hết cho 9: 3510; 6363; 4203. Bỏ 3510 vì tận cùng là 0.");
+E("5c","dauhieu","Bài 5c","Cho các số 3510; 9520; 1137; 2965; 6363; 4203. Số nào chia hết cho cả 5 và 9?",[3510],"Chỉ có 3510: tận cùng là 0, tổng các chữ số là 9.");
+E("5d","dauhieu","Bài 5d","Cho các số 3510; 9520; 1137; 2965; 6363; 4203. Số nào không chia hết cho 5 cũng không chia hết cho 9?",[1137],"1137 tận cùng là 7, tổng các chữ số là 12.");
+const C25=["Chia hết cho 2, không chia hết cho 5","Chia hết cho 5, không chia hết cho 2","Chia hết cho cả 2 và 5","Không chia hết cho 2, cũng không chia hết cho 5"];
+M("6a","dauhieu","Bài 6a","Tổng A = 16 + 58 có chia hết cho 2 không, có chia hết cho 5 không?",C25,0,"16 và 58 đều chia hết cho 2 nên A chia hết cho 2. Cả hai số hạng đều không chia hết cho 5 nên chưa kết luận được, phải tính: A = 74, tận cùng 4, không chia hết cho 5.");
+M("6b","dauhieu","Bài 6b","Tổng B = 115 + 20 có chia hết cho 2 không, có chia hết cho 5 không?",C25,1,"115 và 20 đều chia hết cho 5 nên B chia hết cho 5. Chỉ có 115 không chia hết cho 2 nên B không chia hết cho 2 (B = 135).");
+M("6c","dauhieu","Bài 6c","Biểu thức C = 136 − 26 + 50 có chia hết cho 2 không, có chia hết cho 5 không?",C25,2,"C = 110 + 50 = 160, tận cùng là 0 nên chia hết cho cả 2 và 5.");
+M("6d","dauhieu","Bài 6d","Tổng D = 233 + 42 + 76 có chia hết cho 2 không, có chia hết cho 5 không?",C25,3,"42 và 76 chia hết cho 2, chỉ có 233 không chia hết cho 2, nên D không chia hết cho 2. D = 351, tận cùng 1, không chia hết cho 5.");
+const C39=["Chia hết cho 3, không chia hết cho 9","Chia hết cho cả 3 và 9","Không chia hết cho 3, cũng không chia hết cho 9"];
+M("7a","dauhieu","Bài 7a","Tổng A = 24 + 36 có chia hết cho 3 không, có chia hết cho 9 không?",C39,0,"A = 60, tổng các chữ số là 6: chia hết cho 3, không chia hết cho 9.");
+M("7b","dauhieu","Bài 7b","Hiệu B = 120 − 48 có chia hết cho 3 không, có chia hết cho 9 không?",C39,1,"B = 72, tổng các chữ số là 9: chia hết cho cả 3 và 9.");
+M("7c","dauhieu","Bài 7c","Biểu thức C = 72 − 45 + 99 có chia hết cho 3 không, có chia hết cho 9 không?",C39,1,"72, 45, 99 đều chia hết cho 9 nên C chia hết cho 9, do đó cũng chia hết cho 3 (C = 126).");
+M("7d","dauhieu","Bài 7d","Biểu thức D = 723 − 123 + 100 có chia hết cho 3 không, có chia hết cho 9 không?",C39,2,"723 − 123 = 600; 600 + 100 = 700, tổng các chữ số là 7: không chia hết cho 3, cũng không chia hết cho 9.");
+E("8a","dauhieu","Bài 8a","Điền chữ số thích hợp vào dấu * để số <span class='ov'>47*</span> chia hết cho 2 (gõ tất cả).",[0,2,4,6,8],"Chữ số tận cùng phải là số chẵn.");
+E("8b","dauhieu","Bài 8b","Điền chữ số thích hợp vào dấu * để số <span class='ov'>47*</span> chia hết cho 5 (gõ tất cả).",[0,5],"Chữ số tận cùng là 0 hoặc 5.");
+E("8c","dauhieu","Bài 8c","Điền chữ số thích hợp vào dấu * để số <span class='ov'>47*</span> chia hết cho cả 2 và 5 (gõ tất cả).",[0],"Chia hết cho cả 2 và 5 thì tận cùng là 0: số 470.");
+const C65=["Không có chữ số nào thỏa mãn","* là chữ số bất kì từ 1 đến 9","* ∈ {0; 5}","* ∈ {0; 2; 4; 6; 8}"];
+M("9a","dauhieu","Bài 9a","Điền chữ số vào dấu * để được số có 3 chữ số H = <span class='ov'>*65</span> chia hết cho 2.",C65,0,"H có chữ số tận cùng là 5 (số lẻ) nên không chia hết cho 2, dù * là bao nhiêu.");
+M("9b","dauhieu","Bài 9b","Điền chữ số vào dấu * để được số có 3 chữ số H = <span class='ov'>*65</span> chia hết cho 5.",C65,1,"Tận cùng là 5 nên H luôn chia hết cho 5. * là chữ số hàng trăm, đứng đầu nên phải khác 0: * ∈ {1; 2; …; 9}.");
+M("9c","dauhieu","Bài 9c","Điền chữ số vào dấu * để được số có 3 chữ số H = <span class='ov'>*65</span> chia hết cho cả 2 và 5.",C65,0,"Chia hết cho cả 2 và 5 thì phải tận cùng là 0, mà H tận cùng là 5: không có chữ số nào.");
+N("10","dauhieu","Bài 10","Điền chữ số thích hợp vào dấu * trong số <span class='ov'>31*</span> để được một số chia hết cho 5 và 9.",5,"","Chia hết cho 5 nên * ∈ {0; 5}. Tổng 3 + 1 + * = 4 + * chia hết cho 9 nên * = 5. Được số 315.");
+E("11","dauhieu","Bài 11","Dùng ba trong bốn chữ số 7; 2; 0; 1 ghép thành các số tự nhiên có ba chữ số khác nhau sao cho số đó chia hết cho 2 và 3 (gõ tất cả).",[102,120,210,270,702,720],"Chọn bộ ba chữ số có tổng chia hết cho 3: {7; 2; 0} (tổng 9) và {2; 0; 1} (tổng 3). Số chẵn nên tận cùng là 0 hoặc 2; chữ số 0 không đứng đầu. Được 720; 270; 702 và 210; 120; 102.");
+P("12","dauhieu","Bài 12","Với bốn chữ số 0; 1; 3; 5 có thể lập được bao nhiêu số có bốn chữ số khác nhau, mà mỗi số chia hết cho cả 2; 3; 5 và 9?",[["Tổng 0 + 1 + 3 + 5 bằng bao nhiêu?","num",9,""],["Chia hết cho cả 2 và 5 nên chữ số tận cùng là","num",0,""],["Ba chữ số 1; 3; 5 xếp vào ba vị trí đầu. Lập được bao nhiêu số?","num",6,"số"]],"Tổng các chữ số là 9 nên số nào cũng chia hết cho 3 và 9. Có 6 số: 1350; 1530; 3150; 3510; 5130; 5310.");
+P("13a","dauhieu","Bài 13a","Tìm số <span class='ov'>ab</span> để số <span class='ov'>67ab</span> chia hết cho 2; 3 và 5.",[["Chia hết cho cả 2 và 5 nên b =","num",0,""],["Tổng 6 + 7 + a + 0 = 13 + a phải chia hết cho 3. a có thể là (gõ tất cả)","set",[2,5,8],""]],"Được các số 6720; 6750; 6780.");
+P("13b","dauhieu","Bài 13b","Tìm số <span class='ov'>ab</span> để số <span class='ov'>67ab</span> chia hết cho 3 và 5 nhưng không chia hết cho 2.",[["Chia hết cho 5 nhưng không chia hết cho 2 nên b =","num",5,""],["Tổng 6 + 7 + a + 5 = 18 + a phải chia hết cho 3. a có thể là (gõ tất cả)","set",[0,3,6,9],""]],"Được các số 6705; 6735; 6765; 6795 (a là chữ số hàng chục của 67ab nên có thể bằng 0).");
+P("14a","dauhieu","Bài 14a","Cho số a = <span class='ov'>3x0</span> và b = <span class='ov'>71y</span>. Tìm x và y biết rằng cả a và b đều chia hết cho 2 và 5.",[["b chia hết cho cả 2 và 5 nên y =","num",0,""],["a = <span class='ov'>3x0</span> có tận cùng là 0. Vậy x","mc",0,"",["là chữ số bất kì từ 0 đến 9","chỉ có thể bằng 0","chỉ có thể là 0 hoặc 5"]]],"a luôn chia hết cho 2 và 5 vì tận cùng là 0, nên x là chữ số bất kì; còn y = 0.");
+P("14b","dauhieu","Bài 14b","Cho số a = <span class='ov'>3x0</span> và b = <span class='ov'>71y</span>. Tìm x và y biết rằng a chia hết cho 3; b chia hết cho 9.",[["3 + x + 0 chia hết cho 3. x có thể là (gõ tất cả)","set",[0,3,6,9],""],["7 + 1 + y = 8 + y chia hết cho 9. Vậy y =","num",1,""]],"x ∈ {0; 3; 6; 9} và y = 1 (b = 711).");
+E("15a","dauhieu","Bài 15a","Dùng ba trong bốn chữ số 0; 1; 4; 5 ghép thành các số tự nhiên có ba chữ số sao cho số đó chia hết cho 3 nhưng không chia hết cho 9 (gõ tất cả).",[105,150,501,510],"Các bộ ba: {0; 1; 4} tổng 5; {0; 1; 5} tổng 6; {0; 4; 5} tổng 9; {1; 4; 5} tổng 10. Chỉ bộ {0; 1; 5} có tổng chia hết cho 3 mà không chia hết cho 9.");
+E("15b","dauhieu","Bài 15b","Dùng ba trong bốn chữ số 0; 1; 4; 5 ghép thành các số tự nhiên có ba chữ số vừa chia hết cho 5 vừa chia hết cho 9 (gõ tất cả).",[405,450,540],"Bộ {0; 4; 5} có tổng 9. Tận cùng là 0 hoặc 5: 450; 540; 405 (không có 045).");
+E("16a","dauhieu","Bài 16a","Dùng ba trong bốn chữ số 0; 5; 7; 4 ghép thành các số có ba chữ số chia hết cho 2 nhưng không chia hết cho 5 và 3 (gõ tất cả).",[574,704,754],"Chia hết cho 2 mà không chia hết cho 5 nên tận cùng là 4. Bộ {0; 5; 4} có tổng 9 chia hết cho 3 (loại). Còn {0; 7; 4}: 704; {5; 7; 4}: 574; 754.");
+E("16b","dauhieu","Bài 16b","Dùng ba trong bốn chữ số 0; 5; 7; 4 ghép thành các số có ba chữ số chia hết cho 5 nhưng không chia hết cho 2 (gõ tất cả).",[405,475,705,745],"Tận cùng phải là 5: 705; 405; 475; 745 (chữ số 0 không đứng đầu).");
+E("16c","dauhieu","Bài 16c","Dùng ba trong bốn chữ số 0; 5; 7; 4 ghép thành các số có ba chữ số chia hết cho cả 2; 3 và 5 (gõ tất cả).",[450,540,570,750],"Tận cùng là 0 và tổng các chữ số chia hết cho 3: bộ {0; 5; 7} (tổng 12) và {0; 5; 4} (tổng 9). Được 570; 750; 450; 540.");
+E("17a","dauhieu","Bài 17a","Tìm tập hợp các số m thỏa mãn: m chia hết cho 2 và 510 ≤ m ≤ 525 (gõ tất cả).",[510,512,514,516,518,520,522,524],"Các số chẵn từ 510 đến 524 (525 là số lẻ).");
+E("17b","dauhieu","Bài 17b","Tìm tập hợp các số m thỏa mãn: m chia hết cho 5 và 510 ≤ m ≤ 525.",[510,515,520,525],"Tận cùng là 0 hoặc 5; lấy cả 510 và 525 vì có dấu ≤.");
+E("17c","dauhieu","Bài 17c","Tìm tập hợp các số m thỏa mãn: m vừa chia hết cho 2, vừa chia hết cho 5 và 510 ≤ m ≤ 525.",[510,520],"Tận cùng là 0.");
+E("18a","dauhieu","Bài 18a","Tìm tập hợp các số x thỏa mãn: x chia hết cho 3 và 105 &lt; x ≤ 125.",[108,111,114,117,120,123],"Không lấy 105 vì có dấu &lt;. Bắt đầu từ 108, cứ cộng thêm 3.");
+E("18b","dauhieu","Bài 18b","Tìm tập hợp các số x thỏa mãn: x chia hết cho 5 và 105 &lt; x ≤ 125.",[110,115,120,125],"Không lấy 105, lấy cả 125.");
+E("18c","dauhieu","Bài 18c","Tìm tập hợp các số x thỏa mãn: x vừa chia hết cho 2, vừa chia hết cho 5 và 105 &lt; x ≤ 125.",[110,120],"Tận cùng là 0.");
+N("19","dauhieu","Bài 19","Tìm số tự nhiên có hai chữ số, các chữ số giống nhau, biết rằng số đó chia hết cho 2 và chia cho 5 thì dư 2.",22,"","Chia cho 5 dư 2 nên tận cùng là 2 hoặc 7; chia hết cho 2 nên tận cùng là 2. Hai chữ số giống nhau: 22.");
+P("20a","dauhieu","Bài 20","Không thực hiện phép chia, hãy tìm số dư khi chia mỗi số 635; 428; 594; 8726 cho 2.",[["635 chia cho 2 dư","num",1,""],["428 chia cho 2 dư","num",0,""],["594 chia cho 2 dư","num",0,""],["8726 chia cho 2 dư","num",0,""]],"Số dư khi chia cho 2 bằng số dư khi chia chữ số tận cùng cho 2.");
+P("20b","dauhieu","Bài 20","Không thực hiện phép chia, hãy tìm số dư khi chia mỗi số 635; 428; 594; 8726 cho 5.",[["635 chia cho 5 dư","num",0,""],["428 chia cho 5 dư","num",3,""],["594 chia cho 5 dư","num",4,""],["8726 chia cho 5 dư","num",1,""]],"Số dư khi chia cho 5 bằng số dư khi chia chữ số tận cùng cho 5: 5 → 0; 8 → 3; 4 → 4; 6 → 1.");
+P("21a","dauhieu","Bài 21","Tìm số dư khi chia mỗi số 1546; 1527; 2468; 10¹¹ cho 9.",[["1546 chia cho 9 dư","num",7,""],["1527 chia cho 9 dư","num",6,""],["2468 chia cho 9 dư","num",2,""],["10¹¹ chia cho 9 dư","num",1,""]],"Số dư khi chia cho 9 bằng số dư khi chia tổng các chữ số cho 9: 16 → 7; 15 → 6; 20 → 2; 10¹¹ = 100…0 có tổng các chữ số là 1 → 1.");
+P("21b","dauhieu","Bài 21","Tìm số dư khi chia mỗi số 1546; 1527; 2468; 10¹¹ cho 3.",[["1546 chia cho 3 dư","num",1,""],["1527 chia cho 3 dư","num",0,""],["2468 chia cho 3 dư","num",2,""],["10¹¹ chia cho 3 dư","num",1,""]],"Số dư khi chia cho 3 bằng số dư khi chia tổng các chữ số cho 3: 16 → 1; 15 → 0; 20 → 2; 1 → 1.");
+W("22","nangcao","Bài 22*","Chứng tỏ rằng với mọi số tự nhiên n thì tích (n + 3)(n + 6) chia hết cho 2.","<p>Xét hai trường hợp:</p><ul><li>n chẵn: n + 6 là số chẵn (chẵn cộng chẵn), nên tích chia hết cho 2.</li><li>n lẻ: n + 3 là số chẵn (lẻ cộng lẻ), nên tích chia hết cho 2.</li></ul><p>Vậy với mọi số tự nhiên n, tích (n + 3)(n + 6) chia hết cho 2.</p>");
+W("23","nangcao","Bài 23*","Chứng minh rằng với mọi số tự nhiên n thì (2<sup>n</sup> − 1)·(2<sup>n</sup> + 1) chia hết cho 3.","<p>Ba số 2<sup>n</sup> − 1; 2<sup>n</sup>; 2<sup>n</sup> + 1 là ba số tự nhiên liên tiếp, nên có một số chia hết cho 3.</p><p>2<sup>n</sup> là tích của các thừa số 2 (bằng 1 khi n = 0) nên không chia hết cho 3.</p><p>Vậy 2<sup>n</sup> − 1 hoặc 2<sup>n</sup> + 1 chia hết cho 3, do đó tích (2<sup>n</sup> − 1)·(2<sup>n</sup> + 1) chia hết cho 3.</p>");
+W("24","nangcao","Bài 24*","Chứng tỏ rằng 99²⁰ + 9 chia hết cho 5 và 9.","<p><b>Chia hết cho 9:</b> 99 = 9·11 nên 99²⁰ chia hết cho 9; số 9 cũng chia hết cho 9. Vậy tổng chia hết cho 9.</p><p><b>Chia hết cho 5:</b> 99² = 9 801 có chữ số tận cùng là 1, nên 99²⁰ = 99²·99²·…·99² (10 thừa số) cũng có chữ số tận cùng là 1. Cộng thêm 9 được số có tận cùng là 0, nên chia hết cho 5.</p>");
+M("25","dauhieu","Bài 25","Tổng kết năm học, một trường THCS có 462 học sinh tiên tiến và 195 học sinh giỏi. Nhà trường dự định thưởng cho mỗi học sinh giỏi nhiều hơn mỗi học sinh tiên tiến 2 quyển vở. Cô văn thư tính phải mua 1 996 quyển thì vừa đủ phát thưởng. Hỏi cô văn thư tính đúng hay sai?",["Sai","Đúng"],0,"462 có tổng các chữ số 12, 195 có tổng các chữ số 15, nên cả hai số đều chia hết cho 3. Mỗi em nhận bao nhiêu quyển thì số vở phát cho 462 em tiên tiến và cho 195 em giỏi đều chia hết cho 3, nên tổng số vở phải chia hết cho 3. Mà 1 996 có tổng các chữ số 25, không chia hết cho 3. Vậy cô văn thư tính sai.");
+N("26","dauhieu","Bài 26","Số bi của Khôi trong khoảng từ 45 đến 60 viên. Biết rằng nếu đem số bi đó chia đều cho 2 bạn hoặc chia đều cho 3 bạn hoặc chia đều cho 9 bạn thì vừa hết. Hỏi Khôi có bao nhiêu viên bi?",54,"viên","Số bi chia hết cho 2 và cho 9 (chia hết cho 9 thì đã chia hết cho 3): là số chẵn có tổng các chữ số chia hết cho 9. Từ 45 đến 60 chỉ có 54. (Đề gốc in nhầm “số bi Bình”, ở đây là số bi của Khôi.)");
+N("27","dauhieu","Bài 27","Bà Năm có nhiều hơn 10 và ít hơn 50 quả trứng. Biết rằng nếu lấy số trứng chia cho 2 hoặc chia cho 5 thì chia hết, nếu chia cho 3 thì dư 1. Hỏi bà Năm có bao nhiêu quả trứng?",40,"quả","Chia hết cho 2 và 5 nên tận cùng là 0: 20; 30; 40. Chia cho 3: 20 dư 2; 30 dư 0; 40 dư 1. Vậy bà Năm có 40 quả trứng.");
+
 /* ---------- Hình vẽ ---------- */
 const FIG={
  shapes4:'<svg class="fig" viewBox="0 0 440 104" role="img" aria-label="Hình 1 hình chữ nhật, Hình 2 hình bình hành, Hình 3 hình thoi, Hình 4 hình thang cân"><rect class="s" x="12" y="18" width="78" height="48"/><path class="s" d="M128 66L148 18H210L190 66Z"/><line class="k" x1="134.4" y1="37.8" x2="145.6" y2="42.2"/><line class="k" x1="194.4" y1="37.8" x2="205.6" y2="42.2"/><path class="s" d="M270 12L305 40L270 68L235 40Z"/><line class="k" x1="283.8" y1="30.7" x2="291.3" y2="21.3"/><line class="k" x1="283.8" y1="49.3" x2="291.3" y2="58.7"/><line class="k" x1="256.3" y1="49.3" x2="248.8" y2="58.7"/><line class="k" x1="256.3" y1="30.7" x2="248.8" y2="21.3"/><path class="s" d="M345 66L360 18H405L420 66Z"/><line class="k" x1="346.8" y1="38.3" x2="358.3" y2="41.7"/><line class="k" x1="418.3" y1="38.3" x2="406.8" y2="41.7"/><text class="t" x="51" y="94">Hình 1</text><text class="t" x="169" y="94">Hình 2</text><text class="t" x="270" y="94">Hình 3</text><text class="t" x="382" y="94">Hình 4</text></svg>',
  shelf:'<svg class="fig" viewBox="0 0 220 170" style="max-width:220px" role="img" aria-label="Kệ trang trí dạng tam giác có ba cạnh bằng nhau"><path class="w" d="M110 14L18 154H202Z"/><line class="w" x1="62" y1="104" x2="158" y2="104" style="stroke-width:6"/><rect x="72" y="86" width="14" height="18" rx="2" style="fill:var(--accent)"/><circle cx="118" cy="95" r="8" style="fill:var(--ok)"/></svg>',
  hexpick:'<svg class="fig" viewBox="0 0 440 124" role="img" aria-label="Hình 1 biển STOP 8 cạnh, Hình 2 ngôi sao trong hình ngũ giác, Hình 3 ba kệ hình lục giác, Hình 4 bàn cờ hình vuông"><polygon class="s" points="90.1,64.5 69.5,85.1 40.5,85.1 19.9,64.5 19.9,35.5 40.5,14.9 69.5,14.9 90.1,35.5"/><text x="55" y="56" style="font-family:var(--f-display);font-weight:800;font-size:17px;fill:var(--ink);text-anchor:middle">STOP</text><polygon class="s" points="165.0,14.0 203.0,41.6 188.5,86.4 141.5,86.4 127.0,41.6"/><polygon points="165.0,18.0 173.8,41.9 199.2,42.9 179.3,58.6 186.2,83.1 165.0,69.0 143.8,83.1 150.7,58.6 130.8,42.9 156.2,41.9" style="fill:var(--warm-soft);stroke:var(--warm);stroke-width:2;stroke-linejoin:round"/><polygon class="s" points="283.0,32.0 272.5,50.2 251.5,50.2 241.0,32.0 251.5,13.8 272.5,13.8"/><polygon class="s" points="329.0,32.0 318.5,50.2 297.5,50.2 287.0,32.0 297.5,13.8 318.5,13.8"/><polygon class="s" points="306.0,72.0 295.5,90.2 274.5,90.2 264.0,72.0 274.5,53.8 295.5,53.8"/><rect class="s" x="352" y="18" width="64" height="64"/><rect x="352" y="18" width="16" height="16" style="fill:var(--ink)"/><rect x="384" y="18" width="16" height="16" style="fill:var(--ink)"/><rect x="368" y="34" width="16" height="16" style="fill:var(--ink)"/><rect x="400" y="34" width="16" height="16" style="fill:var(--ink)"/><rect x="352" y="50" width="16" height="16" style="fill:var(--ink)"/><rect x="384" y="50" width="16" height="16" style="fill:var(--ink)"/><rect x="368" y="66" width="16" height="16" style="fill:var(--ink)"/><rect x="400" y="66" width="16" height="16" style="fill:var(--ink)"/><text class="t" x="55" y="114">Hình 1</text><text class="t" x="165" y="114">Hình 2</text><text class="t" x="285" y="114">Hình 3</text><text class="t" x="384" y="114">Hình 4</text></svg>',
- clock:'<svg class="fig" viewBox="0 0 170 160" style="max-width:190px" role="img" aria-label="Mặt đồng hồ gỗ có 6 cạnh bằng nhau"><path class="wf" d="M48 12H122L159 80L122 148H48L11 80Z"/><circle class="d" cx="85" cy="32" r="4"/><circle class="d" cx="85" cy="128" r="4"/><circle class="d" cx="37" cy="80" r="4"/><circle class="d" cx="133" cy="80" r="4"/><line class="h" x1="85" y1="80" x2="85" y2="46"/><line class="h" x1="85" y1="80" x2="110" y2="94"/><circle class="d" cx="85" cy="80" r="5"/></svg>'
+ clock:'<svg class="fig" viewBox="0 0 170 160" style="max-width:190px" role="img" aria-label="Mặt đồng hồ gỗ có 6 cạnh bằng nhau"><path class="wf" d="M48 12H122L159 80L122 148H48L11 80Z"/><circle class="d" cx="85" cy="32" r="4"/><circle class="d" cx="85" cy="128" r="4"/><circle class="d" cx="37" cy="80" r="4"/><circle class="d" cx="133" cy="80" r="4"/><line class="h" x1="85" y1="80" x2="85" y2="46"/><line class="h" x1="85" y1="80" x2="110" y2="94"/><circle class="d" cx="85" cy="80" r="5"/></svg>',
+ hexshelf:'<svg class="fig" viewBox="0 0 220 186" style="max-width:230px" role="img" aria-label="Khung gỗ hình lục giác đều, có một tấm kệ nằm ngang nối hai đỉnh đối nhau"><path class="w" d="M30 93L70 23.7H150L190 93L150 162.3H70Z"/><line class="w" x1="30" y1="93" x2="190" y2="93" style="stroke-width:7"/><rect x="80" y="52" width="11" height="37" rx="2" style="fill:var(--accent)"/><rect x="94" y="60" width="11" height="29" rx="2" style="fill:var(--accent-deep)"/><circle cx="136" cy="80" r="8" style="fill:var(--ok)"/><path d="M99 156h24l-3-22h-18z" style="fill:var(--surface-2);stroke:var(--muted);stroke-width:1.5"/><circle cx="111" cy="124" r="10" style="fill:var(--ok)"/></svg>',
+ rect5:'<svg class="fig" viewBox="0 0 260 206" style="max-width:280px" role="img" aria-label="Hình chữ nhật ABCD chia thành 5 hình chữ nhật bằng nhau: hàng trên 2 hình nằm ngang, hàng dưới 3 hình đứng"><rect class="s" x="34" y="22" width="192" height="160"/><line class="s" x1="34" y1="86" x2="226" y2="86"/><line class="s" x1="130" y1="22" x2="130" y2="86"/><line class="s" x1="98" y1="86" x2="98" y2="182"/><line class="s" x1="162" y1="86" x2="162" y2="182"/><text class="t" x="24" y="18">A</text><text class="t" x="236" y="18">B</text><text class="t" x="236" y="198">C</text><text class="t" x="24" y="198">D</text></svg>',
+ garden:'<svg class="fig" viewBox="0 0 460 262" role="img" aria-label="Khu vườn hình chữ nhật dài 20 m, rộng 10 m; phần trồng hoa là hình thang ABCD có đáy CD dài 12 m nằm trên cạnh dưới của vườn, đáy AB dài 9 m, chiều cao 4 m"><rect class="s" x="40" y="36" width="360" height="180"/><path d="M118 144H280L310 216H94Z" style="fill:var(--ok-soft);stroke:var(--ok);stroke-width:2.4;stroke-linejoin:round"/><line x1="280" y1="144" x2="346" y2="144" style="stroke:var(--muted);stroke-width:1.5;stroke-dasharray:4 4"/><path class="k" d="M340 144V216M334 144h12M334 216h12" style="fill:none"/><path class="k" d="M40 20H400M40 14v12M400 14v12" style="fill:none"/><path class="k" d="M416 36V216M410 36h12M410 216h12" style="fill:none"/><text class="t" x="220" y="12">20 m</text><text class="t" x="426" y="131" style="text-anchor:start">10 m</text><text class="t" x="110" y="139">A</text><text class="t" x="290" y="139">B</text><text class="t" x="88" y="233">D</text><text class="t" x="316" y="233">C</text><text class="t" x="199" y="138">9 m</text><text class="t" x="202" y="250">12 m</text><text class="t" x="350" y="186" style="text-anchor:start">4 m</text><text class="t" x="199" y="190">trồng hoa</text></svg>'
 };
 
 /* ---------- Lý thuyết theo SGK Toán 6 (Kết nối tri thức với cuộc sống, tập 1 và tập 2) ----------
@@ -1206,7 +1396,53 @@ b43:{n:43,name:"Xác suất thực nghiệm",p:94,tp:[],
  cloze:[["Khả năng xảy ra một sự kiện được thể hiện bằng một con số từ 0 đến ___.","1",["10","100"],""],["Gieo đồng xu 100 lần, 55 lần mặt sấp. Xác suất thực nghiệm xuất hiện mặt sấp là ___.",f(55,100),[f(45,100),f(100,55)],""],["Xác suất thực nghiệm phụ thuộc vào người thực hiện và ___ thực hiện.","số lần",["màu sắc","thời gian"],""]],
  bug:[["Tung đồng xu 40 lần, có 24 lần mặt ngửa. Tính xác suất thực nghiệm xuất hiện mặt ngửa.",["Số lần thực hiện n = 40, số lần mặt ngửa k = 24.",`Xác suất thực nghiệm: ${f(40,24)} = ${f(5,3)}.`],1,`Lấy số lần xảy ra chia cho tổng số lần: ${f(24,40)} = ${f(3,5)}.`]]}
 };
-
+/* ---------- Bổ sung 01/11/2026: phương pháp giải theo phiếu bồi dưỡng của cô ----------
+   pp: khung "Phương pháp giải các dạng bài" (hiện dưới phần Ghi nhớ SGK).
+   cards/tf/pairs/cloze/bug chỉ được NỐI THÊM vào cuối để không lệch tiến độ thẻ cũ. */
+const ADD={
+b6:{tp:["pheptinh","luythua"],
+ pp:["<b>Viết gọn một tích thành một lũy thừa</b>: đếm số thừa số giống nhau. Nếu cơ số khác nhau, đưa về cùng cơ số trước: 4 = 2², 8 = 2³, 16 = 2⁴, 32 = 2⁵, 64 = 2⁶; 9 = 3², 27 = 3³, 81 = 3⁴, 243 = 3⁵; 25 = 5², 125 = 5³, 625 = 5⁴; 100 = 10², 1000 = 10³.",
+  "<b>Mở rộng – lũy thừa của lũy thừa</b>: (a<sup>m</sup>)<sup>n</sup> = a<sup>m·n</sup>. Ví dụ 32⁴ = (2⁵)⁴ = 2⁵·2⁵·2⁵·2⁵ = 2²⁰.",
+  "<b>Mở rộng – lũy thừa của một tích</b>: a<sup>n</sup>·b<sup>n</sup> = (a·b)<sup>n</sup>. Ví dụ 2⁴·3⁴ = (2·3)⁴ = 6⁴. Chỉ gộp được khi hai số mũ bằng nhau: 5⁴·4³ không gộp thành 20⁷.",
+  "<b>Số chính phương</b> là số bằng bình phương của một số tự nhiên: 0; 1; 4; 9; 16; 25; 36; 49; 64; 81; 100; … <b>Lập phương</b> của 1 đến 7: 1; 8; 27; 64; 125; 216; 343.",
+  "<b>Viết số theo lũy thừa của 10</b>: <span class='ov'>abcd</span> = a·10³ + b·10² + c·10 + d. Ví dụ 2 787 = 2·10³ + 7·10² + 8·10 + 7. Số có 5 chữ số thì chữ số đầu đi với 10⁴.",
+  "<b>Tìm số mũ, tìm cơ số</b>: nếu a<sup>m</sup> = a<sup>n</sup> thì m = n (a ≠ 0; a ≠ 1); nếu a<sup>m</sup> = b<sup>m</sup> thì a = b (m ≠ 0). Cách làm: viết hai vế về cùng cơ số (hoặc cùng số mũ) rồi cho bằng nhau. Ví dụ 4<sup>n−1</sup> = 1024 = 4⁵ nên n − 1 = 5, n = 6.",
+  "<b>Chú ý</b>: x² = x³ hay x⁵⁰ = x thì x = 0 hoặc x = 1 (0 và 1 nâng lên lũy thừa nào cũng bằng chính nó). Dạng 5<sup>x</sup> + 5<sup>x+2</sup> = 650: đặt 5<sup>x</sup> làm thừa số chung, 5<sup>x</sup>·(1 + 25) = 650.",
+  "<b>So sánh hai lũy thừa</b>: cùng cơ số (lớn hơn 1) thì số mũ lớn hơn, lũy thừa lớn hơn; cùng số mũ (khác 0) thì cơ số lớn hơn, lũy thừa lớn hơn. Chưa cùng thì đưa về: 27¹¹ = 3³³ và 81⁸ = 3³²; 2³⁰⁰ = 8¹⁰⁰ và 3²⁰⁰ = 9¹⁰⁰.",
+  "<b>So sánh trung gian</b>: tìm một số C sao cho A &lt; C và C &lt; B thì A &lt; B. Ví dụ 5²⁹⁹ &lt; 5³⁰⁰ = 125¹⁰⁰ &lt; 243¹⁰⁰ = 3⁵⁰⁰ &lt; 3⁵⁰¹.",
+  "<b>Điều thú vị</b>: 1³ + 2³ = 9 = 3²; 1³ + 2³ + 3³ = 36 = 6²; 1³ + 2³ + 3³ + 4³ = 100 = 10². Tổng lập phương các số liên tiếp từ 1 luôn là số chính phương."],
+ cards:[["Số chính phương là gì? Kể 6 số đầu tiên.","Số bằng bình phương của một số tự nhiên: 0; 1; 4; 9; 16; 25; …"],["Lập phương của các số từ 1 đến 7?","1; 8; 27; 64; 125; 216; 343."],["(a<sup>m</sup>)<sup>n</sup> = ?","a<sup>m·n</sup>. Ví dụ (2⁵)⁴ = 2²⁰."],["2⁴·3⁴ viết thành một lũy thừa thế nào?","6⁴, vì a<sup>n</sup>·b<sup>n</sup> = (a·b)<sup>n</sup>."],["Nếu a<sup>m</sup> = a<sup>n</sup> (a ≠ 0; a ≠ 1) thì sao?","m = n."],["Nếu a<sup>m</sup> = b<sup>m</sup> (m ≠ 0) thì sao?","a = b."],["x² = x³ thì x bằng bao nhiêu?","x = 0 hoặc x = 1."],["Hai cách so sánh hai lũy thừa?","Đưa về cùng cơ số rồi so số mũ, hoặc đưa về cùng số mũ rồi so cơ số."],["So sánh 2³⁰⁰ và 3²⁰⁰.","2³⁰⁰ = 8¹⁰⁰ &lt; 9¹⁰⁰ = 3²⁰⁰."],["Viết 64 391 theo lũy thừa của 10.","6·10⁴ + 4·10³ + 3·10² + 9·10 + 1."]],
+ tf:[["(2³)² = 2⁵",false,"(2³)² = 2³·2³ = 2⁶."],["2⁴·3⁴ = 6⁴",true,"a<sup>n</sup>·b<sup>n</sup> = (a·b)<sup>n</sup>."],["27¹¹ &gt; 81⁸",true,"27¹¹ = 3³³ còn 81⁸ = 3³²."],["Nếu 3<sup>x−1</sup> = 27 thì x = 3.",false,"27 = 3³ nên x − 1 = 3, x = 4."],["200 là số chính phương.",false,"14² = 196, 15² = 225."],["1³ + 2³ + 3³ là số chính phương.",true,"1 + 8 + 27 = 36 = 6²."],["2³⁰⁰ &gt; 3²⁰⁰",false,"2³⁰⁰ = 8¹⁰⁰ &lt; 9¹⁰⁰ = 3²⁰⁰."]],
+ pairs:[["(2³)²","2⁶"],["2⁴·3⁴","6⁴"],["27⁴","3¹²"]],
+ cloze:[["Nếu a<sup>m</sup> = a<sup>n</sup> (a ≠ 0; a ≠ 1) thì ___.","m = n",["a = m","m = a"],""],["Để so sánh 2¹⁰⁰ và 1024⁹, ta viết 1024⁹ = 2<sup>___</sup>.","90",["19","10"],"1024 = 2¹⁰ nên 1024⁹ = 2⁹⁰."],["64 391 = 6·10⁴ + 4·10³ + 3·10² + 9·10 + ___","1",["10","0"],""]],
+ bug:[["Tìm x: 3<sup>x+1</sup> = 9",["9 = 3²","3<sup>x+1</sup> = 3² nên x + 1 = 2","x = 3"],2,"x + 1 = 2 thì x = 2 − 1 = 1."],["So sánh 3⁸ và 9⁵",["9 = 3² nên 9⁵ = 3<sup>2+5</sup> = 3⁷","3⁸ &gt; 3⁷ nên 3⁸ &gt; 9⁵"],0,"9⁵ = 3²·3²·3²·3²·3² = 3¹⁰ (nhân 2·5, không cộng). Vậy 3⁸ &lt; 9⁵."],["Viết gọn 100·10·10 dưới dạng một lũy thừa",["100 = 10²","100·10·10 = 10²·10·10","= 10³"],2,"10²·10¹·10¹ = 10<sup>2+1+1</sup> = 10⁴."]]},
+b8:{pp:["<b>Đếm số ước</b> bằng cách tìm ước theo cặp: 54 = 1·54 = 2·27 = 3·18 = 6·9, nên Ư(54) = {1; 2; 3; 6; 9; 18; 27; 54}, có 8 ước. Thử chia lần lượt 1, 2, 3, … và dừng khi hai số trong cặp gặp nhau."],
+ cards:[["Số 54 có bao nhiêu ước?","8 ước: 1; 2; 3; 6; 9; 18; 27; 54 (ghép cặp 1·54, 2·27, 3·18, 6·9)."]]},
+b9:{tp:["chiahet","dauhieu"],
+ pp:["<b>Nhận biết nhanh</b>: nhìn chữ số tận cùng để xét chia hết cho 2 và 5; cộng các chữ số để xét chia hết cho 3 và 9. Chia hết cho cả 2 và 5 thì tận cùng là 0. Chia hết cho 9 thì chắc chắn chia hết cho 3.",
+  "<b>Xét một tổng (hiệu)</b>: mọi số hạng đều chia hết thì tổng chia hết; chỉ một số hạng không chia hết thì tổng không chia hết; có từ hai số hạng không chia hết trở lên thì phải tính ra kết quả rồi mới xét (16 + 58 = 74).",
+  "<b>Tìm chữ số chưa biết</b> (*, x, y): xét điều kiện chia hết cho 2, 5 trước (quyết định chữ số tận cùng), rồi mới xét 3, 9 (tổng các chữ số). Mỗi chữ số từ 0 đến 9; chữ số đứng đầu phải khác 0.",
+  "<b>Ghép số từ các chữ số cho trước</b>: chọn bộ chữ số có tổng chia hết cho 3 (hoặc 9) trước, rồi xếp chữ số tận cùng theo điều kiện chia hết cho 2, 5. Không để chữ số 0 đứng đầu.",
+  "<b>Tìm số dư không cần chia</b>: số dư khi chia cho 2 (cho 5) bằng số dư khi chia chữ số tận cùng cho 2 (cho 5). Số dư khi chia cho 9 (cho 3) bằng số dư khi chia tổng các chữ số cho 9 (cho 3). Ví dụ 1 546 có tổng các chữ số 16, nên chia 9 dư 7, chia 3 dư 1.",
+  "<b>Chứng minh chia hết</b>: xét n chẵn, n lẻ; trong hai số tự nhiên liên tiếp luôn có một số chẵn; trong ba số tự nhiên liên tiếp luôn có một số chia hết cho 3. Số có tận cùng là 9 nâng lên lũy thừa chẵn thì tận cùng là 1 (9² = 81).",
+  "<b>Bài toán thực tế</b>: “chia đều cho 2 hoặc 3 hoặc 9 bạn đều vừa hết” nghĩa là số đó chia hết cho cả 2, 3 và 9. “Chia cho 3 dư 1” thì số đó bớt đi 1 sẽ chia hết cho 3."],
+ cards:[["Tìm số dư của 8 726 khi chia cho 5 mà không cần chia.","Chữ số tận cùng 6 chia 5 dư 1, nên 8 726 chia 5 dư 1."],["Tìm số dư của 1 546 khi chia cho 9.","Tổng các chữ số 1 + 5 + 4 + 6 = 16; 16 chia 9 dư 7. Vậy dư 7."],["Tìm * để <span class='ov'>31*</span> chia hết cho cả 5 và 9.","* ∈ {0; 5}; 3 + 1 + * chia hết cho 9 nên * = 5. Số 315."],["Khi tìm chữ số chưa biết, xét điều kiện nào trước?","Chia hết cho 2, 5 trước (chữ số tận cùng), rồi mới đến 3, 9 (tổng các chữ số)."],["Trong ba số tự nhiên liên tiếp luôn có một số chia hết cho mấy?","Cho 3."],["16 + 58 có chia hết cho 5 không? Vì sao phải tính ra?","Không (16 + 58 = 74). Cả hai số hạng đều không chia hết cho 5 nên không dùng được tính chất, phải tính kết quả."]],
+ tf:[["Số dư khi chia 1 527 cho 9 bằng số dư khi chia 15 cho 9.",true,"1 + 5 + 2 + 7 = 15; 15 chia 9 dư 6."],["635 chia cho 2 dư 0.",false,"Chữ số tận cùng 5 là số lẻ nên dư 1."],["Số <span class='ov'>*65</span> không thể chia hết cho 2.",true,"Chữ số tận cùng là 5, số lẻ."],["Nếu hai số hạng đều không chia hết cho 5 thì tổng chắc chắn không chia hết cho 5.",false,"Ví dụ 12 + 8 = 20 chia hết cho 5. Phải tính ra kết quả."],["10¹¹ chia cho 9 dư 1.",true,"10¹¹ = 100…0 có tổng các chữ số bằng 1."]],
+ cloze:[["Số dư khi chia một số cho 3 bằng số dư khi chia ___ của nó cho 3.","tổng các chữ số",["chữ số tận cùng","chữ số đầu tiên"],""],["Số dư khi chia 428 cho 5 là ___.","3",["8","0"],"Chữ số tận cùng 8 chia 5 dư 3."]],
+ bug:[["Tìm chữ số * để <span class='ov'>*65</span> chia hết cho 5.",["Số tận cùng là 5 nên luôn chia hết cho 5.","* có thể là 0; 1; 2; …; 9."],1,"* là chữ số hàng trăm, đứng đầu nên phải khác 0: * ∈ {1; 2; …; 9}."],["Dùng ba trong bốn chữ số 7; 2; 0; 1 ghép số có ba chữ số khác nhau chia hết cho 2 và 3.",["Chọn bộ có tổng chia hết cho 3: {7; 2; 0} và {2; 0; 1}.","Số chẵn từ {7; 2; 0}: 720; 270; 702.","Số chẵn từ {2; 0; 1}: 210; 120; 102; 012."],2,"012 không phải số có ba chữ số (chữ số 0 không đứng đầu). Chỉ có 210; 120; 102."]]},
+b10:{pp:["<b>Bài tìm số nguyên tố p</b> (nâng cao): thử p = 2, p = 3 trước. Với p &gt; 3 thì p chia 3 dư 1 hoặc dư 2; xét từng trường hợp để loại. Cần nhớ: số chính phương chia cho 3 chỉ có thể dư 0 hoặc 1."],
+ tf:[["Số chính phương chia cho 3 có thể dư 2.",false,"Chỉ dư 0 hoặc 1. Ví dụ 4 dư 1, 9 dư 0, 16 dư 1, 25 dư 1."]]},
+b18:{pp:["Kẻ một đường chéo chính, hình lục giác đều được chia thành <b>hai hình thang cân</b> bằng nhau; kẻ cả ba đường chéo chính thì được <b>6 tam giác đều</b>."],
+ cards:[["Kẻ một đường chéo chính, lục giác đều được chia thành những hình gì?","Hai hình thang cân bằng nhau."]],
+ tf:[["Một đường chéo chính chia lục giác đều thành hai hình bình hành.",false,"Chia thành hai hình thang cân."]]},
+b19:{pp:["Đọc kĩ đề hỏi khẳng định <b>sai</b> hay <b>đúng</b>. Hình thoi có bốn cạnh bằng nhau, hai đường chéo vuông góc, các cạnh đối song song, các góc đối bằng nhau, nhưng <b>bốn góc không bằng nhau</b> (trừ khi đó là hình vuông)."],
+ tf:[["Hình thoi có bốn góc bằng nhau.",false,"Hình thoi chỉ có các góc đối bằng nhau. Bốn góc bằng nhau là hình chữ nhật, hình vuông."]]},
+b20:{pp:["Biết diện tích hình vuông, tìm cạnh: tìm số nhân với chính nó bằng diện tích (64 cm² thì cạnh 8 cm), rồi chu vi = 4 · cạnh = 32 cm. Giữ đúng đơn vị: cm² thì cạnh tính bằng cm.",
+  "Hình ghép từ các hình chữ nhật bằng nhau: so các cạnh bằng nhau để tìm quan hệ chiều dài – chiều rộng (ví dụ 2 chiều dài = 3 chiều rộng), chia thành các phần bằng nhau rồi dùng chu vi để tìm một phần.",
+  "Diện tích phần còn lại = diện tích cả hình − diện tích phần đã dùng. Hàng rào “không rào đoạn CD” thì lấy chu vi trừ đi độ dài CD."],
+ cards:[["Hình vuông có diện tích 64 cm². Chu vi bằng bao nhiêu?","Cạnh 8 cm (8 · 8 = 64), chu vi 4 · 8 = 32 cm."],["Vườn 20 m × 10 m, rào xung quanh nhưng bỏ một đoạn 12 m. Hàng rào dài bao nhiêu?","Chu vi 2 · (20 + 10) = 60 m; 60 − 12 = 48 m."]]}
+};
+Object.keys(ADD).forEach(l=>{const A=ADD[l],L=LS[l];if(!L)return;if(A.tp)L.tp=A.tp;if(A.pp)L.pp=A.pp;["cards","tf","pairs","cloze","bug"].forEach(k=>{if(A[k])L[k]=(L[k]||[]).concat(A[k]);});});
 
 /* =====================================================================
    LƯU TIẾN ĐỘ VÀ LỊCH ÔN
@@ -1315,7 +1551,7 @@ function renderHome(){
    {m:"src",h:"Dạng đề ôn tập",meta:Object.keys(SRC).length+" bộ đề, giữ đúng thứ tự như trên phiếu",chip:nSeen+"/"+I.length+" câu đã làm"},
    {m:"topic",h:"Luyện theo dạng bài",meta:Object.keys(TOPIC).length+" dạng: tập hợp, lũy thừa, tìm x, chia hết, hình…",chip:"Chọn dạng con yếu"},
    {m:"mix",h:"Trộn 15 câu",meta:"Câu ngẫu nhiên từ nhiều dạng, ưu tiên câu chưa vững",chip:"Luyện như đi thi"},
-   {m:"book",h:"Học lý thuyết theo SGK",meta:"43 bài SGK tập 1 và tập 2, mỗi bài có ghi nhớ và trò chơi: lật thẻ, đúng sai 60 giây, ghép đôi, bắt lỗi…",chip:(fcDue().length?fcDue().length+" thẻ cần ôn · ":"")+"★ "+totalStars()+"/"+ALL_L.length*3+" sao"},
+   {m:"book",h:"Học lý thuyết theo SGK",meta:"43 bài SGK tập 1 và tập 2, mỗi bài có ghi nhớ và trò chơi: lật thẻ, đúng sai 60 giây, ghép đôi, bắt lỗi… Bài 6, 9 có thêm phương pháp giải theo phiếu của cô.",chip:(fcDue().length?fcDue().length+" thẻ cần ôn · ":"")+"★ "+totalStars()+"/"+ALL_L.length*3+" sao"},
    {m:"chart",cls:"wide",h:"Tiến bộ của con",meta:"Tỉ lệ đúng theo từng dạng, câu sai nhiều lần, số câu đã thuộc",chip:"Dành cho bố mẹ xem"}
   ].filter(Boolean);
   const ic={due:"due",fresh:"fresh",src:"src",topic:"topic",mix:"mix",book:"book",chart:"chart"};
@@ -1592,7 +1828,7 @@ function openLearn(){
   </div>`;
   CH.filter(c=>c.tap===tap).forEach(c=>{
     h+=`<h2 class="sec-title">Chương ${c.n}. ${c.name}</h2><div class="list" style="margin-top:0">`;
-    c.ls.forEach(l=>{const L=LS[l];h+=`<button type="button" class="lrow" data-l="${l}"><span class="lnum">${L.n}</span><span class="lt2"><b>${L.name}</b><small>SGK trang ${L.p} · đã nhớ ${fcKnown(l)}/${L.cards.length} thẻ</small></span>${starsHtml(starsOf(l))}</button>`;});
+    c.ls.forEach(l=>{const L=LS[l];h+=`<button type="button" class="lrow" data-l="${l}"><span class="lnum">${L.n}</span><span class="lt2"><b>${L.name}</b><small>SGK trang ${L.p} · đã nhớ ${fcKnown(l)}/${L.cards.length} thẻ${L.pp?" · có phương pháp giải":""}</small></span>${starsHtml(starsOf(l))}</button>`;});
     h+=`<button type="button" class="lrow boss" data-b="${c.id}"><span class="lnum">${GI.trophy}</span><span class="lt2"><b>Thử thách chương ${c.n}</b><small>12 câu, 3 trái tim · ${store.badge[c.id]?"đã nhận huy hiệu":"vượt qua để nhận huy hiệu"}</small></span><span class="badge sm${store.badge[c.id]?" on":""}">${c.n}</span></button></div>`;
   });
   $("#learnBody").innerHTML=h;show("learn");
@@ -1611,7 +1847,7 @@ function practicePool(lid){const tp=LS[lid].tp||[];return I.filter(it=>tp.indexO
 function openLesson(lid){
   CURL=lid;const L=LS[lid],c=chOf(lid),g=store.gs[lid]||{};
   $("#lsTitle").textContent="Bài "+L.n+". "+L.name;
-  let h=`<p class="eyebrow">Chương ${c.n} · SGK trang ${L.p}</p><div class="th" style="margin-top:10px"><h3>Ghi nhớ</h3><ul>${L.tom.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+  let h=`<p class="eyebrow">Chương ${c.n} · SGK trang ${L.p}</p><div class="th" style="margin-top:10px"><h3>Ghi nhớ</h3><ul>${L.tom.map(x=>`<li>${x}</li>`).join("")}</ul></div>${L.pp?`<div class="th pp" style="margin-top:12px"><h3>Phương pháp giải các dạng bài</h3><p class="hint">Bổ sung theo phiếu bồi dưỡng của cô, dùng khi làm bài tập.</p><ul>${L.pp.map(x=>`<li>${x}</li>`).join("")}</ul></div>`:""}
   <h2 class="sec-title">Chơi để thuộc bài ${starsHtml(starsOf(lid))}</h2><div class="modes">`;
   gamesOf(lid).forEach(k=>{const G=GAMES[k],r=g[k];let chip;
     if(k==="fc")chip=(r&&r.pass?"Đạt · ":"")+`đã nhớ ${fcKnown(lid)}/${L.cards.length} thẻ`;
@@ -1815,5 +2051,4 @@ load();renderHome();
 })();
 </script>
 
-</body>
-</html>
+</body></html>
