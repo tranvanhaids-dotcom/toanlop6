@@ -90,6 +90,7 @@ h1{font-size:clamp(36px,9vw,48px);font-weight:800;letter-spacing:-.01em}
 .sw input{width:19px;height:19px;accent-color:var(--accent);margin:0}
 .hint{margin:0;font-size:13px;color:var(--muted);line-height:1.45}
 .foot{display:grid;justify-items:center;gap:4px;margin-top:22px;text-align:center}
+.credit{max-width:56ch;text-wrap:pretty}
 .linkbtn{border:0;background:none;color:var(--muted);font-size:13.5px;text-decoration:underline;text-underline-offset:3px;padding:6px}
 .linkbtn.arm{color:var(--bad);font-weight:600}
 
@@ -374,10 +375,11 @@ h1{font-size:clamp(36px,9vw,48px);font-weight:800;letter-spacing:-.01em}
         <label class="sw"><input type="checkbox" id="optQ"> thứ tự câu</label>
         <label class="sw"><input type="checkbox" id="optO"> vị trí đáp án</label>
       </div>
-      <p class="hint">Để trống hai ô Trộn thì câu hỏi và đáp án A, B, C, D giữ đúng thứ tự như phiếu của cô, tiện cho con dò lại.</p>
+      <p class="hint">Để trống hai ô Trộn thì câu hỏi và đáp án A, B, C, D giữ đúng thứ tự như phiếu gốc, tiện cho con dò lại.</p>
     </div>
     <div class="foot">
       <p class="hint" id="verNote"></p>
+      <p class="hint credit">Ứng dụng học tập miễn phí do phụ huynh Trần Văn Hải thực hiện. Lý thuyết theo SGK Toán 6 – Kết nối tri thức với cuộc sống (NXB Giáo dục Việt Nam); bài tập sưu tầm từ các đề ôn tập. Chỉ dùng cho mục đích học tập, không thương mại.</p>
       <button type="button" class="linkbtn" id="reset">Đặt lại toàn bộ tiến độ</button>
     </div>
   </div>
@@ -522,10 +524,10 @@ const DATA_VER="29/10/2026";
 const SRC={
   pt2:{name:"Phiếu ôn tập Toán 6 (số 2)",added:"2026-10-29"},
   kt:{name:"Đề kiểm tra Số học (40 phút)",added:"2026-10-29"},
-  tk:{name:"Đề tham khảo giữa kì I – cô Huyền Trang",added:"2026-10-29"},
-  gv:{name:"Hướng dẫn ôn tập giữa kì I – THCS Giảng Võ 2",added:"2026-10-29"},
-  tt2:{name:"Đề thi giữa kì I con đã làm (đề số 02)",added:"2026-10-29"},
-  tt1:{name:"Đề thi giữa kì I của trường (đề số 01)",added:"2026-10-29"},
+  tk:{name:"Đề tham khảo giữa kì I",added:"2026-10-29"},
+  gv:{name:"Đề cương ôn tập giữa kì I",added:"2026-10-29"},
+  tt2:{name:"Đề kiểm tra giữa kì I (đề số 02)",added:"2026-10-29"},
+  tt1:{name:"Đề kiểm tra giữa kì I (đề số 01)",added:"2026-10-29"},
   lt:{name:"Luyện thêm đúng chỗ con hay sai",added:"2026-10-29"}
 };
 const TOPIC={
@@ -567,7 +569,7 @@ M("c11","hinh","Câu 11","Hình thoi có",["Bốn cạnh bằng nhau","Bốn gó
 M("c12","hinh","Câu 12","Kệ trang trí sau có dạng hình gì?",["Hình lục giác đều","Hình tam giác đều","Hình thang cân","Hình chữ nhật"],1,"Kệ có 3 cạnh bằng nhau: hình tam giác đều.",{fig:"shelf"});
 M("c13","dientich","Câu 13","Người ta xếp 6 tam giác đều, mỗi tam giác có chu vi 12 cm, thành một hình lục giác đều. Chu vi của hình lục giác đều mới là",["18 cm","27 cm","72 cm","24 cm"],3,"Cạnh mỗi tam giác đều: 12 : 3 = 4 cm. Lục giác đều ghép được có 6 cạnh, mỗi cạnh 4 cm: 6·4 = 24 cm. (72 cm là tổng chu vi 6 tam giác, không phải chu vi lục giác.)",WS);
 M("c14","dientich","Câu 14 (và 16)","Một hình thoi có diện tích bằng 24 cm². Biết độ dài một đường chéo bằng 6 cm, độ dài đường chéo còn lại là",["4 cm","8 cm","12 cm","16 cm"],1,"Diện tích hình thoi = tích hai đường chéo : 2, nên tích hai đường chéo là 48; 48 : 6 = 8 cm.");
-M("c15","hinh","Câu 15","Hình chữ nhật <b>không</b> có tính chất nào dưới đây?",["Hai cạnh đối bằng nhau","Hai đường chéo vuông góc với nhau","Bốn cạnh bằng nhau","Các góc đối bằng nhau"],[2,1],"Hình chữ nhật chỉ có các cạnh đối bằng nhau, nên “bốn cạnh bằng nhau” là sai (cô chấm đáp án C). Lưu ý: hai đường chéo hình chữ nhật cũng không vuông góc với nhau, nên B cũng không phải tính chất của hình chữ nhật. App chấm đúng cả B và C.");
+M("c15","hinh","Câu 15","Hình chữ nhật <b>không</b> có tính chất nào dưới đây?",["Hai cạnh đối bằng nhau","Hai đường chéo vuông góc với nhau","Bốn cạnh bằng nhau","Các góc đối bằng nhau"],[2,1],"Hình chữ nhật chỉ có các cạnh đối bằng nhau, nên “bốn cạnh bằng nhau” là sai (đáp án gốc là C). Lưu ý: hai đường chéo hình chữ nhật cũng không vuông góc với nhau, nên B cũng không phải tính chất của hình chữ nhật. App chấm đúng cả B và C.");
 M("c17","dientich","Câu 17","Tam giác đều ABC có chu vi bằng 12 cm. Độ dài cạnh BC là",["2 cm","3 cm","4 cm","6 cm"],2,"Tam giác đều có 3 cạnh bằng nhau: 12 : 3 = 4 cm.");
 M("c18","dientich","Câu 18","Cho một hình vuông. Nếu cạnh hình vuông tăng gấp 3 lần thì diện tích của nó tăng gấp bao nhiêu lần?",["3","6","8","9"],3,"Diện tích = cạnh × cạnh, nên tăng 3·3 = 9 lần.");
 M("c19","dientich","Câu 19","Một hình vuông và một hình lục giác đều có chu vi bằng nhau. Biết độ dài cạnh hình vuông bằng 6 cm. Độ dài cạnh của lục giác đều bằng",["4 cm","5 cm","6 cm","8 cm"],0,"Chu vi hình vuông 4·6 = 24 cm. Lục giác đều có 6 cạnh: 24 : 6 = 4 cm.",WS);
@@ -631,7 +633,7 @@ P("b5","loivan","Bài 5","Mẹ Lan mang 200 000 đồng vào siêu thị mua 2 k
 P("b6a","nangcao","Bài 6 (chẵn)","Cho A = 2 + 2² + 2³ + 2⁴ + … + 2<sup>2023</sup> + 2<sup>2024</sup>. Chứng tỏ A chia hết cho 3.",[["A có bao nhiêu số hạng?","num",2024,"số hạng"],["Ghép 2 số hạng liền nhau thành một nhóm. Có bao nhiêu nhóm?","num",1012,"nhóm"],["Nhóm đầu: 2 + 2² = ?","num",6,""],["Nhóm tiếp theo: 2³ + 2⁴ = 2²·(2 + 2²) = 2²·?","num",6,""],["Mỗi nhóm đều chia hết cho 3, nên A chia hết cho","num",3,""]],"A = (2 + 2²) + 2²·(2 + 2²) + … + 2<sup>2022</sup>·(2 + 2²) = 6·(1 + 2² + … + 2<sup>2022</sup>) chia hết cho 3. Bài chứng minh chia hết thì dùng cách nhóm số hạng.");
 P("b6b","nangcao","Bài 6 (lẻ)","Cho A = 1 + 3 + 3² + 3³ + … + 3⁹⁸ + 3⁹⁹. Chứng tỏ A chia hết cho 4.",[["A có bao nhiêu số hạng (tính cả số 1)?","num",100,"số hạng"],["Ghép 2 số hạng một nhóm. Nhóm đầu: 1 + 3 = ?","num",4,""],["Nhóm tiếp theo: 3² + 3³ = 3²·(1 + 3) = 3²·?","num",4,""],["Vậy A chia hết cho","num",4,""]],"A = (1 + 3) + 3²·(1 + 3) + … + 3⁹⁸·(1 + 3) = 4·(1 + 3² + … + 3⁹⁸) chia hết cho 4.");
 
-/* ---------- Đề tham khảo cô Huyền Trang ---------- */
+/* ---------- Đề tham khảo giữa kì I ---------- */
 src("tk");
 M("c1","taphop","Câu 1","Cho tập hợp A = {a; 5; b; 7}. Cách viết nào sau đây đúng?",["5 ∉ A","0 ∈ A","7 ∉ A","a ∈ A"],3,"a là phần tử của A nên a ∈ A.");
 M("c2","taphop","Câu 2","Số lớn nhất có 3 chữ số khác nhau là",["987","999","998","876"],0,"Các chữ số phải khác nhau: chọn 9, 8, 7 được 987. Số 999 và 998 có chữ số lặp lại.");
@@ -659,7 +661,7 @@ N("b4a2","dientich","Bài 4a","Miếng đất hình chữ nhật dài 25 m, rộ
 N("b4b","dientich","Bài 4b","Trên miếng đất 25 m × 14 m, bác Năm dành một phần hình vuông cạnh 6 m để trồng hoa, phần còn lại xây nhà ở. Tính diện tích đất xây nhà ở.",314,"m²","350 − 6·6 = 350 − 36 = 314 m².");
 P("b5","nangcao","Bài 5","Tìm tất cả các số tự nhiên n sao cho n + 6 chia hết cho n + 1.",[["Tách: n + 6 = (n + 1) + ?","num",5,""],["n + 1 chia hết cho n + 1, nên n + 1 phải là ước của số nào?","num",5,""],["Ư(5) = ? (gõ các ước)","set",[1,5],""],["Vậy n = ? (gõ tất cả giá trị)","set",[0,4],""]],"n + 1 = 1 thì n = 0; n + 1 = 5 thì n = 4. Thử lại: 6 chia hết cho 1; 10 chia hết cho 5.");
 
-/* ---------- Hướng dẫn ôn tập Giảng Võ 2 ---------- */
+/* ---------- Đề cương ôn tập giữa kì I ---------- */
 src("gv");
 M("c1","pheptinh","Câu 1","Phép tính 2² + 3² có kết quả bằng",["24","25","13","14"],2,"4 + 9 = 13. Không được cộng cơ số trước rồi mới bình phương (5² = 25 là sai).");
 M("c2","timx","Câu 2","Số tự nhiên x thỏa mãn 12x − 33 = 3²·3³ : 3⁴ là",["3","36","13","12"],0,"3²·3³ : 3⁴ = 3<sup>2+3−4</sup> = 3; 12x = 36; x = 3.",WS);
@@ -744,7 +746,7 @@ W("b23d","nangcao","Bài 23d","Tìm tất cả các số tự nhiên x, y thỏa
 P("b24","nangcao","Bài 24","6 hộp bút máy có lần lượt 31, 20, 19, 18, 16, 15 chiếc. Lan, Tùng, Mai chia nhau, mỗi bạn nhận nguyên hộp. Lan và Tùng nhận tổng cộng 5 hộp, số bút của Lan gấp đôi số bút của Tùng. Hỏi mỗi bạn nhận bao nhiêu chiếc bút?",[["Tổng số bút trong 6 hộp","num",119,"chiếc"],["Mai nhận mấy hộp?","num",1,"hộp"],["Bút của Lan và Tùng gộp lại gấp mấy lần bút của Tùng?","num",3,"lần"],["Vậy 119 trừ số bút của Mai phải chia hết cho 3. Hộp của Mai có","num",20,"chiếc"],["Số bút của Tùng","num",33,"chiếc"],["Số bút của Lan","num",66,"chiếc"]],"119 chia 3 dư 2 nên hộp của Mai phải chia 3 dư 2: chỉ có hộp 20 chiếc. Lan và Tùng có 99 chiếc: Tùng 33 (hộp 18 và 15), Lan 66 (hộp 31, 19, 16).");
 M("b25","nangcao","Bài 25","Từ một tờ giấy, An cắt thành 6 mảnh hoặc 11 mảnh. Sau đó lấy một mảnh bất kì tiếp tục cắt thành 6 mảnh hoặc 11 mảnh nhỏ hơn. Cứ làm như vậy, An có thể thu được đúng 2072 mảnh giấy không?",["Không thể","Có thể"],0,"Mỗi lần cắt một mảnh thành 6 mảnh thì số mảnh tăng thêm 5; cắt thành 11 mảnh thì tăng thêm 10. Số mảnh luôn bằng 1 cộng một bội của 5, tức chia 5 dư 1. 2072 chia 5 dư 2 nên không thể.");
 
-/* ---------- Đề thi giữa kì I con đã làm (đề 02) ---------- */
+/* ---------- Đề kiểm tra giữa kì I (đề số 02) ---------- */
 src("tt2");
 M("c1","taphop","Câu 1","Cho tập hợp P = {y; 7; 8; 9}. Phát biểu nào sau đây là đúng?",["7 ∈ P","y ∉ P","{y; 7} ∈ P","6 ∈ P"],0,"7 là phần tử của P. {y; 7} là một tập hợp, không phải phần tử, nên không viết {y; 7} ∈ P. Trong bài thi con đã chọn C.",WS);
 M("c2","taphop","Câu 2","Số tự nhiên liền sau của số 999 là",["1001","1000","998","909"],1,"Liền sau thì cộng thêm 1: 999 + 1 = 1000.");
@@ -769,7 +771,7 @@ N("b4b","dientich","Bài 4b","Lát lối đi (2 m × 3 m) bằng gạch hình vu
 N("b4c","dientich","Bài 4c","Làm hàng rào quanh cả khu vườn hình chữ nhật dài 7 m, rộng 3 m. Cần bao nhiêu mét hàng rào?",20,"m","(7 + 3)·2 = 20 m.");
 P("b5","nangcao","Bài 5","Cho A = 5 + 5² + 5³ + … + 5<sup>2026</sup>. Tìm số tự nhiên x sao cho 4·A + 5 = 5<sup>x</sup>.",[["Nhân A với 5: 5A = 5² + 5³ + … + 5<sup>?</sup>. Số mũ cuối là","num",2027,""],["Lấy 5A − A, các số hạng ở giữa triệt tiêu: 4A = 5<sup>2027</sup> − ?","num",5,""],["Vậy 4A + 5 = 5<sup>x</sup> với x =","num",2027,""]],"Bài “tìm x” với tổng lũy thừa: nhân với cơ số rồi trừ. Cách nhóm số hạng chỉ dùng cho bài chứng minh chia hết.",WS);
 
-/* ---------- Đề thi giữa kì I trường (đề 01) ---------- */
+/* ---------- Đề kiểm tra giữa kì I (đề số 01) ---------- */
 src("tt1");
 M("c1","taphop","Câu 1","Cho tập hợp M = {x; 4; 5; 6}. Phát biểu nào sau đây là đúng?",["5 ∈ M","x ∉ M","{x; 4} ∈ M","6 ∉ M"],0,"5 là phần tử của M. {x; 4} là một tập hợp, không phải phần tử.");
 M("c2","taphop","Câu 2","Số tự nhiên liền trước của số 999 là",["1000","1001","998","909"],2,"Liền trước thì bớt đi 1: 999 − 1 = 998.");
@@ -1309,8 +1311,8 @@ function renderHome(){
   const nSeen=I.filter(it=>!isNew(it)).length;
   const cards=[
    {m:"due",cls:"wide"+(due.length?" primary":""),h:"Ôn hôm nay",meta:due.length?"Các câu đến hạn ôn và câu đang sai, gồm cả câu con từng sai trên giấy.":"Hôm nay không có câu nào đến hạn. Làm thêm bài mới để app lên lịch ôn.",chip:due.length?due.length+" câu cần ôn":"Đã ôn xong",dis:!due.length},
-   fresh.length?{m:"fresh",cls:"wide",h:"Bài mới thêm",meta:"Các câu vừa được bổ sung từ bài tập của cô.",chip:fresh.length+" câu chưa làm"}:null,
-   {m:"src",h:"Luyện theo đề của cô",meta:Object.keys(SRC).length+" bộ đề, giữ đúng thứ tự như trên phiếu",chip:nSeen+"/"+I.length+" câu đã làm"},
+   fresh.length?{m:"fresh",cls:"wide",h:"Bài mới thêm",meta:"Các câu vừa được bổ sung vào app.",chip:fresh.length+" câu chưa làm"}:null,
+   {m:"src",h:"Dạng đề ôn tập",meta:Object.keys(SRC).length+" bộ đề, giữ đúng thứ tự như trên phiếu",chip:nSeen+"/"+I.length+" câu đã làm"},
    {m:"topic",h:"Luyện theo dạng bài",meta:Object.keys(TOPIC).length+" dạng: tập hợp, lũy thừa, tìm x, chia hết, hình…",chip:"Chọn dạng con yếu"},
    {m:"mix",h:"Trộn 15 câu",meta:"Câu ngẫu nhiên từ nhiều dạng, ưu tiên câu chưa vững",chip:"Luyện như đi thi"},
    {m:"book",h:"Học lý thuyết theo SGK",meta:"43 bài SGK tập 1 và tập 2, mỗi bài có ghi nhớ và trò chơi: lật thẻ, đúng sai 60 giây, ghép đôi, bắt lỗi…",chip:(fcDue().length?fcDue().length+" thẻ cần ôn · ":"")+"★ "+totalStars()+"/"+ALL_L.length*3+" sao"},
@@ -1337,7 +1339,7 @@ $("#reset").addEventListener("click",e=>{const b=e.currentTarget;if(!resetArm){b
 
 /* ---------- Chọn đề / dạng ---------- */
 let PK={kind:"src",filter:"all"};
-function openPick(kind){PK.kind=kind;$("#pickTitle").textContent=kind==="src"?"Luyện theo đề của cô":"Luyện theo dạng bài";renderPick();show("pick");}
+function openPick(kind){PK.kind=kind;$("#pickTitle").textContent=kind==="src"?"Dạng đề ôn tập":"Luyện theo dạng bài";renderPick();show("pick");}
 function filt(list){if(PK.filter==="new")return list.filter(isNew);if(PK.filter==="wrong")return list.filter(isWrong);return list;}
 function groupStats(list){let ok=0,bad=0;list.forEach(it=>{const r=stOf(it.id);if(!r)return;if(r.b===0)bad++;else ok++;});return {ok,bad,n:list.length};}
 function renderPick(){
